@@ -1,6 +1,6 @@
 import React from 'react'
-import DateCalendar from '../components/DateCalendar'
 import { Container } from '@chakra-ui/react'
+import Themes from '../components/Themes';
 
 
 const Journal = () => {
@@ -8,7 +8,7 @@ const Journal = () => {
         <Container centerContent maxW='container.sm' minH='300px'>
 
             <div>Journal</div>
-            <DateCalendar />
+        <Themes />
         </Container>
     )
 }

@@ -3,12 +3,8 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
 import { Container, Box, VStack, StackDivider, Text, Flex } from '@chakra-ui/react'
-import Themes from '../components/Themes';
 // import Calendar from 'react-calendar';
-
-
-
-
+import DateCalendar from '../components/DateCalendar'
 
 const Home = () => {
   const [name, setName] = useState('');
@@ -26,7 +22,7 @@ const Home = () => {
     setName(user.username)
   }
 
-  
+
   // const basicBoxStyles = {
   //   display: 'flex',
   //   alignItems: 'center',
@@ -63,28 +59,35 @@ const Home = () => {
 
   return (
     <section>
-            {/* <Box w="100%" h="200px" opacity='.7' bgGradient="linear(to-t, blue.50, gray.300)" /> */}
-      <Container className="home" maxW='900px' minH='100vh' opacity='.8' bgGradient="linear(to-t, blue.100, gray.200)" p='2' centerContent>
-      <Text fontSize='xl' mt='6' color='gray.600'>
+      {/* <Box w="100%" h="200px" opacity='.7' bgGradient="linear(to-t, blue.50, gray.300)" /> */}
+      <Container className="home" p='1' maxW='900px' minH='100vh' opacity='.8' bgGradient="linear(to-t, blue.100, gray.200)" p='2' >
+        <Text fontSize='xl' mt='6' color='gray.600'>
           Welcome back, {name}
         </Text>
         <VStack
           divider={<StackDivider borderColor='gray.200' />}
           spacing={4} align='stretch' width='100%' mt='4' p='5'>
-          <Box h='300px' borderRadius='lg' boxShadow='md' bg='white'>
+
+
+          <Box id="calendar-wrap" p='3' borderRadius='lg' bg=''>
+
+            
+          <Box p='3' borderRadius='lg' maxW='350px' boxShadow='md' bg='white'>
+          <DateCalendar />
           </Box>
-     
+          </Box>
+
         </VStack>
 
-      <Flex
-        flexWrap='wrap'
-        spacing='24px'
-        gap='16px'
-        justifyContent='space-evenly'
-      >
+        <Flex
+          flexWrap='wrap'
+          spacing='24px'
+          gap='16px'
+          justifyContent='space-evenly'
+        >
 
-        {/* adding blur property to the element */}
-        {/* <Container py='8' pb='20' bg='white' m='5' maxW='310px' borderRadius='md' shadow='lg' centerContent>
+          {/* adding blur property to the element */}
+          {/* <Container py='8' pb='20' bg='white' m='5' maxW='310px' borderRadius='md' shadow='lg' centerContent>
 
         <Box sx={basicBoxStyles} filter='auto' blur='1.5px'>
           Box with Blur
@@ -98,11 +101,11 @@ const Home = () => {
           </Box>
         </Box>
         </Container> */}
-      </Flex>
-      <Themes />
-      </Container>
+        </Flex>
     
-      </section>
+      </Container>
+
+    </section>
   )
 }
 

@@ -1,26 +1,12 @@
-// import React, { useState } from 'react';
-// import { Container, Box } from '@chakra-ui/react'
-// // import '../styles/calendar.css'
+import React from 'react';
+import { DayPicker } from 'react-day-picker';
+import '../styles/calendar.css'
 
+function DateCalendar() {
 
-// function DateCalendar() {
-//   const [selected, setSelected] = React.useState();
+  return (
+    <DayPicker
+    />
+  )}
 
-//   return (
-//     <>
-//       <Container centerContent maxW='container.sm' minH='300px'>
-    
-//         <Box>
-//           <div className="cal">
-   
-
-//           </div>
-//         </Box>
-//         <Box shadow='md' bg='#fff' centerContent>
-//         </Box>
-//       </Container>
-//     </>
-//   )
-// }
-
-// export default DateCalendar
+  export default DateCalendar
