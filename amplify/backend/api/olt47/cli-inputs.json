@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "olt47",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/christypark/my-app/amplify/backend/api/olt47/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-04-08T17:28:55.310Z",
+      "keyDescription": "oltgram"
+    }
+  }
+}

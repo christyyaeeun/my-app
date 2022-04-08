@@ -1,0 +1,29 @@
+type Note @model {
+  id: ID!
+  title: String!
+  content: String!
+  image: String
+}
+
+# type Post @model
+#   @auth(rules: [
+#     { allow: owner },
+#     { allow: private, operations: [read] }
+#   ]) {
+#   id: ID!
+#   name: String!
+#   description: String!
+#   image: String
+#   owner: String
+#   comments: [Comment] @connection
+# }
+
+# type Comment @model
+#   @auth(rules: [
+#     { allow: owner },
+#     { allow: private, operations: [read] }
+#   ]) {
+#   id: ID
+#   message: String
+#   owner: String
+# }
