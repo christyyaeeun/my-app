@@ -29,6 +29,7 @@ const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => 
   <Link
     px={2}
     py={1}
+    color={'gray.500'}
     rounded={'md'}
     _hover={{
       textDecoration: 'none',
@@ -39,7 +40,7 @@ const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => 
   </Link>
 );
 
-export default function Simple() {
+export default function Simple({children}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -56,7 +57,7 @@ export default function Simple() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box id="nav-header">OLT</Box>
+            <Box fontWeight='600' color='gray.400' id="nav-header">OLT</Box>
             <HStack
               as={'nav'}
               spacing={4}
@@ -99,7 +100,8 @@ export default function Simple() {
                 <MenuDivider />
                 <MenuItem as="a" href="profile">Profile</MenuItem>
                 <MenuItem>Account Settings</MenuItem>
-                <MenuItem>                
+                <MenuItem>  
+
                 <AmplifySignOut />
                 </MenuItem>
               </MenuList>

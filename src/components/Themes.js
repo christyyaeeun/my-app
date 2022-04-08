@@ -29,7 +29,7 @@ const Themes = () => {
                         />
                     </Box>
                     <Stack>
-                        <Text color={'gray.500'} textTransform={'uppercase'} fontWeight={800} fontSize={'sm'} letterSpacing={1}>
+                        <Text color={'gray.500'} textTransform={'uppercase'} fontWeight={700} fontSize={'sm'}>
                             Theme
                         </Text>
                         <Heading color={useColorModeValue('#738dbb', 'white')}
@@ -51,7 +51,7 @@ const Themes = () => {
                         />
                     </Box>
                     <Stack>
-                        <Text color={'gray.500'} textTransform={'uppercase'} fontWeight={800} fontSize={'sm'} letterSpacing={1}>
+                        <Text color={'gray.500'} textTransform={'uppercase'} fontWeight={700} fontSize={'sm'} >
                             Theme
                         </Text>
                         <Heading color={useColorModeValue('#d7b3d1', 'white')} fontSize={'2xl'} fontFamily={'body'}>

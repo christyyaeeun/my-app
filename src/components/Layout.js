@@ -4,11 +4,12 @@ import Nav from './Nav'
 // import Header from './Header'
 // import AddPost from './AddPost'
 
-const Layout = () => {
+const Layout = ({children}) => {
     return (
 
         <main className="App">
                 <Nav />
+{children}
 
                 <Outlet />
         </main>

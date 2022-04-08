@@ -60,18 +60,16 @@ const Home = () => {
   return (
     <section>
       {/* <Box w="100%" h="200px" opacity='.7' bgGradient="linear(to-t, blue.50, gray.300)" /> */}
-      <Container className="home" p='1' maxW='900px' minH='100vh' opacity='.8' bgGradient="linear(to-t, blue.100, gray.200)" p='2' >
+      <Container className="home" p='4' maxW='900px' minH='100vh' opacity='.8' bgGradient="linear(to-t, blue.100, gray.200)" >
         <Text fontSize='xl' mt='6' color='gray.600'>
           Welcome back, {name}
         </Text>
-        <VStack
-          divider={<StackDivider borderColor='gray.200' />}
-          spacing={4} align='stretch' width='100%' mt='4' p='5'>
 
+        <VStack divider={<StackDivider borderColor='gray.200' />} spacing={4} align='stretch' width='100%' mt='4' p='5'>
 
           <Box id="calendar-wrap" p='3' borderRadius='lg' bg=''>
 
-            
+
           <Box p='3' borderRadius='lg' maxW='350px' boxShadow='md' bg='white'>
           <DateCalendar />
           </Box>
