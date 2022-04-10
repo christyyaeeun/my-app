@@ -13,7 +13,7 @@ export const Communication = () => {
 
             <Wrap spacing='30px' justify='center'>
   <WrapItem>
-    <Center w='180px' h='80px' bg='red.200'>
+    <Center w='180px' h='80px' bg='gray.200'>
       Box 1
     </Center>
   </WrapItem>
@@ -23,7 +23,7 @@ export const Communication = () => {
     </Center>
   </WrapItem>
   <WrapItem>
-    <Center w='180px' h='80px' bg='tomato'>
+    <Center w='180px' h='80px' bg='gray'>
       Box 3
     </Center>
   </WrapItem>
@@ -38,7 +38,7 @@ export const Communication = () => {
     </Center>
   </WrapItem>
   <WrapItem>
-    <Center w='180px' h='80px' bg='teal.200'>
+    <Center w='180px' h='80px' bg='teal.100'>
       Box 6
     </Center>
   </WrapItem>

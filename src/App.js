@@ -10,6 +10,8 @@ import Journal from './pages/Journal';
 import Missing from './pages/Missing';
 import { QualityTime } from './components/cards/QualityTime';
 import { Communication } from './components/cards/Communication';
+import { Growth } from './components/cards/Growth';
+import { Conflict } from './components/cards/Conflict';
 // import TodoApp from './components/TodoApp';
 import {
   ChakraProvider,
@@ -30,6 +32,10 @@ function App({ user, signOut }) {
           <Route path='/journal' element={<Journal />} />
           <Route path='communication' element={<Communication />} />
           <Route path='/qualitytime' element={<QualityTime />} />
+          <Route path='/qualitytime' element={<QualityTime />} />
+          <Route path='/growth' element={<Growth />} />
+          <Route path='/conflict' element={<Conflict />} />
+
           <Route path='/timeline' element={<Timeline />} />
 
           <Route path="*" element={<Missing />} />

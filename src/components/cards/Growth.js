@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, WrapItem, Wrap, Center, Container } from '@chakra-ui/react'
 
-export const QualityTime = () => {
+export const Growth = () => {
     return (
         <Container pt='8'maxW='xl'>
             <Center mb='5'>
@@ -13,17 +13,17 @@ export const QualityTime = () => {
 
             <Wrap spacing='30px' justify='center'>
   <WrapItem>
-    <Center w='180px' h='80px' bg='gray.200'>
+    <Center w='180px' h='80px' bg='green.200'>
       Box 1
     </Center>
   </WrapItem>
   <WrapItem>
-    <Center w='180px' h='80px' bg='gray.200'>
+    <Center w='180px' h='80px' bg='green.200'>
       Box 2
     </Center>
   </WrapItem>
   <WrapItem>
-    <Center w='180px' h='80px' bg='gray'>
+    <Center w='180px' h='80px' bg='green.100'>
       Box 3
     </Center>
   </WrapItem>
@@ -33,12 +33,12 @@ export const QualityTime = () => {
     </Center>
   </WrapItem>
   <WrapItem>
-    <Center w='180px' h='80px' bg='blackAlpha.500'>
+    <Center w='180px' h='80px' bg='green.500'>
       Box 5
     </Center>
   </WrapItem>
   <WrapItem>
-    <Center w='180px' h='80px' bg='gray.200'>
+    <Center w='180px' h='80px' bg='teal.200'>
       Box 6
     </Center>
   </WrapItem>

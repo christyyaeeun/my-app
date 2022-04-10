@@ -13,17 +13,17 @@ export const Conflict = () => {
 
             <Wrap spacing='30px' justify='center'>
   <WrapItem>
-    <Center w='180px' h='80px' bg='red.200'>
+    <Center w='180px' h='80px' bg='gray.200'>
       Box 1
     </Center>
   </WrapItem>
   <WrapItem>
-    <Center w='180px' h='80px' bg='green.200'>
+    <Center w='180px' h='80px' bg='yellow.200'>
       Box 2
     </Center>
   </WrapItem>
   <WrapItem>
-    <Center w='180px' h='80px' bg='tomato'>
+    <Center w='180px' h='80px' bg='gray'>
       Box 3
     </Center>
   </WrapItem>
@@ -33,7 +33,7 @@ export const Conflict = () => {
     </Center>
   </WrapItem>
   <WrapItem>
-    <Center w='180px' h='80px' bg='blackAlpha.500'>
+    <Center w='180px' h='80px' bg='gray.500'>
       Box 5
     </Center>
   </WrapItem>
