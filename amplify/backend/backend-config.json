@@ -39,9 +39,23 @@
               "description": "oltgram"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "autholt47d45bf9ee"
+              }
+            }
+          ]
         }
       }
+    }
+  },
+  "storage": {
+    "s3MyApp": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
     }
   }
 }

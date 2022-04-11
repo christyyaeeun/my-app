@@ -97,9 +97,23 @@ h3.amplify-heading {
     --amplify-blue: #099ac8;
 }
 
+#qualityTime {
+margin: 0 auto;
+}
+
+ #growth {
+margin: 0 auto;
+} 
+
+
+
+
+
+
 @media (min-width: 1000px) {
     .page-content {
         padding: 1em 3em;
     }
     
 }
+

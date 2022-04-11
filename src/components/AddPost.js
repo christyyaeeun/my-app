@@ -7,21 +7,23 @@ import { Textarea, Input, Stack, Button, Container, Box } from '@chakra-ui/react
 
 
 
-export default function AddPost() {
+function AddPost() {
 
 
   return (
-    <Box maxW='md' borderRadius='lg' shadow='xl' p='6'>
-    <Container maxW='container.md' centerContent>
-    <Box maxW='sm' borderRadius='lg'  p='4' overflow='hidden'>
-        <Stack spacing={3}>
+    <Box minW='250px' minH='250px' borderRadius='lg' shadow='xl'>
+    <Container maxW='container.lg' centerContent  pt='6'>
+    <Box borderRadius='lg'  p='4' overflow='hidden'>
+        <Stack spacing={3} minW='250px'>
           <Input placeholder='Title' size='sm' />
           <Textarea placeholder='Enter your post...' />
         </Stack>
-        <Button mt='4' colorScheme='blue' size='sm'>Save</Button>
+        <Button mt='4' colorScheme='gray' shadow='sm' size='sm'>Save</Button>
 
       </Box>
     </Container>
     </Box>
   )
 }
+
+export default AddPost

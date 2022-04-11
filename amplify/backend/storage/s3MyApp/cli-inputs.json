@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3MyApp",
+  "policyUUID": "a1ef6254",
+  "bucketName": "olt47-bucket",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

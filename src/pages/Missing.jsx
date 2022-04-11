@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 import React from "react"
 import { VStack, Center, Container, Text, Link as ReachLink } from "@chakra-ui/react"
-const Missing = () => {
+
+function Missing() {
     return (
         <>
             <Container p='10' centerContent>

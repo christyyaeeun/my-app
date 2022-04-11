@@ -23,7 +23,7 @@ import { AmplifySignOut } from '@aws-amplify/ui-react'
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 
-const Links = ["Home", "Timeline", "Journal" ];
+const Links = ["Home", "Timeline", "Journal", "Explore", "NoteApp" ];
 
 const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => (
   <Link
@@ -46,18 +46,18 @@ export default function Simple({children}) {
   return (
     <>
 
-      <Box bg={useColorModeValue('#f8f8f8', 'gray.900')} px={4}>
+      <Box bg={useColorModeValue('#f0f2f5', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
-            bg={'#f8f8f8'}
+            bg={useColorModeValue('gray.300', '#2d3748')}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={'Open Menu'}
             display={{ md: 'none' }}
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box fontWeight='600' color='gray.400' id="nav-header">OLT</Box>
+            <Box color={useColorModeValue('gray.400', 'white')} fontWeight='600' id="nav-header">OLT</Box>
             <HStack
               as={'nav'}
               spacing={4}

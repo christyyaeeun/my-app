@@ -9,6 +9,12 @@
       "expirationTime": 365,
       "apiKeyExpirationDate": "2023-04-08T17:28:55.310Z",
       "keyDescription": "oltgram"
-    }
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "autholt47d45bf9ee"
+      }
+    ]
   }
 }

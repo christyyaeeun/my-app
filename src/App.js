@@ -8,11 +8,14 @@ import Timeline from './pages/Timeline';
 import Profile from './pages/Profile';
 import Journal from './pages/Journal';
 import Missing from './pages/Missing';
-import { QualityTime } from './components/cards/QualityTime';
+import { Explore } from './pages';
+import { LoveLanguage } from './components/cards/LoveLanguage';
 import { Communication } from './components/cards/Communication';
 import { Growth } from './components/cards/Growth';
 import { Conflict } from './components/cards/Conflict';
-// import TodoApp from './components/TodoApp';
+import AppNote from './components/notes/AppNote';
+import AddNote from './components/notes/AddNote';
+import Note from './components/notes/Note';
 import {
   ChakraProvider,
   theme
@@ -27,17 +30,17 @@ function App({ user, signOut }) {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route path='/home' element={<Home />} />
-          {/* <Route exact path="/profile" element={<Profile />} /> */}
           <Route path=":userId" element={<Profile />} />
           <Route path='/journal' element={<Journal />} />
+          <Route path='/noteapp' element={<AppNote />} />
+          <Route path='/addNote' element={<AddNote />} />
+          <Route path='/note' element={<Note />} />
+          <Route path='/explore' element={<Explore />} />
           <Route path='communication' element={<Communication />} />
-          <Route path='/qualitytime' element={<QualityTime />} />
-          <Route path='/qualitytime' element={<QualityTime />} />
+          <Route path='/qualitytime' element={<LoveLanguage />} />
           <Route path='/growth' element={<Growth />} />
           <Route path='/conflict' element={<Conflict />} />
-
           <Route path='/timeline' element={<Timeline />} />
-
           <Route path="*" element={<Missing />} />
         </Route>
       </Routes>

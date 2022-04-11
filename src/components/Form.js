@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Input, Button } from '@chakra-ui/react'
+import { Textarea, Input, Button, Stack, Container, Box } from '@chakra-ui/react'
+
 function Form(props) {
     const [name, setName] = useState('');
 

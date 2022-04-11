@@ -1,22 +1,21 @@
 type Note @model {
   id: ID!
   title: String!
-  content: String!
-  image: String
+  description: String
+  createdAt: AWSDateTime
 }
 
-# type Post @model
-#   @auth(rules: [
-#     { allow: owner },
-#     { allow: private, operations: [read] }
-#   ]) {
-#   id: ID!
-#   name: String!
-#   description: String!
-#   image: String
-#   owner: String
-#   comments: [Comment] @connection
-# }
+type Post @model
+  @auth(rules: [
+    { allow: owner },
+    { allow: private, operations: [read] }
+  ]) {
+  id: ID!
+  name: String!
+  description: String!
+  image: String
+  owner: String
+}
 
 # type Comment @model
 #   @auth(rules: [

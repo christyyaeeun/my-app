@@ -2,7 +2,7 @@ import '@fontsource/inter/500.css';
 import React from 'react';
 import { useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
-import { Container, Box, VStack, StackDivider, Text, Flex } from '@chakra-ui/react'
+import { Container, Box, VStack, StackDivider, Text, Flex, Center } from '@chakra-ui/react'
 // import Calendar from 'react-calendar';
 import DateCalendar from '../components/DateCalendar'
 
@@ -60,10 +60,15 @@ const Home = () => {
   return (
     <section>
       {/* <Box w="100%" h="200px" opacity='.7' bgGradient="linear(to-t, blue.50, gray.300)" /> */}
-      <Container className="home" p='4' maxW='900px' minH='100vh' opacity='.8' bgGradient="linear(to-t, blue.100, gray.200)" >
+      <Container className="home" p='4' minH='100vh' maxW='7xl' opacity='.8' bgGradient="linear(to-t, blue.100, gray.200)" >
+        <Center>
         <Text fontSize='xl' mt='6' color='gray.600'>
           Welcome back, {name}
         </Text>
+        </Center>
+      <Container>
+
+    
 
         <VStack divider={<StackDivider borderColor='gray.200' />} spacing={4} align='stretch' width='100%' mt='4' p='5'>
 
@@ -102,7 +107,7 @@ const Home = () => {
         </Flex>
     
       </Container>
-
+      </Container>
     </section>
   )
 }
