@@ -7,6 +7,7 @@ function DateCalendar() {
   return (
     <DayPicker
     />
+    
   )}
 
   export default DateCalendar

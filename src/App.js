@@ -14,6 +14,7 @@ import { Conflict } from './components/cards/Conflict';
 import Notes from './components/notes/Notes';
 import AddNote from './components/notes/AddNote';
 import Note from './components/notes/Note';
+import CalendarEvents from './components/calendar/CalendarEvents'
 import {
   ChakraProvider,
   theme
@@ -32,6 +33,7 @@ function App({ user, signOut }) {
           <Route path='/Notes' element={<Notes />} />
           <Route path='/addNote' element={<AddNote />} />
           <Route path='/note' element={<Note />} />
+          <Route path='/calendarevents' element={<CalendarEvents />} />
           <Route path='/explore' element={<Explore />} />
           <Route path='communication' element={<Communication />} />
           <Route path='/qualitytime' element={<LoveLanguage />} />

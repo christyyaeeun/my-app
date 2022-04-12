@@ -17,6 +17,8 @@ type Post @model
   owner: String
 }
 
+
+
 # type Comment @model
 #   @auth(rules: [
 #     { allow: owner },

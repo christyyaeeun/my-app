@@ -26,7 +26,7 @@ export const Growth = () => {
                             <Stack
                                 borderWidth="1px"
                                 borderRadius="lg"
-                                w={'430px'}
+                                w={'330px'}
                                 height={'20rem'}
                                 direction={'row'}
                                 bg={useColorModeValue('white', 'gray.900')}
@@ -96,7 +96,7 @@ export const Growth = () => {
                             <Stack
                                 borderWidth="1px"
                                 borderRadius="lg"
-                                w={'430px'}
+                                w={'330px'}
                                 height={'20rem'}
                                 direction={'row'}
                                 bg={useColorModeValue('white', 'gray.900')}
@@ -164,7 +164,7 @@ export const Growth = () => {
                             <Stack
                                 borderWidth="1px"
                                 borderRadius="lg"
-                                w={'430px'}
+                                w={'330px'}
                                 height={'20rem'}
                                 direction={'row'}
                                 bg={useColorModeValue('white', 'gray.900')}
@@ -234,7 +234,7 @@ export const Growth = () => {
                             <Stack
                                 borderWidth="1px"
                                 borderRadius="lg"
-                                w={'430px'}
+                                w={'330px'}
                                 height={'20rem'}
                                 direction={'row'}
                                 bg={useColorModeValue('white', 'gray.900')}

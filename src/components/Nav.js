@@ -1,5 +1,7 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import { ReactNode } from 'react';
+import { Auth } from "aws-amplify";
 import {
   Box,
   Center,
@@ -23,6 +25,8 @@ import { AmplifySignOut } from '@aws-amplify/ui-react'
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 
+
+
 const Links = ["Home", "Timeline", "Journal", "Explore", "Notes" ];
 
 const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => (
@@ -39,6 +43,8 @@ const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => 
     {children}
   </Link>
 );
+
+
 
 export default function Simple({children}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -81,7 +87,7 @@ export default function Simple({children}) {
                 <Avatar
                   size={'sm'}
                   src={
-                    'https://firebasestorage.googleapis.com/v0/b/olt-react.appspot.com/o/avatar-sm.png?alt=media&token=7843d4ae-bee0-47f4-9a3c-f964e463d03c'
+                    ''
                   }
                 />
               </MenuButton>
@@ -91,12 +97,12 @@ export default function Simple({children}) {
                 <Center>
                   <Avatar
                     size={'2xl'}
-                    src={'https://firebasestorage.googleapis.com/v0/b/olt-react.appspot.com/o/avatar.png?alt=media&token=05150580-bc8a-4211-b00f-f9addb36b26f'}
+                    src={''}
                   />
                 </Center>
                 <br />
                 <Center>
-                  <p>Username</p>
+                  
                 </Center>
                 <br />
                 <MenuDivider />

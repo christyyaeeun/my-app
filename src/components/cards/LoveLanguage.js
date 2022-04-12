@@ -6,14 +6,11 @@ import { BackButton } from './BackButton'
 
 export const LoveLanguage = () => {
       return (
-          <Container pt='8' maxW='7xl'>
+          <Container pt='8' maxW='7xl' p='4'>
   
-              <Center mb='5'>
                   <Text fontSize='lg' color='gray.600'>
                       Quality Time
                   </Text>
-              </Center>
-  
   
   <BackButton />
               <Stack
@@ -21,7 +18,7 @@ export const LoveLanguage = () => {
                   textAlign="center"
                   justify="center"
                   spacing={{ base: 4, lg: 10 }}
-                  py={10} >
+                  py={'10'}>
                   <Wrap spacing='50px' justify='center' maxW='7xl'>
   
                       <WrapItem>
@@ -29,7 +26,7 @@ export const LoveLanguage = () => {
                               <Stack
                                   borderWidth="1px"
                                   borderRadius="lg"
-                                  w={'430px'}
+                                  w={'330px'}
                                   height={'20rem'}
                                   direction={'row'}
                                   bg={useColorModeValue('white', 'gray.900')}
@@ -99,7 +96,7 @@ export const LoveLanguage = () => {
                               <Stack
                                   borderWidth="1px"
                                   borderRadius="lg"
-                                  w={'430px'}
+                                  w={'330px'}
                                   height={'20rem'}
                                   direction={'row'}
                                   bg={useColorModeValue('white', 'gray.900')}
@@ -167,7 +164,7 @@ export const LoveLanguage = () => {
                               <Stack
                                   borderWidth="1px"
                                   borderRadius="lg"
-                                  w={'430px'}
+                                  w={'330px'}
                                   height={'20rem'}
                                   direction={'row'}
                                   bg={useColorModeValue('white', 'gray.900')}
@@ -237,7 +234,7 @@ export const LoveLanguage = () => {
                               <Stack
                                   borderWidth="1px"
                                   borderRadius="lg"
-                                  w={'430px'}
+                                  w={'330px'}
                                   height={'20rem'}
                                   direction={'row'}
                                   bg={useColorModeValue('white', 'gray.900')}
@@ -304,7 +301,7 @@ export const LoveLanguage = () => {
       <Stack
           borderWidth="1px"
           borderRadius="lg"
-          w={'430px'}
+          w={'330px'}
           height={'20rem'}
           direction={'row'}
           bg={useColorModeValue('white', 'gray.900')}
