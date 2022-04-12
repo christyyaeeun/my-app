@@ -1,6 +1,4 @@
 import React from 'react';
-// import React, { useState, useEffect } from 'react';
-// import { Auth } from 'aws-amplify';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home'
 import Layout from './components/Layout';
@@ -13,7 +11,7 @@ import { LoveLanguage } from './components/cards/LoveLanguage';
 import { Communication } from './components/cards/Communication';
 import { Growth } from './components/cards/Growth';
 import { Conflict } from './components/cards/Conflict';
-import AppNote from './components/notes/AppNote';
+import Notes from './components/notes/Notes';
 import AddNote from './components/notes/AddNote';
 import Note from './components/notes/Note';
 import {
@@ -21,7 +19,6 @@ import {
   theme
 } from '@chakra-ui/react';
 import { withAuthenticator } from '@aws-amplify/ui-react'
-
 
 
 function App({ user, signOut }) {
@@ -32,7 +29,7 @@ function App({ user, signOut }) {
           <Route path='/home' element={<Home />} />
           <Route path=":userId" element={<Profile />} />
           <Route path='/journal' element={<Journal />} />
-          <Route path='/noteapp' element={<AppNote />} />
+          <Route path='/Notes' element={<Notes />} />
           <Route path='/addNote' element={<AddNote />} />
           <Route path='/note' element={<Note />} />
           <Route path='/explore' element={<Explore />} />
@@ -49,15 +46,3 @@ function App({ user, signOut }) {
 }
 
 export default withAuthenticator(App)
-/*
-export function App() {
-  return (
-    <div>
-      <Routes>
-        <Route path="/about" element={<AboutPage />} />
-        <Route exact path="/profile" element={<Profile />} />
-        <Route path="/profile/:id" element={<UserProfile />} />
-      </Routes>
-    </div>
-  )
-} */

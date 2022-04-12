@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, WrapItem, Wrap, Center, Container, Flex, Badge, useColorModeValue, Stack, Heading } from '@chakra-ui/react'
-import { Button } from './Button'
+import { BackButton } from './BackButton'
 
 export const Growth = () => {
 
@@ -12,7 +12,7 @@ export const Growth = () => {
             </Text>
 
 
-            <Button />
+            <BackButton />
             <Stack
                 direction={{ base: 'column', md: 'row' }}
                 textAlign="center"

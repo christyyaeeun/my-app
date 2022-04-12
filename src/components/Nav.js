@@ -23,7 +23,7 @@ import { AmplifySignOut } from '@aws-amplify/ui-react'
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 
-const Links = ["Home", "Timeline", "Journal", "Explore", "NoteApp" ];
+const Links = ["Home", "Timeline", "Journal", "Explore", "Notes" ];
 
 const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => (
   <Link
@@ -33,7 +33,7 @@ const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => 
     rounded={'md'}
     _hover={{
       textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
+      bg: useColorModeValue('gray.100', 'gray.700'),
     }}
     href={href}>
     {children}
@@ -46,12 +46,14 @@ export default function Simple({children}) {
   return (
     <>
 
-      <Box bg={useColorModeValue('#f0f2f5', 'gray.900')} px={4}>
+      <Box bg={useColorModeValue('#f0f2f5', 'gray.700')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
+          
             size={'md'}
-            bg={useColorModeValue('gray.300', '#2d3748')}
+            bg={useColorModeValue('#dce0e6', '#2d3748')}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            color={useColorModeValue('gray.500', 'white')}
             aria-label={'Open Menu'}
             display={{ md: 'none' }}
             onClick={isOpen ? onClose : onOpen}

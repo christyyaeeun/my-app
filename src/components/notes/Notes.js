@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import NoteList from '../notes/NoteList';
-import Search from '../notes/Search';
-import { Box } from '@chakra-ui/react';
+import NotesList from './NotesList';
+import Search from './Search';
+import { Box, Container } from '@chakra-ui/react';
 
-const AppNote = () => {
+
+function AppNote() {
 	const [notes, setNotes] = useState([
 		{
-		id: nanoid(),
-		title:'post title',
-		text: 'This is my first note!',
-		date: '15/04/2021',
-	},]
+			id: nanoid(),
+			title: 'post title',
+			text: 'description',
+			date: '15/04/2021',
+		},]
 	);
 
 	const [searchText, setSearchText] = useState('');
@@ -33,7 +34,7 @@ const AppNote = () => {
 		);
 	}, [notes]);
 
-	const addNote = ( title, text) => {
+	const addNote = (title, text) => {
 		const date = new Date();
 		const newNote = {
 			id: nanoid(),
@@ -50,19 +51,34 @@ const AppNote = () => {
 		setNotes(newNotes);
 	};
 
+	function editNote(id, newName) {
+		const editedNotesList = notes.map(note => {
+			if (id === note.id) {
+				//
+				return { ...note, name: newName }
+			}
+			return note;
+		});
+		setNotes(editedNotesList);
+	}
+
 	return (
-		<div className='container'>
-			<Search handleSearchNote={setSearchText} />
-			<Box>
-			<NoteList
-				notes={notes.filter((note) =>
-					note.text.toLowerCase().includes(searchText)
-				)}
-				handleAddNote={addNote}
-				handleDeleteNote={deleteNote}
-			/>
+		<Container>
+			<Box p='3' m='3'>
+				<Search handleSearchNote={setSearchText} />
 			</Box>
-		</div>
+			<Box>
+		
+				<NotesList
+					notes={notes.filter((note) =>
+						note.text.toLowerCase().includes(searchText)
+					)}
+					editNote={editNote}
+					handleAddNote={addNote}
+					handleDeleteNote={deleteNote}
+				/>
+			</Box>
+		</Container>
 	);
 };
 

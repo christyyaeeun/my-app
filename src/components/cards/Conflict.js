@@ -2,7 +2,7 @@ import React from 'react'
 import { Center, useColorModeValue, Heading, Text, Stack, WrapItem, Wrap, Container,
     Badge,
     Flex, } from '@chakra-ui/react'
-import { Button } from './Button'
+import { BackButton } from './BackButton'
 
 export const Conflict = () => {
     return (
@@ -13,7 +13,7 @@ export const Conflict = () => {
                 </Text>
             </Center>
 
-<Button />
+<BackButton />
             <Container centerContent maxW={'7xl'}>
                 <Wrap spacing='40px' justify='center'>
 

@@ -3,7 +3,7 @@ import Note from './Note';
 import AddNote from './AddNote';
 import { Container } from '@chakra-ui/react'
 
-const NoteList = ({
+const NotesList = ({
 	notes,
 	handleAddNote,
 	handleDeleteNote
@@ -13,6 +13,8 @@ const NoteList = ({
 	return (
 		<div className="notes-list">
 		<Container>
+		<AddNote handleAddNote={handleAddNote} />
+
 			{notes.map((note) => (
 				<Note
 					id={note.id}
@@ -22,10 +24,9 @@ const NoteList = ({
 					handleDeleteNote={handleDeleteNote}
 				/>
 			))}
-			<AddNote handleAddNote={handleAddNote} />
 			</Container>
 			</div>
 	);
 };
 
-export default NoteList;
+export default NotesList;

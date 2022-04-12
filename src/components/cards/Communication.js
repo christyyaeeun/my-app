@@ -3,7 +3,7 @@ import { Center, useColorModeValue, Heading, Text, Stack, WrapItem, Wrap, Contai
     Badge,
     Flex,
 } from '@chakra-ui/react'
-import { Button } from './Button'
+import { BackButton } from './BackButton'
 
 
 export const Communication = () => {
@@ -14,7 +14,7 @@ export const Communication = () => {
                     Communication
                 </Text>
             </Center>
-            <Button />
+            <BackButton />
 
 
             <Container centerContent maxW={'7xl'}>
