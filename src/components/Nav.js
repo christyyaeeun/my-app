@@ -56,7 +56,7 @@ export default function Simple({children}) {
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
-            bg={useColorModeValue('#a0aec0', '#2d3748')}
+            bg={useColorModeValue('#d0d8e3', '#2d3748')}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             color={useColorModeValue('gray.700', 'white')}
             aria-label={'Open Menu'}
