@@ -33,7 +33,7 @@ const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => 
   <Link
     px={2}
     py={1}
-    color={'gray.500'}
+    color={useColorModeValue('gray.500', 'white')}
     rounded={'md'}
     _hover={{
       textDecoration: 'none',
@@ -52,14 +52,13 @@ export default function Simple({children}) {
   return (
     <>
 
-      <Box bg={useColorModeValue('#f0f2f5', 'gray.700')} px={4}>
+      <Box bg={useColorModeValue('#edf2f7', 'gray.700')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
-          
             size={'md'}
-            bg={useColorModeValue('#dce0e6', '#2d3748')}
+            bg={useColorModeValue('#a0aec0', '#2d3748')}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            color={useColorModeValue('gray.500', 'white')}
+            color={useColorModeValue('gray.700', 'white')}
             aria-label={'Open Menu'}
             display={{ md: 'none' }}
             onClick={isOpen ? onClose : onOpen}
@@ -102,7 +101,7 @@ export default function Simple({children}) {
                 </Center>
                 <br />
                 <Center>
-                  
+
                 </Center>
                 <br />
                 <MenuDivider />
