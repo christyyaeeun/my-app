@@ -3,18 +3,25 @@
   "serviceConfiguration": {
     "apiName": "olt47",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/Users/christypark/my-app/amplify/backend/api/olt47/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-2c8a191c-2d15-4871-af6b-93a271f45b6c/amplify/backend/api/olt47/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 365,
-      "apiKeyExpirationDate": "2023-04-08T17:28:55.310Z",
-      "keyDescription": "oltgram"
+      "keyDescription": "api key description",
+      "expirationTime": 30
     },
     "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      },
       {
         "mode": "AMAZON_COGNITO_USER_POOLS",
         "cognitoUserPoolId": "autholt47d45bf9ee"
       }
-    ]
+    ],
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    }
   }
 }

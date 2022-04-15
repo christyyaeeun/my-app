@@ -1,0 +1,374 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Event @aws_cognito_user_pools @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  createdAt: AWSDateTime!
+  date: String
+  id: ID!
+  name: String!
+  owner: String
+  status: String
+  updatedAt: AWSDateTime!
+}
+
+type ModelEventConnection @aws_cognito_user_pools @aws_iam {
+  items: [Event]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelNoteConnection @aws_cognito_user_pools @aws_iam {
+  items: [Note]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelPostConnection @aws_cognito_user_pools @aws_iam {
+  items: [Post]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelTodoConnection @aws_api_key @aws_iam {
+  items: [Todo]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type Mutation {
+  createEvent(condition: ModelEventConditionInput, input: CreateEventInput!): Event @aws_cognito_user_pools @aws_iam
+  createNote(condition: ModelNoteConditionInput, input: CreateNoteInput!): Note @aws_cognito_user_pools @aws_iam
+  createPost(condition: ModelPostConditionInput, input: CreatePostInput!): Post @aws_cognito_user_pools @aws_iam
+  createTodo(condition: ModelTodoConditionInput, input: CreateTodoInput!): Todo @aws_api_key @aws_iam
+  deleteEvent(condition: ModelEventConditionInput, input: DeleteEventInput!): Event @aws_cognito_user_pools @aws_iam
+  deleteNote(condition: ModelNoteConditionInput, input: DeleteNoteInput!): Note @aws_cognito_user_pools @aws_iam
+  deletePost(condition: ModelPostConditionInput, input: DeletePostInput!): Post @aws_cognito_user_pools @aws_iam
+  deleteTodo(condition: ModelTodoConditionInput, input: DeleteTodoInput!): Todo @aws_api_key @aws_iam
+  updateEvent(condition: ModelEventConditionInput, input: UpdateEventInput!): Event @aws_cognito_user_pools @aws_iam
+  updateNote(condition: ModelNoteConditionInput, input: UpdateNoteInput!): Note @aws_cognito_user_pools @aws_iam
+  updatePost(condition: ModelPostConditionInput, input: UpdatePostInput!): Post @aws_cognito_user_pools @aws_iam
+  updateTodo(condition: ModelTodoConditionInput, input: UpdateTodoInput!): Todo @aws_api_key @aws_iam
+}
+
+type Note @aws_cognito_user_pools @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  createdAt: AWSDateTime
+  description: String
+  id: ID!
+  owner: String
+  title: String!
+  updatedAt: AWSDateTime!
+}
+
+type Post @aws_cognito_user_pools @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  createdAt: AWSDateTime!
+  description: String!
+  id: ID!
+  image: String
+  name: String!
+  owner: String
+  updatedAt: AWSDateTime!
+}
+
+type Query {
+  getEvent(id: ID!): Event @aws_cognito_user_pools @aws_iam
+  getNote(id: ID!): Note @aws_cognito_user_pools @aws_iam
+  getPost(id: ID!): Post @aws_cognito_user_pools @aws_iam
+  getTodo(id: ID!): Todo @aws_api_key @aws_iam
+  listEvents(filter: ModelEventFilterInput, limit: Int, nextToken: String): ModelEventConnection @aws_cognito_user_pools @aws_iam
+  listNotes(filter: ModelNoteFilterInput, limit: Int, nextToken: String): ModelNoteConnection @aws_cognito_user_pools @aws_iam
+  listPosts(filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection @aws_cognito_user_pools @aws_iam
+  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection @aws_api_key @aws_iam
+  syncEvents(filter: ModelEventFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelEventConnection @aws_cognito_user_pools @aws_iam
+  syncNotes(filter: ModelNoteFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelNoteConnection @aws_cognito_user_pools @aws_iam
+  syncPosts(filter: ModelPostFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelPostConnection @aws_cognito_user_pools @aws_iam
+  syncTodos(filter: ModelTodoFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelTodoConnection @aws_api_key @aws_iam
+}
+
+type Subscription {
+  onCreateEvent(owner: String): Event @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["createEvent"])
+  onCreateNote(owner: String): Note @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["createNote"])
+  onCreatePost(owner: String): Post @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["createPost"])
+  onCreateTodo: Todo @aws_api_key @aws_iam @aws_subscribe(mutations : ["createTodo"])
+  onDeleteEvent(owner: String): Event @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["deleteEvent"])
+  onDeleteNote(owner: String): Note @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["deleteNote"])
+  onDeletePost(owner: String): Post @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["deletePost"])
+  onDeleteTodo: Todo @aws_api_key @aws_iam @aws_subscribe(mutations : ["deleteTodo"])
+  onUpdateEvent(owner: String): Event @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["updateEvent"])
+  onUpdateNote(owner: String): Note @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["updateNote"])
+  onUpdatePost(owner: String): Post @aws_cognito_user_pools @aws_iam @aws_subscribe(mutations : ["updatePost"])
+  onUpdateTodo: Todo @aws_api_key @aws_iam @aws_subscribe(mutations : ["updateTodo"])
+}
+
+type Todo @aws_api_key @aws_iam {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  createdAt: AWSDateTime!
+  description: String
+  id: ID!
+  name: String!
+  updatedAt: AWSDateTime!
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input CreateEventInput {
+  _version: Int
+  date: String
+  id: ID
+  name: String!
+  status: String
+}
+
+input CreateNoteInput {
+  _version: Int
+  createdAt: AWSDateTime
+  description: String
+  id: ID
+  title: String!
+}
+
+input CreatePostInput {
+  _version: Int
+  description: String!
+  id: ID
+  image: String
+  name: String!
+  owner: String
+}
+
+input CreateTodoInput {
+  _version: Int
+  description: String
+  id: ID
+  name: String!
+}
+
+input DeleteEventInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteNoteInput {
+  _version: Int
+  id: ID!
+}
+
+input DeletePostInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteTodoInput {
+  _version: Int
+  id: ID!
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelEventConditionInput {
+  and: [ModelEventConditionInput]
+  date: ModelStringInput
+  name: ModelStringInput
+  not: ModelEventConditionInput
+  or: [ModelEventConditionInput]
+  status: ModelStringInput
+}
+
+input ModelEventFilterInput {
+  and: [ModelEventFilterInput]
+  date: ModelStringInput
+  id: ModelIDInput
+  name: ModelStringInput
+  not: ModelEventFilterInput
+  or: [ModelEventFilterInput]
+  status: ModelStringInput
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelNoteConditionInput {
+  and: [ModelNoteConditionInput]
+  createdAt: ModelStringInput
+  description: ModelStringInput
+  not: ModelNoteConditionInput
+  or: [ModelNoteConditionInput]
+  title: ModelStringInput
+}
+
+input ModelNoteFilterInput {
+  and: [ModelNoteFilterInput]
+  createdAt: ModelStringInput
+  description: ModelStringInput
+  id: ModelIDInput
+  not: ModelNoteFilterInput
+  or: [ModelNoteFilterInput]
+  title: ModelStringInput
+}
+
+input ModelPostConditionInput {
+  and: [ModelPostConditionInput]
+  description: ModelStringInput
+  image: ModelStringInput
+  name: ModelStringInput
+  not: ModelPostConditionInput
+  or: [ModelPostConditionInput]
+  owner: ModelStringInput
+}
+
+input ModelPostFilterInput {
+  and: [ModelPostFilterInput]
+  description: ModelStringInput
+  id: ModelIDInput
+  image: ModelStringInput
+  name: ModelStringInput
+  not: ModelPostFilterInput
+  or: [ModelPostFilterInput]
+  owner: ModelStringInput
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input ModelTodoConditionInput {
+  and: [ModelTodoConditionInput]
+  description: ModelStringInput
+  name: ModelStringInput
+  not: ModelTodoConditionInput
+  or: [ModelTodoConditionInput]
+}
+
+input ModelTodoFilterInput {
+  and: [ModelTodoFilterInput]
+  description: ModelStringInput
+  id: ModelIDInput
+  name: ModelStringInput
+  not: ModelTodoFilterInput
+  or: [ModelTodoFilterInput]
+}
+
+input UpdateEventInput {
+  _version: Int
+  date: String
+  id: ID!
+  name: String
+  status: String
+}
+
+input UpdateNoteInput {
+  _version: Int
+  createdAt: AWSDateTime
+  description: String
+  id: ID!
+  title: String
+}
+
+input UpdatePostInput {
+  _version: Int
+  description: String
+  id: ID!
+  image: String
+  name: String
+  owner: String
+}
+
+input UpdateTodoInput {
+  _version: Int
+  description: String
+  id: ID!
+  name: String
+}

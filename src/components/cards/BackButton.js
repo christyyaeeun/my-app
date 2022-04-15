@@ -11,7 +11,6 @@ export const BackButton = () => {
     }
 
     return (
-
         <IconButton w='10' height='10' color='gray.400' aria-label='Search database' onClick={handleClick} icon={<ChevronLeftIcon />} />
 
     )

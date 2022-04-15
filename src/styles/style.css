@@ -105,10 +105,32 @@ margin: 0 auto;
 margin: 0 auto;
 } 
 
+/* #greeting {
+    color: #465b75 !important;
+} */
+
+.rdp-day_today:not(.rdp-day_outside) {
+    font-weight: bold;
+    background: #97b9e4;
+    color: white;
+}
+
+.rdp-button:hover:not([disabled]){
+    background-color: #e0e8ff !important;
+
+}
+
+#todo-name, #todo-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
+#todo-description {
+    justify-content: flex-start !important;
 
-
+}
 
 @media (min-width: 1000px) {
     .page-content {

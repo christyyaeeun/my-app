@@ -11,7 +11,7 @@ function AppNote() {
 			id: nanoid(),
 			title: 'post title',
 			text: 'description',
-			date: '15/04/2021',
+			date: '04/11/2022',
 		},]
 	);
 

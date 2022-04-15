@@ -13,7 +13,7 @@
   
   .rdp {
     margin: 1em;
-    color: #6f86c9 !important;
+    color: #97b9e4 !important;
   }
   
   /* Hide elements for devices that are not screen readers */
@@ -68,7 +68,8 @@
   .rdp-button:active:not([disabled]) {
     color: inherit;
     border: var(--rdp-outline);
-    background-color: var(--rdp-background-color);
+    /* background-color: var(--rdp-background-color); */
+    background-color: #e0e8ff !important;
   }
   
   .rdp-button:hover:not([disabled]) {
@@ -268,7 +269,9 @@
   }
   
   .rdp-day_today:not(.rdp-day_outside) {
-    font-weight: bold;
+      font-weight: bold;
+      background: #97b9e4;
+      color: white;
   }
   
   .rdp-day_selected:not([disabled]),

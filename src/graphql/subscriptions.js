@@ -1,6 +1,3 @@
-/* eslint-disable */
-// this is an auto generated file. This will be overwritten
-
 export const onCreateNote = /* GraphQL */ `
   subscription OnCreateNote {
     onCreateNote {
@@ -34,6 +31,8 @@ export const onDeleteNote = /* GraphQL */ `
     }
   }
 `;
+
+
 export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost($owner: String) {
     onCreatePost(owner: $owner) {
@@ -72,4 +71,38 @@ export const onDeletePost = /* GraphQL */ `
       updatedAt
     }
   }
+`;
+
+export const onCreateTodo = /* GraphQL */ `
+subscription OnCreateTodo {
+  onCreateTodo {
+    id
+    name
+    description
+    createdAt
+      updatedAt
+  }
+}
+`;
+export const onUpdateTodo = /* GraphQL */ `
+subscription OnUpdateTodo {
+  onUpdateTodo {
+    id
+    name
+    description
+    createdAt
+      updatedAt
+  }
+}
+`;
+export const onDeleteTodo = /* GraphQL */ `
+subscription OnDeleteTodo {
+  onDeleteTodo {
+    id
+    name
+    description
+    createdAt
+      updatedAt
+  }
+}
 `;

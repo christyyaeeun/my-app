@@ -1,7 +1,6 @@
+// @ts-nocheck
 import * as React from "react";
-import { useState, useEffect } from "react";
 import { ReactNode } from 'react';
-import { Auth } from "aws-amplify";
 import {
   Box,
   Center,
@@ -27,8 +26,7 @@ import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 
 
-const Links = ["Home", "Timeline", "Journal", "Explore", "Notes" ];
-
+const Links = ["Home", "Timeline", "Journal", "Explore", "PostApp" ];
 const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => (
   <Link
     px={2}
@@ -45,8 +43,7 @@ const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => 
 );
 
 
-
-export default function Simple({children}) {
+export default function Nav({children}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -56,7 +53,7 @@ export default function Simple({children}) {
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
-            bg={useColorModeValue('#d0d8e3', '#2d3748')}
+            bg={useColorModeValue('white', '#4d5e7c')}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             color={useColorModeValue('gray.700', 'white')}
             aria-label={'Open Menu'}

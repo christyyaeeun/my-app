@@ -47,7 +47,7 @@ const Themes = (props) => {
                         </Center>
 
                     </div>
-                    <div onClick={() => navigate('/qualitytime')}>
+                    <div onClick={() => navigate('/lovelanguage')}>
                         <Center py={6}>
                             <Box maxW={'250px'} w={'full'} bg={useColorModeValue('white', '#f2e6f0')} boxShadow={'2xl'} rounded={'md'} p={6} overflow={'hidden'}>
                                 <Box h={'150px'} bg={'#f2e6f0'} mt={-6} mx={-6} mb={6} pos={'relative'}>

@@ -5,298 +5,505 @@ import { BackButton } from './BackButton'
 export const Growth = () => {
 
 
-    return (
-        <Container centerContent maxW='container.sm' minH='300px' p='10' color='gray.500'>
-            <Text fontSize='2xl'>
-                Growth
-            </Text>
-
-
-            <BackButton />
-            <Stack
-                direction={{ base: 'column', md: 'row' }}
-                textAlign="center"
-                justify="center"
-                spacing={{ base: 4, lg: 10 }}
-                py={10} >
-                <Wrap spacing='50px' justify='center' maxW='7xl'>
-
-                    <WrapItem>
-                        <Center py={6}>
-                            <Stack
-                                borderWidth="1px"
-                                borderRadius="lg"
-                                w={'330px'}
-                                height={'20rem'}
-                                direction={'row'}
-                                bg={useColorModeValue('white', 'gray.900')}
-                                boxShadow={'2xl'}
-                                padding={4}>
-                                <Flex flex={.6} bg="gray.200">
-
-                                </Flex>
-                                <Stack
-                                    flex={1}
-                                    flexDirection="column"
-                                    justifyContent="center"
-                                    alignItems="center"
-                                    p={1}
-                                    pt={2}>
-                                    <Heading fontSize={'1xl'} fontFamily={'body'} color={'gray.500'}>
-                                        Reflecting Back on 2021
-                                    </Heading>
-                                    <Text fontWeight={600} color={'gray.500'} size="sm" mb={4}>
-
-                                    </Text>
-                                    <Text
-                                        textAlign={'center'}
-                                        color={useColorModeValue('gray.700', 'gray.400')}
-                                        px={3}>
-
-
-                                    </Text>
-                                    <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
-                                        <Badge
-                                            px={2}
-                                            py={1}
-                                            bg={useColorModeValue('gray.50', 'gray.800')}
-                                            fontWeight={'400'}>
-                                            #Growth
-                                        </Badge>
-                                        <Badge
-                                            px={2}
-                                            py={1}
-                                            bg={useColorModeValue('gray.50', 'gray.800')}
-                                            fontWeight={'400'}>
-                                            #love
-                                        </Badge>
-
-                                    </Stack>
-
-                                    <Stack
-                                        width={'100%'}
-                                        mt={'2rem'}
-                                        direction={'row'}
-                                        padding={2}
-                                        justifyContent={'space-between'}
-                                        alignItems={'center'}>
-
-                                    </Stack>
-                                </Stack>
+    
+        return (
+            <Container pt='8' maxW='7xl' as={Stack} minChildWidth='280px'>
+                <Center mb='5'>
+                    <Text fontSize='lg' color='gray.600'>
+                        Growth
+                    </Text>
+                </Center>
+                <BackButton />
+    
+    
+                <Container centerContent maxW={'7xl'}>
+                    <Wrap spacing='40px' justify='center'>
+    
+    <WrapItem>
+                    <Center py={6}>
+                    <Stack
+                        borderWidth="1px"
+                        borderRadius="lg"
+                        w={{ md: '100%', sm: '340px' }}
+                        height={{ md: '18rem' }}
+                        direction={{ base: 'column', sm: 'column', md: 'row' }}
+                        bg={useColorModeValue('white', 'gray.900')}
+                        boxShadow={'2xl'}
+                        maxW={'350px'}
+                        padding={4}>
+    
+                        <Flex flex={1} bg="gray.200">
+                            {/* <Image
+                                objectFit="cover"
+                                boxSize="100%"
+                                src={
+                                    ''
+                                }
+                            /> */}
+                        </Flex>
+                        <Stack
+                            flex={1}
+                            flexDirection="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            p={1}
+                            pt={2}>
+                            <Heading fontSize={'2xl'} fontFamily={'body'} color={'gray.500'} fontWeight={'600'}>
+                              Reflecting Back on 2021
+                            </Heading>
+    
+                            <Text
+                                textAlign={'center'}
+                                color={useColorModeValue('gray.500', 'gray.100')}
+                                px={3}>
+                                nonumy eirmod tempor invidunt ut
+                                labore et dolore magna aliquyam
+                                erat, sed diam voluptua. At vero eos
+                            </Text>
+                            <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Tips
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Growth
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Love
+                                </Badge>
                             </Stack>
-                        </Center>
-                    </WrapItem>
-
-
-
-
-                    <WrapItem>
-
-                        <Center py={6}>
+    
                             <Stack
-                                borderWidth="1px"
-                                borderRadius="lg"
-                                w={'330px'}
-                                height={'20rem'}
+                                width={'100%'}
+                                mt={'2rem'}
                                 direction={'row'}
-                                bg={useColorModeValue('white', 'gray.900')}
-                                boxShadow={'2xl'}
-                                padding={4}>
-                                <Flex flex={.6} bg="gray.200">
-
-                                </Flex>
-                                <Stack
-                                    flex={1}
-                                    flexDirection="column"
-                                    justifyContent="center"
-                                    alignItems="center"
-                                    p={1}
-                                    pt={2}>
-                                    <Heading fontSize={'1xl'} fontFamily={'body'} color={'gray.500'}>
-                                        Working Towards Goals
-                                    </Heading>
-                                    <Text fontWeight={600} color={'gray.500'} size="sm" mb={4}>
-
-                                    </Text>
-                                    <Text
-                                        textAlign={'center'}
-                                        color={useColorModeValue('gray.700', 'gray.400')}
-                                        px={3}>
-
-
-                                    </Text>
-                                    <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
-                                        <Badge
-                                            px={2}
-                                            py={1}
-                                            bg={useColorModeValue('gray.50', 'gray.800')}
-                                            fontWeight={'400'}>
-                                            #Growth
-                                        </Badge>
-                                        <Badge
-                                            px={2}
-                                            py={1}
-                                            bg={useColorModeValue('gray.50', 'gray.800')}
-                                            fontWeight={'400'}>
-                                            #love
-                                        </Badge>
-
-                                    </Stack>
-
-                                    <Stack
-                                        width={'100%'}
-                                        mt={'2rem'}
-                                        direction={'row'}
-                                        padding={2}
-                                        justifyContent={'space-between'}
-                                        alignItems={'center'}>
-
-                                    </Stack>
-                                </Stack>
+                                padding={2}
+                                justifyContent={'space-between'}
+                                alignItems={'center'}>
+    
                             </Stack>
-                        </Center>
-                    </WrapItem>
-
-
-
-                    <WrapItem>
-                        <Center py={6}>
+                        </Stack>
+                    </Stack>
+                </Center>
+                </WrapItem>
+    
+    
+                <WrapItem>
+                <Center py={6}>
+                    <Stack
+                        borderWidth="1px"
+                        borderRadius="lg"
+                        w={{ md: '100%', sm: '340px' }}
+                        height={{ md: '18rem' }}
+                        direction={{ base: 'column', sm: 'column', md: 'row' }}
+                        bg={useColorModeValue('white', 'gray.900')}
+                        boxShadow={'2xl'}
+                        maxW={'350px'}
+                        padding={4}>
+    
+                        <Flex flex={1} bg="gray.200">
+                            {/* <Image
+                                objectFit="cover"
+                                boxSize="100%"
+                                src={
+                                    ''
+                                }
+                            /> */}
+                        </Flex>
+                        <Stack
+                            flex={1}
+                            flexDirection="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            p={1}
+                            pt={2}>
+                            <Heading fontSize={'2xl'} fontFamily={'body'} color={'gray.500'} fontWeight={'600'}>
+                                Working Towards Goals
+                            </Heading>
+    
+                            <Text
+                                textAlign={'center'}
+                                color={useColorModeValue('gray.500', 'gray.100')}
+                                px={3}>
+                                nonumy eirmod tempor invidunt ut
+                                labore et dolore magna aliquyam
+                                erat, sed diam voluptua. At vero eos
+                            </Text>
+                            <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Tips
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Growth
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Love
+                                </Badge>
+                            </Stack>
+    
                             <Stack
-                                borderWidth="1px"
-                                borderRadius="lg"
-                                w={'330px'}
-                                height={'20rem'}
+                                width={'100%'}
+                                mt={'2rem'}
                                 direction={'row'}
-                                bg={useColorModeValue('white', 'gray.900')}
-                                boxShadow={'2xl'}
-                                padding={4}>
-                                <Flex flex={.6} bg="gray.200">
-
-                                </Flex>
-                                <Stack
-                                    flex={1}
-                                    flexDirection="column"
-                                    justifyContent="center"
-                                    alignItems="center"
-                                    p={1}
-                                    pt={2}>
-                                    <Heading fontSize={'1xl'} fontFamily={'body'} color={'gray.500'}>
-                                        Love Languages
-                                    </Heading>
-                                    <Text fontWeight={600} color={'gray.500'} size="sm" mb={4}>
-
-                                    </Text>
-                                    <Text
-                                        textAlign={'center'}
-                                        color={useColorModeValue('gray.700', 'gray.400')}
-                                        px={3}>
-
-
-                                    </Text>
-                                    <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
-                                        <Badge
-                                            px={2}
-                                            py={1}
-                                            bg={useColorModeValue('gray.50', 'gray.800')}
-                                            fontWeight={'400'}>
-                                            #Growth
-                                        </Badge>
-                                        <Badge
-                                            px={2}
-                                            py={1}
-                                            bg={useColorModeValue('gray.50', 'gray.800')}
-                                            fontWeight={'400'}>
-                                            #love
-                                        </Badge>
-
-                                    </Stack>
-
-                                    <Stack
-                                        width={'100%'}
-                                        mt={'2rem'}
-                                        direction={'row'}
-                                        padding={2}
-                                        justifyContent={'space-between'}
-                                        alignItems={'center'}>
-
-                                    </Stack>
-                                </Stack>
+                                padding={2}
+                                justifyContent={'space-between'}
+                                alignItems={'center'}>
+    
                             </Stack>
-                        </Center>
-                    </WrapItem>
-
-
-
-
-                    <WrapItem>
-
-                        <Center py={6}>
+                        </Stack>
+                    </Stack>
+                </Center>
+                </WrapItem>
+    
+    
+    
+                <WrapItem>
+                    <Center py={6}>
+                    <Stack
+                        borderWidth="1px"
+                        borderRadius="lg"
+                        w={{ md: '100%', sm: '340px' }}
+                        height={{ md: '18rem' }}
+                        direction={{ base: 'column', sm: 'column', md: 'row' }}
+                        bg={useColorModeValue('white', 'gray.900')}
+                        boxShadow={'2xl'}
+                        maxW={'350px'}
+                        padding={4}>
+    
+                        <Flex flex={1} bg="gray.200">
+                            {/* <Image
+                                objectFit="cover"
+                                boxSize="100%"
+                                src={
+                                    ''
+                                }
+                            /> */}
+                        </Flex>
+                        <Stack
+                            flex={1}
+                            flexDirection="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            p={1}
+                            pt={2}>
+                            <Heading fontSize={'2xl'} fontFamily={'body'} color={'gray.500'} fontWeight={'600'}>
+                                Card Topic
+                            </Heading>
+    
+                            <Text
+                                textAlign={'center'}
+                                color={useColorModeValue('gray.500', 'gray.100')}
+                                px={3}>
+                                nonumy eirmod tempor invidunt ut
+                                labore et dolore magna aliquyam
+                                erat, sed diam voluptua. At vero eos
+                            </Text>
+                            <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Tips
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Growth
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Love
+                                </Badge>
+                            </Stack>
+    
                             <Stack
-                                borderWidth="1px"
-                                borderRadius="lg"
-                                w={'330px'}
-                                height={'20rem'}
+                                width={'100%'}
+                                mt={'2rem'}
                                 direction={'row'}
-                                bg={useColorModeValue('white', 'gray.900')}
-                                boxShadow={'2xl'}
-                                padding={4}>
-                                <Flex flex={.6} bg="gray.200">
-
-                                </Flex>
-                                <Stack
-                                    flex={1}
-                                    flexDirection="column"
-                                    justifyContent="center"
-                                    alignItems="center"
-                                    p={1}
-                                    pt={2}>
-                                    <Heading fontSize={'1xl'} fontFamily={'body'} color={'gray.500'}>
-                                        Love Languages
-                                    </Heading>
-                                    <Text fontWeight={600} color={'gray.500'} size="sm" mb={4}>
-
-                                    </Text>
-                                    <Text
-                                        textAlign={'center'}
-                                        color={useColorModeValue('gray.700', 'gray.400')}
-                                        px={3}>
-
-
-                                    </Text>
-                                    <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
-                                        <Badge
-                                            px={2}
-                                            py={1}
-                                            bg={useColorModeValue('gray.50', 'gray.800')}
-                                            fontWeight={'400'}>
-                                            #Growth
-                                        </Badge>
-                                        <Badge
-                                            px={2}
-                                            py={1}
-                                            bg={useColorModeValue('gray.50', 'gray.800')}
-                                            fontWeight={'400'}>
-                                            #love
-                                        </Badge>
-
-                                    </Stack>
-
-                                    <Stack
-                                        width={'100%'}
-                                        mt={'2rem'}
-                                        direction={'row'}
-                                        padding={2}
-                                        justifyContent={'space-between'}
-                                        alignItems={'center'}>
-
-                                    </Stack>
-                                </Stack>
+                                padding={2}
+                                justifyContent={'space-between'}
+                                alignItems={'center'}>
+    
                             </Stack>
-                        </Center>
-                    </WrapItem>
-                </Wrap>
-            </Stack>
-        </Container>
-
-    )
-}
+                        </Stack>
+                    </Stack>
+                </Center>
+                </WrapItem>
+    
+    
+                <WrapItem>
+                <Center py={6}>
+                    <Stack
+                        borderWidth="1px"
+                        borderRadius="lg"
+                        w={{ md: '100%', sm: '340px' }}
+                        height={{ md: '18rem' }}
+                        direction={{ base: 'column', sm: 'column', md: 'row' }}
+                        bg={useColorModeValue('white', 'gray.900')}
+                        boxShadow={'2xl'}
+                        maxW={'350px'}
+                        padding={4}>
+    
+                        <Flex flex={1} bg="gray.200">
+                            {/* <Image
+                                objectFit="cover"
+                                boxSize="100%"
+                                src={
+                                    ''
+                                }
+                            /> */}
+                        </Flex>
+                        <Stack
+                            flex={1}
+                            flexDirection="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            p={1}
+                            pt={2}>
+                            <Heading fontSize={'2xl'} fontFamily={'body'} color={'gray.500'} fontWeight={'600'}>
+    Valuing Your Partnership                        </Heading>
+    
+                            <Text
+                                textAlign={'center'}
+                                color={useColorModeValue('gray.500', 'gray.100')}
+                                px={3}>
+                                nonumy eirmod tempor invidunt ut
+                                labore et dolore magna aliquyam
+                                erat, sed diam voluptua. At vero eos
+                            </Text>
+                            <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Tips
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Growth
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Love
+                                </Badge>
+                            </Stack>
+    
+                            <Stack
+                                width={'100%'}
+                                mt={'2rem'}
+                                direction={'row'}
+                                padding={2}
+                                justifyContent={'space-between'}
+                                alignItems={'center'}>
+    
+                            </Stack>
+                        </Stack>
+                    </Stack>
+                </Center>
+                </WrapItem>
+    
+    
+    
+                <WrapItem>
+                    <Center py={6}>
+                    <Stack
+                        borderWidth="1px"
+                        borderRadius="lg"
+                        w={{ md: '100%', sm: '340px' }}
+                        height={{ md: '18rem' }}
+                        direction={{ base: 'column', sm: 'column', md: 'row' }}
+                        bg={useColorModeValue('white', 'gray.900')}
+                        boxShadow={'2xl'}
+                        maxW={'350px'}
+                        padding={4}>
+    
+                        <Flex flex={1} bg="gray.200">
+                            {/* <Image
+                                objectFit="cover"
+                                boxSize="100%"
+                                src={
+                                    ''
+                                }
+                            /> */}
+                        </Flex>
+                        <Stack
+                            flex={1}
+                            flexDirection="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            p={1}
+                            pt={2}>
+                            <Heading fontSize={'2xl'} fontFamily={'body'} color={'gray.500'} fontWeight={'600'}>
+    Growing as a Couple                        </Heading>
+    
+                            <Text
+                                textAlign={'center'}
+                                color={useColorModeValue('gray.500', 'gray.100')}
+                                px={3}>
+                                nonumy eirmod tempor invidunt ut
+                                labore et dolore magna aliquyam
+                                erat, sed diam voluptua. At vero eos
+                            </Text>
+                            <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Tips
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Growth
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Love
+                                </Badge>
+                            </Stack>
+    
+                            <Stack
+                                width={'100%'}
+                                mt={'2rem'}
+                                direction={'row'}
+                                padding={2}
+                                justifyContent={'space-between'}
+                                alignItems={'center'}>
+    
+                            </Stack>
+                        </Stack>
+                    </Stack>
+                </Center>
+                </WrapItem>
+    
+    
+                <WrapItem>
+                <Center py={6}>
+                    <Stack
+                        borderWidth="1px"
+                        borderRadius="lg"
+                        w={{ md: '100%', sm: '340px' }}
+                        height={{ md: '18rem' }}
+                        direction={{ base: 'column', sm: 'column', md: 'row' }}
+                        bg={useColorModeValue('white', 'gray.900')}
+                        boxShadow={'2xl'}
+                        maxW={'350px'}
+                        padding={4}>
+    
+                        <Flex flex={1} bg="gray.200">
+                            {/* <Image
+                                objectFit="cover"
+                                boxSize="100%"
+                                src={
+                                    ''
+                                }
+                            /> */}
+                        </Flex>
+                        <Stack
+                            flex={1}
+                            flexDirection="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            p={1}
+                            pt={2}>
+                            <Heading fontSize={'2xl'} fontFamily={'body'} color={'gray.500'} fontWeight={'600'}>
+                               Strengths
+                            </Heading>
+    
+                            <Text
+                                textAlign={'center'}
+                                color={useColorModeValue('gray.500', 'gray.100')}
+                                px={3}>
+                                nonumy eirmod tempor invidunt ut
+                                labore et dolore magna aliquyam
+                                erat, sed diam voluptua. At vero eos
+                            </Text>
+                            <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Tips
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Growth
+                                </Badge>
+                                <Badge
+                                    px={2}
+                                    py={1}
+                                    bg={useColorModeValue('gray.50', 'gray.800')}
+                                    fontWeight={'400'}>
+                                    #Love
+                                </Badge>
+                            </Stack>
+    
+                            <Stack
+                                width={'100%'}
+                                mt={'2rem'}
+                                direction={'row'}
+                                padding={2}
+                                justifyContent={'space-between'}
+                                alignItems={'center'}>
+    
+                            </Stack>
+                        </Stack>
+                    </Stack>
+                </Center>
+                </WrapItem>
+    
+                    </Wrap>
+                </Container>
+           
+    
+              
+            </Container>
+    
+        )
+    }

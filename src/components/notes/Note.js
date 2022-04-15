@@ -27,3 +27,5 @@ const Note = ({ id, title, text, date, handleDeleteNote }) => {
 };
 
 export default Note;
+
+
