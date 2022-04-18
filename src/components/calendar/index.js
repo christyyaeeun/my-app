@@ -1,5 +1,3 @@
 
-export { default as Appy } from "./Appy";
-export { default as TodoList } from "./TodoList";
-export { default as TodoListItem } from "./TodoListItem"
-export { default as CreateTodo } from "./CreateTodo";
+export { default as CalendarEvents } from "./CalendarEvents"
+export { default as DateCalendar } from "./DateCalendar";

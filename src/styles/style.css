@@ -1,6 +1,6 @@
 html, body {
-    margin: 0 auto;
-    padding: 0;
+    width:100%;
+    overflow-x:hidden;
 }
 
 [data-amplify-authenticator] [data-amplify-container] {
@@ -132,6 +132,29 @@ margin: 0 auto;
 
 }
 
+
+#card-wrap {
+    margin-bottom: 3em;
+}
+
+
+#img-wrap {
+    padding: 0;
+    margin: 0;
+}
+
+
+.image-upload > input
+{
+    display: none;
+}
+
+.image-upload .img {   
+    cursor: pointer;
+    top: 212px;
+    left: 330px;
+    color: #8dbae8;
+}
 @media (min-width: 1000px) {
     .page-content {
         padding: 1em 3em;

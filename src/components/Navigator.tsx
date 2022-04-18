@@ -22,11 +22,11 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { AmplifySignOut } from '@aws-amplify/ui-react'
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import { AmplifyS3Image } from '@aws-amplify/ui-react';
+import { Storage } from 'aws-amplify';
 
 
-
-
-const Links = ["Home", "Timeline", "Journal", "Explore", "PostApp" ];
+const Links = ["Home", "Timeline", "Journal", "Explore"];
 const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => (
   <Link
     px={2}
@@ -41,6 +41,7 @@ const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => 
     {children}
   </Link>
 );
+
 
 
 export default function Nav({children}) {

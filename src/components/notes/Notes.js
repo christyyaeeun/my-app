@@ -5,7 +5,7 @@ import Search from './Search';
 import { Box, Container } from '@chakra-ui/react';
 
 
-function AppNote() {
+function Notes() {
 	const [notes, setNotes] = useState([
 		{
 			id: nanoid(),
@@ -82,4 +82,4 @@ function AppNote() {
 	);
 };
 
-export default AppNote;
+export default Notes;

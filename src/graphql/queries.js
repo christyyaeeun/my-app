@@ -27,6 +27,8 @@ export const listNotes = /* GraphQL */ `
     }
   }
 `;
+
+
 export const getPost = /* GraphQL */ `
   query GetPost($id: ID!) {
     getPost(id: $id) {
@@ -79,11 +81,8 @@ query ListTodos(
 
 export const listPosts = /* GraphQL */ `
   query ListPosts(
-    $filter: ModelPostFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    $filter: ModelPostFilterInput) {
+    listPosts(filter: $filter) {
       items {
         id
         name
@@ -91,9 +90,7 @@ export const listPosts = /* GraphQL */ `
         image
         owner
         createdAt
-        updatedAt
       }
-      nextToken
     }
   }
 `;

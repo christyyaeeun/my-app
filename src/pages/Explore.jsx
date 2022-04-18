@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Text } from '@chakra-ui/react'
-import Themes from '../components/Themes'
+import Themes from '../components/cards/Themes'
 
 function Explore() {
     return (

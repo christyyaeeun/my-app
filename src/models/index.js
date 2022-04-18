@@ -4,9 +4,12 @@ import { schema } from './schema';
 
 
 
-const { Note, Post, Event, Todo } = initSchema(schema);
+const { Entry, User, Timeline, Note, Post, Event, Todo } = initSchema(schema);
 
 export {
+  Entry,
+  User,
+  Timeline,
   Note,
   Post,
   Event,
