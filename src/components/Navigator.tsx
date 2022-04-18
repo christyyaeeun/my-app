@@ -62,7 +62,7 @@ export default function Nav({children}) {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box color={useColorModeValue('gray.400', 'white')} fontWeight='600' id="nav-header">OLT</Box>
+            <Box color={useColorModeValue('gray.400', 'white')} fontWeight='600' id="nav-header">olt</Box>
             <HStack
               as={'nav'}
               spacing={4}
