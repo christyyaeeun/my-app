@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Amplify, { API, Storage, Auth } from 'aws-amplify';
 import { listPosts } from '../../graphql/queries';
 import CreatePost from './CreatePost';
-import { onCreatePost } from '../../graphql/subscriptions';
+// import { onCreatePost } from '../../graphql/subscriptions';
 // import {
 //   deletePost as deletePostMutation,
 // } from '../../graphql/mutations';
@@ -71,16 +71,16 @@ function Journal() {
     updatePosts(postsArray);
   }
 
-  function subscribe() {
-    API.graphql({
-      query: onCreatePost,
-    }).subscribe(() => fetchPosts());
-  }
+  // function subscribe() {
+  //   API.graphql({
+  //     query: onCreatePost,
+  //   }).subscribe(() => fetchPosts());
+  // }
 
   useEffect(() => {
     fetchPosts();
-    const subscription = subscribe();
-    return () => subscription();
+    // const subscription = subscribe();
+    // return () => subscription();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -95,68 +95,77 @@ function Journal() {
 
   return (
     <>
-      <Container mt={'2em'}>
-        <CreatePost updatePosts={setPostState} posts={posts} />
-      </Container>
-      <Container p={'5'} maxW={'450px'}>
-        {posts.map(post => (
-          <Container
-            id="card-wrap"
-            m={'2'}
-            borderWidth="1px"
-            bg={'white'}
-            boxShadow={'2xl'}
-            rounded={'lg'}
-            p={'2'}
-          >
-            <div id="card" key={post.id || post.name}>
-              <Center borderWidth="1px">
-                <Container p={'0'}>
-                  <Container id="img-wrap" bg={'white'}>
-                    <Box maxW={'sm'} overflow={'hidden'} maxH={'350px'}>
-                      <Image
-                        id="post-img"
-                        src={post.image}
-                        objectFit="cover"
-                       
-                        m={'auto'}
-                      />
-                    </Box>
-                  </Container>
-                  <Divider color={'gray.400'} />
-                  <Container padding={'4'} bg={'white'}>
-                    <Stack>
-                      <Box bg={''}>
-
-                        <HStack spacing="10px">
-                          <Box>
-                            <Text color={'#8cabcd'} fontWeight={600}>
-                              @{post.owner} |
-                            </Text>
-                          </Box>
-                          <Box>
-                            <Text
-                              color={useColorModeValue('gray.500', 'white')}
-                              fontSize={'1rem'}
-                            >
-                              {post.name}
-                            </Text>
-                          </Box>
-                        </HStack>
-                        <Box my={'2'}>
-                        <Text color={'gray.500'}>{post.description}</Text>
-                        </Box>
-                        <Text color={'gray.500'} fontSize={'xs'}>
-                        {format(parseISO(post.createdAt), 'MM/dd/yyyy')}{' '}
-                        </Text>
+      <Container h={'100vh'}>
+        <Container mt={'1em'}>
+          <CreatePost updatePosts={setPostState} posts={posts} />
+        </Container>
+        <Container p={'5'} maxW={'450px'}>
+          {posts.map(post => (
+            <Container
+              id="card-wrap"
+              borderWidth="1px"
+              bg={'white'}
+              boxShadow={'2xl'}
+              rounded={'lg'}
+              p={'2'}
+            >
+              <div id="card" key={post.id || post.name}>
+                <Center>
+                  <Container id="img-card" p={'0'}>
+                    <Container id="img-wrap" bg={'white'}>
+                      <Box id="img-container"
+                        maxW={'sm'}
+                        overflow={'hidden'}
+                        maxH={{ base: '350px', lg: '350px' }}
+                      >
+                        <Image borderRadius={'lg'}
+                          id="post-img"
+                          src={post.image}
+                          objectFit="cover"
+                          m={'auto'}
+                        />
                       </Box>
-                    </Stack>
+                    </Container>
+                    <Divider color={'gray.400'} />
+                    <Container padding={'2'} bg={'white'}>
+                      <Stack>
+                        <Box bg={''}>
+                          <HStack spacing="10px">
+                            <Box>
+                              <Text color={'#8cabcd'} fontWeight={600}>
+                                @{post.owner} |
+                              </Text>
+                            </Box>
+                            <Box>
+                              <Text
+                                color={useColorModeValue('gray.600', 'white')}
+                                fontSize={'1rem'}
+                              >
+                                {post.name}
+                              </Text>
+                            </Box>``
+                          </HStack>
+                          <Box my={'1'}>
+                            <Text
+                              color={'gray.500'}
+                              fontSize={'.9rem'}
+                              paddingLeft={'.1em'}
+                            >
+                              {post.description}
+                            </Text>
+                          </Box>
+                          <Text color={'gray.500'} fontSize={'xs'}>
+                            {format(parseISO(post.createdAt), 'MM/dd/yyyy')}{' '}
+                          </Text>
+                        </Box>
+                      </Stack>
+                    </Container>
                   </Container>
-                </Container>
-              </Center>
-            </div>
-          </Container>
-        ))}
+                </Center>
+              </div>
+            </Container>
+          ))}
+        </Container>
       </Container>
     </>
   );

@@ -31,6 +31,7 @@ Amplify.configure(awsExports);
 
 const initialFormState = { name: '', description: '' };
 
+//  id, name description
 function Appy() {
   const [todos, setTodos] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
@@ -66,125 +67,68 @@ function Appy() {
 
   return (
     <>
-      <Container mt={'6'} maxW={'300px'} centerContent>
-        <Container>
-          <Flex mb="1">
-            {' '}
-            <Text fontSize={'xl'} color={'gray.500'}>
-              {' '}
-              Reminders{' '}
-            </Text>
-            <Spacer />
-            <Menu onClose={onClose} isOpen={isOpen}>
-              <MenuButton
-                as={IconButton}
-                icon={<SmallAddIcon />}
-                bg="gray.100"
-                color="gray.400"
-                onClick={onOpen}
-              />
-              <MenuList mr="3em" shadow="xl" borderRadius="xl">
-                <Box p="4" borderRadius="lg">
-                  <Container minW="350px" minH="300px" centerContent pt="3">
-                    <Stack spacing={'4'} w={'350px'}>
-                      <Input
-                        id="name-input"
-                        onChange={e =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
-                        placeholder="Note name"
-                        value={formData.name}
-                      />
-
-                      <Input
-                        id="description-input"
-                        onChange={e =>
-                          setFormData({
-                            ...formData,
-                            description: e.target.value,
-                          })
-                        }
-                        placeholder="Note description"
-                        value={formData.description}
-                      />
-                      <Button id="save-btn" onClick={createTodo}>
-                        save
-                      </Button>
-                    </Stack>
-                  </Container>
-                </Box>
-              </MenuList>
-            </Menu>
-          </Flex>
-        </Container>
-
-        {todos.map(todo => (
-          <div id="card-wrap">
-            <div id="card" key={todo.id || todo.name}>
-              <Center>
-                <HStack
-                  maxW={'400px'}
-                  bg={'white'}
+      {todos.map(todo => (
+        <div id="card-wrap">
+          <div id="card" key={todo.id || todo.name}>
+            <Center>
+              <HStack
+                maxW={'400px'}
+                bg={'white'}
+                h={'70px'}
+                boxShadow={'2xl'}
+                rounded={'md'}
+                mt={'4'}
+              >
+                <Box
+                  id="todo-name"
+                  w={[270, 350, 420]}
                   h={'70px'}
-                  boxShadow={'2xl'}
-                  rounded={'md'}
-                  mt={'4'}
+                  bg={useColorModeValue('#e3f0ff', 'gray.800')}
                 >
-                  <Box
-                    id="todo-name"
-                    w={[270, 350, 420]}
-                    h={'70px'}
-                    bg={useColorModeValue('#e3f0ff', 'gray.800')}
-                  >
-                    <Stack>
+                  <Stack>
                     <Text color={'gray.500'}>
                       {/* {format(new Date(todo.createdAt), 'MM/dd')} */}
                       {/* {format(new Date(todo.createdAt), 'LLL. dd')} */}
                       {format(new Date(todo.createdAt), 'LLL. dd')}
                     </Text>
                     <Text color={'gray.500'}>
+                      {format(new Date(todo.createdAt), 'h:mm a')}
+                    </Text>
+                  </Stack>
+                </Box>
+                <Box
+                  id="todo-description"
+                  bg={useColorModeValue('white', 'gray.900')}
+                  h={'70px'}
+                  m={'0'}
+                  width={'250px'}
+                >
+                  <Text color={'gray.500'}> {todo.name} | </Text>
+                </Box>
+                <Box
+                  id="todo-description"
+                  bg={useColorModeValue('white', 'gray.900')}
+                  h={'70px'}
+                  m={'0'}
+                  width={'250px'}
+                >
+                  <Text color={'gray.400'}>{todo.description}</Text>
+                </Box>
 
-                    {format(new Date(todo.createdAt), 'h:mm a')}
-</Text>
-                    </Stack>
-                
-                  </Box>
-                  <Box
-                    id="todo-description"
-                    bg={useColorModeValue('white', 'gray.900')}
-                    h={'70px'}
-                    m={'0'}
-                    width={'250px'}
-                  >
-                    <Text color={'gray.500'}> {todo.name} | </Text>
-                  </Box>
-                  <Box
-                    id="todo-description"
-                    bg={useColorModeValue('white', 'gray.900')}
-                    h={'70px'}
-                    m={'0'}
-                    width={'250px'}
-                  >
-                    <Text color={'gray.400'}>{todo.description}</Text>
-                  </Box>
-
-                  <Button
-                    bg={'transparent'}
-                    color={'gray.400'}
-                    as={IconButton}
-                    icon={<CgRemoveR />}
-                    onClick={() => deleteTodo(todo)}
-                  >
-                    Delete
-                  </Button>
-                </HStack>
-              </Center>
-            </div>
+                <Button
+                  bg={'transparent'}
+                  color={'gray.400'}
+                  as={IconButton}
+                  icon={<CgRemoveR />}
+                  onClick={() => deleteTodo(todo)}
+                >
+                  Delete
+                </Button>
+              </HStack>
+            </Center>
           </div>
-        ))}
-
-        <div></div>
-      </Container>
+        </div>
+      ))}
     </>
   );
 }

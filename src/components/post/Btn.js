@@ -5,7 +5,7 @@ export default function Btn({
   title, onClick, type = "action"
 }) {
   return (
-    <Button className={(type)} onClick={onClick}>
+    <Button className={(type)} size={'sm'} color={'#8cabcd'} onClick={onClick}>
       { title }
     </Button>
   )

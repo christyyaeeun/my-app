@@ -5,8 +5,8 @@ import { Container, Box, VStack, StackDivider, Spacer, Text, Flex, Center, IconB
 import { Link } from 'react-router-dom';
 import { BsSticky } from 'react-icons/bs'
 import DateCalendar from '../components/calendar/DateCalendar'
-import Appy from '../components/todo/Appy'
-
+import Todo from '../components/todo/Todo'
+import Appy from '../components/todo/Appy';
 
 const Home = () => {
   const [ name, setName ] = useState('');
@@ -53,6 +53,7 @@ const Home = () => {
             </Box>
           </VStack>
           <Container>
+            <Todo />
             <Appy />
           </Container>
         </Container>

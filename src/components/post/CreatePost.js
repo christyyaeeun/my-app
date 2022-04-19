@@ -1,13 +1,22 @@
 // CreatePost.js
 
 import React, { useState } from 'react';
-import Button from './Button';
+import Button from './Btn';
 import { v4 as uuid } from 'uuid';
 import { Storage, API, Auth } from 'aws-amplify';
 import { createPost } from '../../graphql/mutations';
-import { Box, Container, Spacer, Textarea, Input, Image, Icon } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Spacer,
+  Textarea,
+  Input,
+  Image,
+  Icon,
+} from '@chakra-ui/react';
 import { SmallAddIcon, CloseIcon } from '@chakra-ui/icons';
-import { BiImageAdd } from 'react-icons/bi'
+import { BiImageAdd, BiMinus, BiX } from 'react-icons/bi';
+import { BsX } from 'react-icons/bs'
 import {
   useDisclosure,
   Menu,
@@ -108,26 +117,29 @@ export default function CreatePost({
             color="gray.400"
             onClick={onOpen}
           />
-          <MenuList mr="3em" shadow="xl" borderRadius="xl">
-            <Box p="4" borderRadius="lg">
-              <Container minW="350px" minH="350px" centerContent pt="3">
-                <Stack spacing={3} minW="350px">
-                  <Flex mb="1">
-                    <Spacer />
-                    <IconButton
-                      size="sm"
-                      w="8"
-                      color="gray.500"
-                      icon={<CloseIcon />}
-                      onClick={onClose}
-                    />
-                  </Flex>
-
+          <MenuList shadow="xl" borderRadius="lg">
+            <Box px="2" borderRadius="lg">
+              <Container p={'0'}>
+                <Flex mb="1">
+                  <Spacer />
+                  <IconButton
+                    bg={'gray.50'}
+                    size={'sm'}
+                    color="#8cabcd"
+                    icon={<BiX />}
+                    onClick={onClose}
+                  />
+                </Flex>
+              </Container>
+              <Container centerContent pt="3">
+                <Stack spacing={3}>
                   <Box>
                     <Input
                       id="input-style"
                       placeholder="name"
                       name="name"
+                      size={'sm'}
+                      minW={'250px'}
                       className="post-name"
                       onChange={onChangeText}
                     />
@@ -138,36 +150,45 @@ export default function CreatePost({
                       id="input-style"
                       placeholder="Description"
                       name="description"
+                      size={'sm'}
                       className="post-description"
+                      minH={'100px'}
                       onChange={onChangeText}
                     />
                   </Box>
-                  {/* <Box>
-                    <div className="img-input">
-                      <Input type="file" onChange={onChangeFile} />
-                    </div>
-                  </Box> */}
 
-                  <Box className="image-upload" w='100%'>
-                        <label for="file-input">
-                            <Icon className="img" color='#8dbae8' w={6} h={6} as={BiImageAdd} />
-                        </label>
-                        <input id="file-input" type="file" onChange={onChangeFile} />
-                    </Box>
-
+                  <Box className="image-upload" w="100%">
+                    <label for="file-input">
+                      <Icon
+                        className="img"
+                        color="#8dbae8"
+                        w={6}
+                        h={6}
+                        as={BiImageAdd}
+                      />
+                    </label>
+                    <input
+                      id="file-input"
+                      type="file"
+                      onChange={onChangeFile}
+                    />
+                  </Box>
 
                   {formState.file && (
-                    <Image
-                      className="img-container"
-                      alt="preview"
+                    <Image borderRadius={'lg'}
+                      boxSize="200px"
+                      objectFit="cover"
                       src={formState.file}
+                      alt="Preview"
                     />
                   )}
-                  <Flex mb="1">
-                    <Spacer />
-                    <Button id="submit" title="submit" onClick={save} />
-                  </Flex>
                 </Stack>
+              </Container>
+              <Container mt={'1'}>
+                <Flex my="1">
+                  <Spacer />
+                  <Button id="submit" title="save" onClick={save} />
+                </Flex>
               </Container>
             </Box>
           </MenuList>

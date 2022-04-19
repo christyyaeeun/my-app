@@ -155,6 +155,28 @@ margin: 0 auto;
     left: 330px;
     color: #8dbae8;
 }
+
+#img-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+@media (max-width: 400px) {
+    #img-container {
+max-height: 280px;
+}
+
+}
+
+
+
+
+
+
+
 @media (min-width: 1000px) {
     .page-content {
         padding: 1em 3em;

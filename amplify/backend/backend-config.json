@@ -32,34 +32,23 @@
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "description": "api key description"
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "autholt47d45bf9ee"
             }
           },
           "additionalAuthenticationProviders": [
             {
-              "authenticationType": "AWS_IAM"
-            },
-            {
-              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-              "userPoolConfig": {
-                "userPoolId": "autholt47d45bf9ee"
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 365,
+                "apiKeyExpirationDate": "2023-04-18T18:12:47.469Z",
+                "description": "myappOLT47"
               }
             }
           ]
         }
-      },
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "olt47d45bf9ee",
-          "attributes": [
-            "UserPoolId"
-          ]
-        }
-      ]
+      }
     }
   },
   "storage": {
