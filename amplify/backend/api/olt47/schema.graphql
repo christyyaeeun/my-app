@@ -1,44 +1,463 @@
-type User @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  username: String
-  avatar: String
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
 }
 
-type Post @model @auth(rules: [{ allow: owner }]) {
+type Entry {
+  createdAt: AWSDateTime!
+  description: String
+  id: ID!
+  image: String
+  name: String
+  owner: String
+  updatedAt: AWSDateTime!
+}
+
+type Feed {
+  createdAt: AWSDateTime!
+  description: String
+  entry: Entry
+  feedEntryId: ID
+  feedOwnerId: ID
+  id: ID!
+  owner: User
+  postedAt: AWSDateTime
+  updatedAt: AWSDateTime!
+}
+
+type ModelEntryConnection {
+  items: [Entry]!
+  nextToken: String
+}
+
+type ModelFeedConnection {
+  items: [Feed]!
+  nextToken: String
+}
+
+type ModelNoteConnection {
+  items: [Note]!
+  nextToken: String
+}
+
+type ModelPostConnection {
+  items: [Post]!
+  nextToken: String
+}
+
+type ModelTodoConnection {
+  items: [Todo]!
+  nextToken: String
+}
+
+type ModelUserConnection @aws_api_key {
+  items: [User]!
+  nextToken: String
+}
+
+type Mutation {
+  createEntry(condition: ModelEntryConditionInput, input: CreateEntryInput!): Entry
+  createFeed(condition: ModelFeedConditionInput, input: CreateFeedInput!): Feed
+  createNote(condition: ModelNoteConditionInput, input: CreateNoteInput!): Note
+  createPost(condition: ModelPostConditionInput, input: CreatePostInput!): Post
+  createTodo(condition: ModelTodoConditionInput, input: CreateTodoInput!): Todo
+  createUser(condition: ModelUserConditionInput, input: CreateUserInput!): User @aws_api_key
+  deleteEntry(condition: ModelEntryConditionInput, input: DeleteEntryInput!): Entry
+  deleteFeed(condition: ModelFeedConditionInput, input: DeleteFeedInput!): Feed
+  deleteNote(condition: ModelNoteConditionInput, input: DeleteNoteInput!): Note
+  deletePost(condition: ModelPostConditionInput, input: DeletePostInput!): Post
+  deleteTodo(condition: ModelTodoConditionInput, input: DeleteTodoInput!): Todo
+  deleteUser(condition: ModelUserConditionInput, input: DeleteUserInput!): User @aws_api_key
+  updateEntry(condition: ModelEntryConditionInput, input: UpdateEntryInput!): Entry
+  updateFeed(condition: ModelFeedConditionInput, input: UpdateFeedInput!): Feed
+  updateNote(condition: ModelNoteConditionInput, input: UpdateNoteInput!): Note
+  updatePost(condition: ModelPostConditionInput, input: UpdatePostInput!): Post
+  updateTodo(condition: ModelTodoConditionInput, input: UpdateTodoInput!): Todo
+  updateUser(condition: ModelUserConditionInput, input: UpdateUserInput!): User @aws_api_key
+}
+
+type Note {
+  createdAt: AWSDateTime
+  description: String
+  id: ID!
+  owner: String
+  title: String
+  updatedAt: AWSDateTime!
+}
+
+type Post {
+  createdAt: AWSDateTime!
+  description: String
+  id: ID!
+  image: String
+  name: String
+  owner: String
+  updatedAt: AWSDateTime!
+}
+
+type Query {
+  getEntry(id: ID!): Entry
+  getFeed(id: ID!): Feed
+  getNote(id: ID!): Note
+  getPost(id: ID!): Post
+  getTodo(id: ID!): Todo
+  getUser(id: ID!): User @aws_api_key
+  listEntries(filter: ModelEntryFilterInput, limit: Int, nextToken: String): ModelEntryConnection
+  listFeeds(filter: ModelFeedFilterInput, limit: Int, nextToken: String): ModelFeedConnection
+  listNotes(filter: ModelNoteFilterInput, limit: Int, nextToken: String): ModelNoteConnection
+  listPosts(filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
+  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection
+  listUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection @aws_api_key
+}
+
+type Subscription {
+  onCreateEntry(owner: String): Entry @aws_subscribe(mutations : ["createEntry"])
+  onCreateFeed(owner: String): Feed @aws_subscribe(mutations : ["createFeed"])
+  onCreateNote(owner: String): Note @aws_subscribe(mutations : ["createNote"])
+  onCreatePost(owner: String): Post @aws_subscribe(mutations : ["createPost"])
+  onCreateTodo(owner: String): Todo @aws_subscribe(mutations : ["createTodo"])
+  onCreateUser: User @aws_api_key @aws_subscribe(mutations : ["createUser"])
+  onDeleteEntry(owner: String): Entry @aws_subscribe(mutations : ["deleteEntry"])
+  onDeleteFeed(owner: String): Feed @aws_subscribe(mutations : ["deleteFeed"])
+  onDeleteNote(owner: String): Note @aws_subscribe(mutations : ["deleteNote"])
+  onDeletePost(owner: String): Post @aws_subscribe(mutations : ["deletePost"])
+  onDeleteTodo(owner: String): Todo @aws_subscribe(mutations : ["deleteTodo"])
+  onDeleteUser: User @aws_api_key @aws_subscribe(mutations : ["deleteUser"])
+  onUpdateEntry(owner: String): Entry @aws_subscribe(mutations : ["updateEntry"])
+  onUpdateFeed(owner: String): Feed @aws_subscribe(mutations : ["updateFeed"])
+  onUpdateNote(owner: String): Note @aws_subscribe(mutations : ["updateNote"])
+  onUpdatePost(owner: String): Post @aws_subscribe(mutations : ["updatePost"])
+  onUpdateTodo(owner: String): Todo @aws_subscribe(mutations : ["updateTodo"])
+  onUpdateUser: User @aws_api_key @aws_subscribe(mutations : ["updateUser"])
+}
+
+type Todo {
+  createdAt: AWSDateTime!
+  description: String
   id: ID!
   name: String
+  owner: String
+  updatedAt: AWSDateTime!
+}
+
+type User @aws_api_key {
+  avatar: String
+  createdAt: AWSDateTime!
+  id: ID!
+  updatedAt: AWSDateTime!
+  username: String
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input CreateEntryInput {
   description: String
+  id: ID
   image: String
+  name: String
+}
+
+input CreateFeedInput {
+  description: String
+  feedEntryId: ID
+  feedOwnerId: ID
+  id: ID
+  postedAt: AWSDateTime
+}
+
+input CreateNoteInput {
+  createdAt: AWSDateTime
+  description: String
+  id: ID
+  title: String
+}
+
+input CreatePostInput {
+  description: String
+  id: ID
+  image: String
+  name: String
   owner: String
 }
 
-type Feed @model @auth(rules: [{allow: owner}]) {
-  id: ID!
+input CreateTodoInput {
   description: String
-  postedAt: AWSDateTime
-  owner: User @hasOne
-  entry: Entry @hasOne
+  id: ID
+  name: String
 }
 
+input CreateUserInput {
+  avatar: String
+  id: ID
+  username: String
+}
 
-type Note @model @auth(rules: [{ allow: owner }]) {
+input DeleteEntryInput {
+  id: ID!
+}
+
+input DeleteFeedInput {
+  id: ID!
+}
+
+input DeleteNoteInput {
+  id: ID!
+}
+
+input DeletePostInput {
+  id: ID!
+}
+
+input DeleteTodoInput {
+  id: ID!
+}
+
+input DeleteUserInput {
+  id: ID!
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelEntryConditionInput {
+  and: [ModelEntryConditionInput]
+  description: ModelStringInput
+  image: ModelStringInput
+  name: ModelStringInput
+  not: ModelEntryConditionInput
+  or: [ModelEntryConditionInput]
+}
+
+input ModelEntryFilterInput {
+  and: [ModelEntryFilterInput]
+  description: ModelStringInput
+  id: ModelIDInput
+  image: ModelStringInput
+  name: ModelStringInput
+  not: ModelEntryFilterInput
+  or: [ModelEntryFilterInput]
+}
+
+input ModelFeedConditionInput {
+  and: [ModelFeedConditionInput]
+  description: ModelStringInput
+  feedEntryId: ModelIDInput
+  feedOwnerId: ModelIDInput
+  not: ModelFeedConditionInput
+  or: [ModelFeedConditionInput]
+  postedAt: ModelStringInput
+}
+
+input ModelFeedFilterInput {
+  and: [ModelFeedFilterInput]
+  description: ModelStringInput
+  feedEntryId: ModelIDInput
+  feedOwnerId: ModelIDInput
+  id: ModelIDInput
+  not: ModelFeedFilterInput
+  or: [ModelFeedFilterInput]
+  postedAt: ModelStringInput
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelNoteConditionInput {
+  and: [ModelNoteConditionInput]
+  createdAt: ModelStringInput
+  description: ModelStringInput
+  not: ModelNoteConditionInput
+  or: [ModelNoteConditionInput]
+  title: ModelStringInput
+}
+
+input ModelNoteFilterInput {
+  and: [ModelNoteFilterInput]
+  createdAt: ModelStringInput
+  description: ModelStringInput
+  id: ModelIDInput
+  not: ModelNoteFilterInput
+  or: [ModelNoteFilterInput]
+  title: ModelStringInput
+}
+
+input ModelPostConditionInput {
+  and: [ModelPostConditionInput]
+  description: ModelStringInput
+  image: ModelStringInput
+  name: ModelStringInput
+  not: ModelPostConditionInput
+  or: [ModelPostConditionInput]
+  owner: ModelStringInput
+}
+
+input ModelPostFilterInput {
+  and: [ModelPostFilterInput]
+  description: ModelStringInput
+  id: ModelIDInput
+  image: ModelStringInput
+  name: ModelStringInput
+  not: ModelPostFilterInput
+  or: [ModelPostFilterInput]
+  owner: ModelStringInput
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input ModelTodoConditionInput {
+  and: [ModelTodoConditionInput]
+  description: ModelStringInput
+  name: ModelStringInput
+  not: ModelTodoConditionInput
+  or: [ModelTodoConditionInput]
+}
+
+input ModelTodoFilterInput {
+  and: [ModelTodoFilterInput]
+  description: ModelStringInput
+  id: ModelIDInput
+  name: ModelStringInput
+  not: ModelTodoFilterInput
+  or: [ModelTodoFilterInput]
+}
+
+input ModelUserConditionInput {
+  and: [ModelUserConditionInput]
+  avatar: ModelStringInput
+  not: ModelUserConditionInput
+  or: [ModelUserConditionInput]
+  username: ModelStringInput
+}
+
+input ModelUserFilterInput {
+  and: [ModelUserFilterInput]
+  avatar: ModelStringInput
+  id: ModelIDInput
+  not: ModelUserFilterInput
+  or: [ModelUserFilterInput]
+  username: ModelStringInput
+}
+
+input UpdateEntryInput {
+  description: String
+  id: ID!
+  image: String
+  name: String
+}
+
+input UpdateFeedInput {
+  description: String
+  feedEntryId: ID
+  feedOwnerId: ID
+  id: ID!
+  postedAt: AWSDateTime
+}
+
+input UpdateNoteInput {
+  createdAt: AWSDateTime
+  description: String
   id: ID!
   title: String
-  description: String
-  createdAt: AWSDateTime
 }
 
-type Post @model @auth(rules: [{allow: owner}]) {
-type Entry @model @auth(rules: [{allow: owner}]) {
-  id: ID!
-  name: String
+input UpdatePostInput {
   description: String
+  id: ID!
   image: String
+  name: String
+  owner: String
 }
 
-
-type Todo @model @auth(rules: [{allow: owner}]) {
+input UpdateTodoInput {
+  description: String
   id: ID!
   name: String
-  description: String
+}
+
+input UpdateUserInput {
+  avatar: String
+  id: ID!
+  username: String
 }
