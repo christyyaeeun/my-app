@@ -12,7 +12,6 @@ export type AmplifyDependentResourcesAttributes = {
     },
     "api": {
         "olt47": {
-            "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }

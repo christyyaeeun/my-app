@@ -39,16 +39,20 @@
           },
           "additionalAuthenticationProviders": [
             {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "apiKeyExpirationDays": 365,
-                "apiKeyExpirationDate": "2023-04-18T18:12:47.469Z",
-                "description": "myappOLT47"
-              }
+              "authenticationType": "AWS_IAM"
             }
           ]
         }
-      }
+      },
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "olt47d45bf9ee",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ]
     }
   },
   "storage": {
