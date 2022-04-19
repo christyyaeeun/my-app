@@ -17,7 +17,6 @@ import Landing from './pages/Landing';
 import Journal from './components/post/Journal';
 import Todo from './components/todo/Todo';
 import Appy from './components/todo/Appy';
-
 import { ChakraProvider, theme, CSSReset } from '@chakra-ui/react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import Amplify from 'aws-amplify';

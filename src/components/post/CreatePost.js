@@ -1,10 +1,13 @@
 // CreatePost.js
 
-import React, { useState } from 'react';
-import Button from './Btn';
+import React, { useState, useRef } from 'react';
+import Btn from './Btn';
 import { v4 as uuid } from 'uuid';
 import { Storage, API, Auth } from 'aws-amplify';
 import { createPost } from '../../graphql/mutations';
+import { SmallAddIcon, CloseIcon } from '@chakra-ui/icons';
+import { BiImageAdd, BiMinus, BiX } from 'react-icons/bi';
+import { BsX } from 'react-icons/bs';
 import {
   Box,
   Container,
@@ -12,19 +15,22 @@ import {
   Textarea,
   Input,
   Image,
+  Spinner,
   Icon,
-} from '@chakra-ui/react';
-import { SmallAddIcon, CloseIcon } from '@chakra-ui/icons';
-import { BiImageAdd, BiMinus, BiX } from 'react-icons/bi';
-import { BsX } from 'react-icons/bs'
-import {
   useDisclosure,
   Menu,
-  MenuButton,
+  Button,
   MenuList,
   Flex,
   Stack,
   IconButton,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from '@chakra-ui/react';
 import { BackButton } from '../BackButton';
 /* Initial state to hold form input, saving state */
@@ -36,13 +42,21 @@ const initialState = {
   saving: false,
 };
 
+const Overlay = () => (
+  <ModalOverlay
+    bg="blackAlpha.300"
+    backdropFilter="blur(10px) hue-rotate(90deg)"
+  />
+);
 export default function CreatePost({
-  // updateOverlayVisibility,
   updatePosts,
   posts,
 }) {
   /* 1. Create local state with useState hook */
   const [formState, updateFormState] = useState(initialState);
+  const [overlay, setOverlay] = React.useState(<Overlay />);
+  const [isOpen, setIsOpen] = useState(false);
+
 
   /* 2. onChangeText handler updates the form state when a user types into a form field */
   function onChangeText(e) {
@@ -97,102 +111,144 @@ export default function CreatePost({
         { ...postInfo, image: formState.file, owner: username },
       ]); // updated
       updateFormState(currentState => ({ ...currentState, saving: false }));
-      // updateOverlayVisibility(false);
+      setIsOpen(false);
     } catch (err) {
       console.log('error: ', err);
     }
   }
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  function onClose() {
+    setIsOpen(false);
+  }
+
+  const onSubmit = e => {
+    e.preventDefault();
+  };
 
   return (
     <Container>
       <Flex mb="2em">
-        <Menu onClose={onClose} isOpen={isOpen}>
-          <BackButton bg="gray.100" />
-          <Spacer />
-          <MenuButton
-            as={IconButton}
-            icon={<SmallAddIcon />}
-            bg="gray.100"
-            color="gray.400"
-            onClick={onOpen}
-          />
-          <MenuList shadow="xl" borderRadius="lg">
-            <Box px="2" borderRadius="lg">
-              <Container p={'0'}>
-                <Flex mb="1">
-                  <Spacer />
-                  <IconButton
-                    bg={'gray.50'}
-                    size={'sm'}
-                    color="#8cabcd"
-                    icon={<BiX />}
-                    onClick={onClose}
+        <Button
+          as={IconButton}
+          icon={<SmallAddIcon />}
+          bg="gray.100"
+          color="gray.400"
+          onClick={() => {
+            setOverlay(<Overlay />);
+            setIsOpen(true);
+          }}
+        ></Button>
+
+        <Modal
+          isCentered
+          onClose={onClose}
+          isOpen={isOpen}
+          motionPreset="slideInBottom"
+        >
+          {overlay}
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader color={'gray.500'}>Create Post</ModalHeader>
+            <ModalCloseButton color={'gray.500'} />
+            <ModalBody>
+              <form onSubmit={onSubmit}>
+                <Box px="2" borderRadius="lg">
+                  <Container p={'0'}>
+                    <Flex mb="1">
+                      <Spacer />
+                      {/* <IconButton
+                        bg={'gray.50'}
+                        size={'sm'}
+                        color="#8cabcd"
+                        icon={<BiX />}
+                        onClick={onClose}
+                      /> */}
+                    </Flex>
+                  </Container>
+                  <Container centerContent pt="3">
+                    <Stack spacing={3}>
+                      <Box>
+                        <Input
+                          id="input-style"
+                          placeholder="name"
+                          name="name"
+                          size={'sm'}
+                          minW={'250px'}
+                          className="post-name"
+                          onChange={onChangeText}
+                        />
+                      </Box>
+
+                      <Box>
+                        <Textarea
+                          id="input-style"
+                          placeholder="Description"
+                          name="description"
+                          size={'sm'}
+                          className="post-description"
+                          minH={'100px'}
+                          onChange={onChangeText}
+                        />
+                      </Box>
+
+                      <Box className="image-upload" w="100%">
+                        <label for="file-input">
+                          <Icon
+                            className="img"
+                            color="#8dbae8"
+                            w={6}
+                            h={6}
+                            as={BiImageAdd}
+                          />
+                        </label>
+                        <input
+                          id="file-input"
+                          type="file"
+                          onChange={onChangeFile}
+                        />
+                      </Box>
+
+                      {formState.file && (
+                        <Image
+                          borderRadius={'lg'}
+                          boxSize="200px"
+                          objectFit="cover"
+                          src={formState.file}
+                          alt="Preview"
+                        />
+                      )}
+                    </Stack>
+                  </Container>
+        
+                </Box>
+              </form>
+            </ModalBody>
+            <ModalFooter>
+              <Btn
+                colorScheme="blue"
+                title="save"
+                id="save"
+                mr={3}
+                onClick={save}
+              >
+                Save{' '}
+              </Btn>
+              {formState.saving && (
+                <Box id="spinner">
+                  <Spinner
+                    id="loading"
+                    thickness="4px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="blue.500"
+                    size="xl"
                   />
-                </Flex>
-              </Container>
-              <Container centerContent pt="3">
-                <Stack spacing={3}>
-                  <Box>
-                    <Input
-                      id="input-style"
-                      placeholder="name"
-                      name="name"
-                      size={'sm'}
-                      minW={'250px'}
-                      className="post-name"
-                      onChange={onChangeText}
-                    />
-                  </Box>
-
-                  <Box>
-                    <Textarea
-                      id="input-style"
-                      placeholder="Description"
-                      name="description"
-                      size={'sm'}
-                      className="post-description"
-                      minH={'100px'}
-                      onChange={onChangeText}
-                    />
-                  </Box>
-
-                  <Box className="image-upload" w="100%">
-                    <label for="file-input">
-                      <Icon
-                        className="img"
-                        color="#8dbae8"
-                        w={6}
-                        h={6}
-                        as={BiImageAdd}
-                      />
-                    </label>
-                    <input
-                      id="file-input"
-                      type="file"
-                      onChange={onChangeFile}
-                    />
-                  </Box>
-
-                  {formState.file && (
-                    <Image borderRadius={'lg'}
-                      boxSize="200px"
-                      objectFit="cover"
-                      src={formState.file}
-                      alt="Preview"
-                    />
-                  )}
-                </Stack>
-              </Container>
-              <Container mt={'1'}>
-                <Flex my="1">
-                  <Spacer />
-                  <Button id="submit" title="save" onClick={save} />
-                </Flex>
-              </Container>
-            </Box>
-          </MenuList>
-        </Menu>
+                </Box>
+              )}
+        
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </Flex>
     </Container>
   );

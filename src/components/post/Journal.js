@@ -1,14 +1,16 @@
 import '@fontsource/inter/500.css';
-
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Amplify, { API, Storage, Auth } from 'aws-amplify';
 import { listPosts } from '../../graphql/queries';
 import CreatePost from './CreatePost';
-// import { onCreatePost } from '../../graphql/subscriptions';
-// import {
-//   deletePost as deletePostMutation,
-// } from '../../graphql/mutations';
-// import { CgRemoveR } from 'react-icons/cg';
+import { onCreatePost } from '../../graphql/subscriptions';
+import Btn from './Btn';
+import PostList from './PostList';
+import { deletePost as deletePostMutation } from '../../graphql/mutations';
+import { DataStore } from '@aws-amplify/datastore';
+import { Post } from '../../models';
+import { CgRemoveR } from 'react-icons/cg';
 import { format, parseISO } from 'date-fns';
 
 import {
@@ -17,8 +19,10 @@ import {
   Container,
   Image,
   Center,
+  Button,
   Text,
   Stack,
+  useDisclosure,
   Spacer,
   HStack,
   Divider,
@@ -33,6 +37,11 @@ function Journal() {
   /* create a couple of pieces of initial state */
   const [posts, updatePosts] = useState([]);
   const [userPosts, updateUserPosts] = useState([]);
+  // const [displayOverlay, updateOverlayVisibility] = useState(false);
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // let showOverlay = isOpen;
+  // let updateOverlay = onClose;
 
   /* fetch posts when component loads */
   useEffect(() => {
@@ -71,26 +80,23 @@ function Journal() {
     updatePosts(postsArray);
   }
 
-  // function subscribe() {
-  //   API.graphql({
-  //     query: onCreatePost,
-  //   }).subscribe(() => fetchPosts());
-  // }
+  function subscribe() {
+    API.graphql({
+      query: onCreatePost,
+    }).subscribe(() => fetchPosts());
+  }
 
   useEffect(() => {
     fetchPosts();
-    // const subscription = subscribe();
-    // return () => subscription();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    //  eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // async function deletePost({ id }) {
   //   const newPostsArray = posts.filter(post => post.id !== id);
+  //   const toDelete = await DataStore.query(Post, id);
+  //   DataStore.delete(toDelete);
   //   updatePosts(newPostsArray);
-  //   await API.graphql({
-  //     query: deletePostMutation,
-  //     variables: { input: { id } },
-  //   });
+
   // }
 
   return (
@@ -113,12 +119,14 @@ function Journal() {
                 <Center>
                   <Container id="img-card" p={'0'}>
                     <Container id="img-wrap" bg={'white'}>
-                      <Box id="img-container"
+                      <Box
+                        id="img-container"
                         maxW={'sm'}
                         overflow={'hidden'}
                         maxH={{ base: '350px', lg: '350px' }}
                       >
-                        <Image borderRadius={'lg'}
+                        <Image
+                          borderRadius={'lg'}
                           id="post-img"
                           src={post.image}
                           objectFit="cover"
@@ -143,7 +151,8 @@ function Journal() {
                               >
                                 {post.name}
                               </Text>
-                            </Box>``
+                            </Box>
+                            ``
                           </HStack>
                           <Box my={'1'}>
                             <Text
@@ -154,9 +163,6 @@ function Journal() {
                               {post.description}
                             </Text>
                           </Box>
-                          <Text color={'gray.500'} fontSize={'xs'}>
-                            {format(parseISO(post.createdAt), 'MM/dd/yyyy')}{' '}
-                          </Text>
                         </Box>
                       </Stack>
                     </Container>
