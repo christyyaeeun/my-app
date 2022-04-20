@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { BsSticky } from 'react-icons/bs'
 import DateCalendar from '../components/calendar/DateCalendar'
 import Appy from '../components/todo/Appy';
-
+import NoteApp from '../components/notes/NoteApp';
 
 const Home = () => {
   const [ name, setName ] = useState('');
@@ -33,6 +33,7 @@ const Home = () => {
               <Text id="greeting" color={ useColorModeValue('gray.600', 'white') } fontSize='xl'>
                 Welcome back, { name }
               </Text>
+              <NoteApp />
             </Center>
             <Spacer />
             <Box mt='1em'>
