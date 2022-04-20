@@ -23,9 +23,11 @@ type Feed @model @auth(rules: [{allow: owner}]) {
 
 type Note @model @auth(rules: [{allow: owner}]) {
   id: ID!
-  title: String
+  name: String
   description: String
-  createdAt: AWSDateTime
+  image: String
+  type: String! @index(name: "notesByDate", queryField: "notesByDate", sortKeyFields: ["createdAt"])
+  createdAt: String!
 }
 
 type Entry @model @auth(rules: [{allow: owner}]) {
@@ -40,4 +42,3 @@ type Todo @model @auth(rules: [{allow: owner}]) {
   name: String
   description: String
 }
- 

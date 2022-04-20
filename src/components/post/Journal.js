@@ -90,15 +90,12 @@ function Journal() {
     <>
       <Container h={'100vh'}>
         <Container mt={'1em'}>
-          <CreatePost
-            updatePosts={setPostState}
-            posts={posts}
-       
-          />
+          <CreatePost updatePosts={setPostState} posts={posts} />
         </Container>
         <Container p={'5'} maxW={'450px'}>
-          {posts.reverse().map(post => (
-              
+          {/* {posts.reverse().map(post => ( */}
+
+           {posts.map(post => (
             <Container
               id="card-wrap"
               borderWidth="1px"
@@ -144,7 +141,6 @@ function Journal() {
                                 {post.name}
                               </Text>
                             </Box>
-                          
                           </HStack>
                           <Box my={'1'}>
                             <Text
@@ -156,7 +152,7 @@ function Journal() {
                             </Text>
                             <Text color={'gray.500'}>
                               <small>
-                                {format(new Date(post.createdAt), 'MM/dd/yyyy')}
+                                {/* {format(new Date(post.createdAt), 'MM/dd/yyyy')} */}
                               </small>
                             </Text>
                           </Box>
