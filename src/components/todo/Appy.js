@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Amplify, { API } from 'aws-amplify';
+import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
+import * as mutations from '../../graphql/mutations';
 import { listTodos } from '../../graphql/queries';
 import {
   createTodo as createTodoMutation,
@@ -37,8 +38,14 @@ function Appy() {
   const [formData, setFormData] = useState(initialFormState);
 
   useEffect(() => {
+    checkUser();
     fetchTodos();
   }, []);
+  async function checkUser() {
+    const user = await Auth.currentAuthenticatedUser();
+    console.log('user:', user);
+    console.log('user attributes: ', user.attributes);
+  }
 
   async function fetchTodos() {
     const apiData = await API.graphql({ query: listTodos });
@@ -55,14 +62,31 @@ function Appy() {
     setFormData(initialFormState);
   }
 
-  async function deleteTodo({ id }) {
-    const newTodosArray = todos.filter(todo => todo.id !== id);
-    setTodos(newTodosArray);
-    await API.graphql({
-      query: deleteTodoMutation,
-      variables: { input: { id } },
-    });
-  }
+  // async function deleteTodo({ id }) {
+  //   const newTodosArray = todos.filter(todo => todo.id !== id);
+  //   await API.graphql({
+  //     query: deleteTodoMutation,
+  //     variables: { input: { id } },
+  //   });
+  //   setTodos(newTodosArray);
+
+  // }
+  const handleDeleteTodo = async id => {
+    const todo = {
+      id: id,
+    }
+    //Connect Client Amplify GraphQL
+    const result = await API.graphql(
+      graphqlOperation(mutations.deleteTodo, { input: todo })
+    );
+    //Filters todos array and returns array that does not correspond to item.id
+    const filteredTodos = todos.filter(
+      item => item.id !== result.data.deleteTodo.id
+    );
+    //Updates state
+    setTodos(filteredTodos);
+  };
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -87,8 +111,6 @@ function Appy() {
                 >
                   <Stack>
                     <Text color={'gray.500'}>
-                      {/* {format(new Date(todo.createdAt), 'MM/dd')} */}
-                      {/* {format(new Date(todo.createdAt), 'LLL. dd')} */}
                       {format(new Date(todo.createdAt), 'LLL. dd')}
                     </Text>
                     <Text color={'gray.500'}>
@@ -120,7 +142,7 @@ function Appy() {
                   color={'gray.400'}
                   as={IconButton}
                   icon={<CgRemoveR />}
-                  onClick={() => deleteTodo(todo)}
+                  onClick={() => handleDeleteTodo(handleDeleteTodo)}
                 >
                   Delete
                 </Button>

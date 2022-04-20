@@ -169,6 +169,12 @@ margin: 0 auto;
     }
 
 
+    #profilePic {
+        border-radius: 50%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
 
 @media (max-width: 400px) {
     #img-container {

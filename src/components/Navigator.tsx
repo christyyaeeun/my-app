@@ -84,7 +84,7 @@ export default function Nav({children}) {
                 <Avatar
                   size={'sm'}
                   src={
-                    ''
+                    'https://firebasestorage.googleapis.com/v0/b/olt-react.appspot.com/o/avatar-sm.png?alt=media&token=7843d4ae-bee0-47f4-9a3c-f964e463d03c'
                   }
                 />
               </MenuButton>
@@ -94,7 +94,7 @@ export default function Nav({children}) {
                 <Center>
                   <Avatar
                     size={'2xl'}
-                    src={''}
+                    src={'https://firebasestorage.googleapis.com/v0/b/olt-react.appspot.com/o/avatar-sm.png?alt=media&token=7843d4ae-bee0-47f4-9a3c-f964e463d03c'}
                   />
                 </Center>
                 <br />

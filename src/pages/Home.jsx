@@ -5,9 +5,7 @@ import { Container, Box, VStack, StackDivider, Spacer, Text, Flex, Center, IconB
 import { Link } from 'react-router-dom';
 import { BsSticky } from 'react-icons/bs'
 import DateCalendar from '../components/calendar/DateCalendar'
-import Todo from '../components/todo/Todo'
 import Appy from '../components/todo/Appy';
-
 
 
 const Home = () => {
@@ -41,8 +39,6 @@ const Home = () => {
               <IconButton as={ Link } to="/notes" bg='white' variant='ghost' icon={ <BsSticky /> } />
             </Box>
           </Flex>
-
-
         </Container>
         <Container>
           <VStack divider={ <StackDivider borderColor='gray.200' /> } spacing={ 4 } align='stretch' width='100%' mt='4' p='5'>
@@ -55,7 +51,6 @@ const Home = () => {
             </Box>
           </VStack>
           <Container>
-            <Todo />
             <Appy />
           </Container>
         </Container>

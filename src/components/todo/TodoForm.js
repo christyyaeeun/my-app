@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import Button from '../../components/post/Btn';
 import { v4 as uuid } from 'uuid';
 import { Storage, API, Auth } from 'aws-amplify';
 import { createTodo } from '../../graphql/mutations';
@@ -13,19 +12,17 @@ import {
   Image,
   Text,
   Icon,
-} from '@chakra-ui/react';
-import { SmallAddIcon, CloseIcon } from '@chakra-ui/icons';
-import { BiImageAdd, BiMinus, BiX } from 'react-icons/bi';
-import { BsX } from 'react-icons/bs';
-import {
   useDisclosure,
   Menu,
   MenuButton,
   MenuList,
   Flex,
   Stack,
-  IconButton,
+  IconButton
 } from '@chakra-ui/react';
+import { SmallAddIcon, CloseIcon } from '@chakra-ui/icons';
+import { BiImageAdd, BiMinus, BiX } from 'react-icons/bi';
+import { BsX } from 'react-icons/bs';
 import { BackButton } from '../BackButton';
 
 const initialState = {
@@ -35,14 +32,11 @@ const initialState = {
 };
 
 export default function TodoForm({
-  // updateOverlayVisibility,
   updateTodos,
   todos,
 }) {
-  /* 1. Create local state with useState hook */
   const [formState, updateFormState] = useState(initialState);
 
-  /* 2. onChangeText handler updates the form state when a user types into a form field */
   function onChangeText(e) {
     e.persist();
     updateFormState(currentState => ({
@@ -50,22 +44,6 @@ export default function TodoForm({
       [e.target.name]: e.target.value,
     }));
   }
-
-  // function onChangeFile(e) {
-  //   e.persist();
-  //   if (!e.target.files[0]) return;
-  //   const fileExtPosition = e.target.files[0].name.search(/.png|.jpg|.gif/i);
-  //   const firstHalf = e.target.files[0].name.slice(0, fileExtPosition);
-  //   const secondHalf = e.target.files[0].name.slice(fileExtPosition);
-  //   const fileName = firstHalf + '_' + uuid() + secondHalf;
-  //   console.log(fileName);
-  //   const image = { fileInfo: e.target.files[0], name: fileName };
-  //   updateFormState(currentState => ({
-  //     ...currentState,
-  //     file: URL.createObjectURL(e.target.files[0]),
-  //     image,
-  //   }));
-  // }
 
   async function save() {
     try {
@@ -79,17 +57,15 @@ export default function TodoForm({
         description,
         id: todoId,
       };
-
       await API.graphql({
         query: createTodo,
         variables: { input: todoInfo },
         authMode: 'AMAZON_COGNITO_USER_POOLS',
-      }); // updated
+      }); 
       const { username } = await Auth.currentAuthenticatedUser(); // new
       updateTodos([...todos, { ...todoInfo, owner: username }]); // updated
       updateFormState(currentState => ({ ...currentState, saving: false }));
           
-      // updateOverlayVisibility(false);
     } catch (err) {
       console.log('error: ', err);
     }
@@ -165,7 +141,6 @@ export default function TodoForm({
               <Container mt={'1'}>
                 <Flex my="1">
                   <Spacer />
-                  {/* <Button id="submit" title="save" onClick={save} /> */}
                   <Button id="submit" title="save" onClick={save}>save</Button>
 
                 </Flex>

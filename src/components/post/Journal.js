@@ -1,13 +1,13 @@
 import '@fontsource/inter/500.css';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Amplify, { API, Storage, Auth } from 'aws-amplify';
+import Amplify, { API, Storage, Auth, graphqlOperation } from 'aws-amplify';
 import { listPosts } from '../../graphql/queries';
 import CreatePost from './CreatePost';
 import { onCreatePost } from '../../graphql/subscriptions';
 import Btn from './Btn';
 import PostList from './PostList';
-import { deletePost as deletePostMutation } from '../../graphql/mutations';
+import { deletePost } from '../../graphql/mutations';
 import { DataStore } from '@aws-amplify/datastore';
 import { Post } from '../../models';
 import { CgRemoveR } from 'react-icons/cg';
@@ -34,14 +34,8 @@ Amplify.configure(awsconfig);
 API.configure(awsconfig);
 
 function Journal() {
-  /* create a couple of pieces of initial state */
   const [posts, updatePosts] = useState([]);
   const [userPosts, updateUserPosts] = useState([]);
-  // const [displayOverlay, updateOverlayVisibility] = useState(false);
-  // const { isOpen, onOpen, onClose } = useDisclosure();
-
-  // let showOverlay = isOpen;
-  // let updateOverlay = onClose;
 
   /* fetch posts when component loads */
   useEffect(() => {
@@ -74,6 +68,7 @@ function Journal() {
 
   async function setPostState(postsArray) {
     const user = await Auth.currentAuthenticatedUser();
+
     const userData = postsArray.filter(p => p.owner === user.username);
     console.log('postsArray:', postsArray);
     updateUserPosts(userData);
@@ -91,22 +86,19 @@ function Journal() {
     //  eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // async function deletePost({ id }) {
-  //   const newPostsArray = posts.filter(post => post.id !== id);
-  //   const toDelete = await DataStore.query(Post, id);
-  //   DataStore.delete(toDelete);
-  //   updatePosts(newPostsArray);
-
-  // }
-
   return (
     <>
       <Container h={'100vh'}>
         <Container mt={'1em'}>
-          <CreatePost updatePosts={setPostState} posts={posts} />
+          <CreatePost
+            updatePosts={setPostState}
+            posts={posts}
+       
+          />
         </Container>
         <Container p={'5'} maxW={'450px'}>
-          {posts.map(post => (
+          {posts.reverse().map(post => (
+              
             <Container
               id="card-wrap"
               borderWidth="1px"
@@ -152,7 +144,7 @@ function Journal() {
                                 {post.name}
                               </Text>
                             </Box>
-                            ``
+                          
                           </HStack>
                           <Box my={'1'}>
                             <Text
@@ -161,6 +153,11 @@ function Journal() {
                               paddingLeft={'.1em'}
                             >
                               {post.description}
+                            </Text>
+                            <Text color={'gray.500'}>
+                              <small>
+                                {format(new Date(post.createdAt), 'MM/dd/yyyy')}
+                              </small>
                             </Text>
                           </Box>
                         </Box>

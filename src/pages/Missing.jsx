@@ -7,10 +7,10 @@ function Missing() {
         <>
             <Container p='10' centerContent>
                 <VStack>
-                    <Text fontSize='3xl'>Sorry! Page Not Found</Text>
+                    <Text fontSize='2xl'>Requires Connection</Text>
                     <Center maxW='md' color='teal.500' fontSize='15px'>
-                        <Link as={ReachLink} to='/'>
-                            Visit Our Homepage
+                        <Link as={ReachLink} to='/landing'>
+                            Invite your partner to connect!
                         </Link>
                     </Center>
                 </VStack>
