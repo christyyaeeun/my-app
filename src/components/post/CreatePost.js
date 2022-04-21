@@ -1,13 +1,12 @@
 // CreatePost.js
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Btn from './Btn';
 import { v4 as uuid } from 'uuid';
 import { Storage, API, Auth } from 'aws-amplify';
 import { createPost } from '../../graphql/mutations';
-import { SmallAddIcon, CloseIcon } from '@chakra-ui/icons';
-import { BiImageAdd, BiMinus, BiX } from 'react-icons/bi';
-import { BsX } from 'react-icons/bs';
+import { SmallAddIcon } from '@chakra-ui/icons';
+import { BiImageAdd } from 'react-icons/bi';
 import {
   Box,
   Container,
@@ -17,10 +16,7 @@ import {
   Image,
   Spinner,
   Icon,
-  useDisclosure,
-  Menu,
   Button,
-  MenuList,
   Flex,
   Stack,
   IconButton,
@@ -32,8 +28,8 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import { BackButton } from '../BackButton';
-/* Initial state to hold form input, saving state */
+
+
 const initialState = {
   name: '',
   description: '',
@@ -121,7 +117,7 @@ export default function CreatePost({
     setIsOpen(false);
   }
 
-  const onSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
   };
 
@@ -151,18 +147,11 @@ export default function CreatePost({
             <ModalHeader color={'gray.500'}>Create Post</ModalHeader>
             <ModalCloseButton color={'gray.500'} />
             <ModalBody>
-              <form onSubmit={onSubmit}>
+              <form onSubmit={handleSubmit}>
                 <Box px="2" borderRadius="lg">
                   <Container p={'0'}>
                     <Flex mb="1">
                       <Spacer />
-                      {/* <IconButton
-                        bg={'gray.50'}
-                        size={'sm'}
-                        color="#8cabcd"
-                        icon={<BiX />}
-                        onClick={onClose}
-                      /> */}
                     </Flex>
                   </Container>
                   <Container centerContent pt="3">
@@ -231,7 +220,7 @@ export default function CreatePost({
                 mr={3}
                 onClick={save}
               >
-                Save{' '}
+                Save
               </Btn>
               {formState.saving && (
                 <Box id="spinner">

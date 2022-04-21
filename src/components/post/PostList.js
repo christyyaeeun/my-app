@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import {
-    IconButton,
     Box,
     Container,
     Image,
@@ -10,13 +9,10 @@ import {
     Button,
     Text,
     Stack,
-    useDisclosure,
-    Spacer,
     HStack,
     Divider,
-    useColorModeValue,
-    Flex,
-  } from '@chakra-ui/react';
+    useColorModeValue
+    } from '@chakra-ui/react';
 export default function Posts({ posts = [] }) {
   return (
     <>

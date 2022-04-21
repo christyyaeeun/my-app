@@ -1,81 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Auth, Storage } from 'aws-amplify';
 import { v4 as uuid } from 'uuid';
-import { Storage, API, Auth } from 'aws-amplify';
-import { createUser } from '../graphql/mutations';
-import { Box, Image, Icon } from '@chakra-ui/react';
-import Btn from '../components/post/Btn';
-import { BiImageAdd, BiMinus, BiX } from 'react-icons/bi';
+import { Avatar } from '@chakra-ui/react';
 
-const initialState = {
-  username: '',
-  avatar: {},
-  file: '',
-  saving: false,
+const user = {
+  avatar: {}
 };
 
 export default function User() {
-  const [formState, updateFormState] = useState(initialState);
+  const [avatar, setAvatar] = useState('');
 
-  function onChangeFile(e) {
-    e.persist();
-    if (!e.target.files[0]) return;
-    const fileExtPosition = e.target.files[0].name.search(/.png|.jpg|.gif/i);
-    const firstHalf = e.target.files[0].name.slice(0, fileExtPosition);
-    const secondHalf = e.target.files[0].name.slice(fileExtPosition);
-    const fileName = firstHalf + '_' + uuid() + secondHalf;
-    console.log(fileName);
-    const avatar = { fileInfo: e.target.files[0], name: fileName };
-    updateFormState(currentState => ({
-      ...currentState,
-      file: URL.createObjectURL(e.target.files[0]),
-      avatar,
-    }));
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+  async function checkUser() {
+    let user = await Auth.currentAuthenticatedUser();
+    console.log('user:', user);
+    console.log('user attributes: ', user.attributes);
+    // setAvatar(user.profileImage);
   }
 
-  async function save() {
-    const { username, avatar } = formState;
-    if (!username || !avatar.name) return;
-    updateFormState(currentState => ({ ...currentState, saving: true }));
-    const userId = uuid();
-    const userInfo = {
-      username,
-      avatar: formState.avatar.name,
-      id: userId,
-    };
-
-    await Storage.put(formState.avatar.name, formState.avatar.fileInfo, {
+  async function onUpload(e) {
+    const avatar = e.target.files[0];
+    await Storage.put('profile.png', avatar, {
+      contentType: 'image/png',
       level: 'private',
     });
-    await API.graphql({
-      query: createUser,
-      variables: { input: userInfo },
-      authMode: 'AMAZON_COGNITO_USER_POOLS',
-    });
-
-    return (
-      <>
-        <Box className="image-upload" w="100%">
-          <label for="file-input">
-            <Icon className="img" color="#8dbae8" w={6} h={6} as={BiImageAdd} />
-          </label>
-          <input id="file-input" type="file" onChange={onChangeFile} />
-        </Box>
-
-        <Box>
-          {formState.file && (
-            <Image
-              borderRadius={'lg'}
-              boxSize="200px"
-              objectFit="cover"
-              src={formState.file}
-              alt="Preview"
-            />
-          )}
-        </Box>
-        <Btn colorScheme="blue" title="save" id="save" mr={3} onClick={save}>
-          Save{' '}
-        </Btn>
-      </>
-    );
+    setAvatar();
   }
+
+//   async function save() {
+//     const userId = uuid();
+//     const userInfo = {
+//       avatar,
+//       id: userId,
+//     };
+//   }
+
+  const handleUpload = e => {
+    e.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleUpload}>
+        <div class="wrapper">
+          <div class="btnimg">
+            <Avatar
+              size={'xl'}
+              src={avatar}
+              alt={'Author'}
+              css={{
+                border: '2px solid white',
+              }}
+            />
+          </div>
+          <input id="file-input" type="file" onChange={onUpload} />
+        </div>
+      </form>
+    </>
+  );
 }

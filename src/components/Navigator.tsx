@@ -26,7 +26,7 @@ import { AmplifyS3Image } from '@aws-amplify/ui-react';
 import { Storage } from 'aws-amplify';
 
 
-const Links = ["Home", "Timeline", "Journal", "Explore"];
+const Links = ["Home", "Timeline", "Journal", "Explore", "Paired"];
 const NavLink = ({ children, href }: { children: ReactNode; href: string; }) => (
   <Link
     px={2}

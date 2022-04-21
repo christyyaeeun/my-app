@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   Heading,
-  Avatar,
   Box,
   Center,
   Flex,
@@ -11,22 +10,21 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { AmplifyS3Image } from '@aws-amplify/ui-react'
-import { API, graphqlOperation, Storage } from 'aws-amplify'
-
+// import { Storage } from 'aws-amplify'
 
 function Profile() {
-  async function uploadPhoto(file) {
-    Storage.put('profile.png', file, {
-      contentType: 'image/png',
-      level: 'private'
-    })
-      .then(result => {
-        console.log(result)
-        // for the sake of the demo, force a reload to see the uploaded picture
-        window.location.reload()
-      })
-      .catch(err => console.log(err));
-  }
+//   async function uploadPhoto(file) {
+//     Storage.put('profile.png', file, {
+//       contentType: 'image/png',
+//       level: 'private'
+//     })
+//       .then(result => {
+//         console.log(result)
+//         // for the sake of the demo, force a reload to see the uploaded picture
+//         window.location.reload()
+//       })
+//       .catch(err => console.log(err));
+//   }
 
 
   
@@ -36,6 +34,7 @@ function Profile() {
         <Text fontSize='2xl'>
           Profile
         </Text>
+     
         <Container maxW='2xl' minH='100vh'>
           <Center py={ 6 }>
             <Box
@@ -79,32 +78,10 @@ function Profile() {
                 </Stack>
 
                 <Stack direction={ 'row' } justify={ 'center' } spacing={ 6 }>
-                  {/* <Stack spacing={0} align={'center'}>
-              <Text fontWeight={600}>23k</Text>
-              <Text fontSize={'sm'} color={'gray.500'}>
-                Followers
-              </Text>
-            </Stack>
-            <Stack spacing={0} align={'center'}>
-              <Text fontWeight={600}>23k</Text>
-              <Text fontSize={'sm'} color={'gray.500'}>
-                Followers
-              </Text>
-            </Stack> */}
+          
                 </Stack>
 
-                {/* <Button
-            w={'full'}
-            mt={8}
-            bg={useColorModeValue('#151f21', 'gray.900')}
-            color={'white'}
-            rounded={'md'}
-            _hover={{
-              transform: 'translateY(-2px)',
-              boxShadow: 'lg',
-            }}>
-            Connect
-          </Button> */}
+   
               </Box>
             </Box>
           </Center>

@@ -1,33 +1,25 @@
 import '@fontsource/inter/500.css';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Amplify, { API, Storage, Auth, graphqlOperation } from 'aws-amplify';
+import Amplify, { API, Storage, Auth } from 'aws-amplify';
 import { listPosts } from '../../graphql/queries';
 import CreatePost from './CreatePost';
-import { onCreatePost } from '../../graphql/subscriptions';
-import Btn from './Btn';
-import PostList from './PostList';
-import { deletePost } from '../../graphql/mutations';
-import { DataStore } from '@aws-amplify/datastore';
-import { Post } from '../../models';
-import { CgRemoveR } from 'react-icons/cg';
-import { format, parseISO } from 'date-fns';
-
+// import { onCreatePost } from '../../graphql/subscriptions';
+// import Btn from './Btn';
+// import PostList from './PostList';
+// import { deletePost } from '../../graphql/mutations';
+// import { Post } from '../../models';
+// import { format, parseISO } from 'date-fns';
+import DeletePost from './DeletePost';
 import {
-  IconButton,
   Box,
   Container,
   Image,
   Center,
-  Button,
   Text,
   Stack,
-  useDisclosure,
-  Spacer,
   HStack,
   Divider,
-  useColorModeValue,
-  Flex,
+  useColorModeValue
 } from '@chakra-ui/react';
 import awsconfig from '../../aws-exports.js';
 Amplify.configure(awsconfig);
@@ -68,18 +60,17 @@ function Journal() {
 
   async function setPostState(postsArray) {
     const user = await Auth.currentAuthenticatedUser();
-
     const userData = postsArray.filter(p => p.owner === user.username);
     console.log('postsArray:', postsArray);
     updateUserPosts(userData);
     updatePosts(postsArray);
   }
 
-  function subscribe() {
-    API.graphql({
-      query: onCreatePost,
-    }).subscribe(() => fetchPosts());
-  }
+  // function subscribe() {
+  //   API.graphql({
+  //     query: onCreatePost,
+  //   }).subscribe(() => fetchPosts());
+  // }
 
   useEffect(() => {
     fetchPosts();

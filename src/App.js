@@ -16,6 +16,7 @@ import Post from './components/post/Post';
 import Notes from './components/notes/Notes';
 import Journal from './components/post/Journal';
 import Appy from './components/todo/Appy';
+import Paired from './pages/Paired';
 import { ChakraProvider, theme, CSSReset } from '@chakra-ui/react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import Amplify from 'aws-amplify';
@@ -31,6 +32,7 @@ function App({ user, signOut }) {
         <Route path="/" element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/paired" element={<Paired />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="/journalpage" element={<JournalPage />} />
           <Route path="/createpost" element={<CreatePost />} />

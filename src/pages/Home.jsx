@@ -7,6 +7,7 @@ import { BsSticky } from 'react-icons/bs'
 import DateCalendar from '../components/calendar/DateCalendar'
 import Appy from '../components/todo/Appy';
 // import NoteApp from '../components/notes/NoteApp';
+import NoteComponent from '../components/notes/NoteComponent';
 
 const Home = () => {
   const [ name, setName ] = useState('');
@@ -34,6 +35,7 @@ const Home = () => {
                 Welcome back, { name }
               </Text>
               {/* <NoteApp /> */}
+            
             </Center>
             <Spacer />
             <Box mt='1em'>
@@ -59,6 +61,5 @@ const Home = () => {
     </section>
   )
 }
-
 
 export default Home

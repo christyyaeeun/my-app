@@ -2,30 +2,20 @@ import React, { useEffect, useState } from 'react';
 import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
 import * as mutations from '../../graphql/mutations';
 import { listTodos } from '../../graphql/queries';
-import {
-  createTodo as createTodoMutation,
-  deleteTodo as deleteTodoMutation,
-} from '../../graphql/mutations';
+import { deleteTodo } from '../../graphql/mutations';
+import { createTodo as createTodoMutation } from '../../graphql/mutations';
 import {
   Button,
-  Input,
   IconButton,
   Box,
-  Container,
   Center,
   Text,
   Stack,
   HStack,
-  Flex,
   useColorModeValue,
-  Menu,
-  MenuButton,
-  Spacer,
-  MenuList,
 } from '@chakra-ui/react';
 import { format } from 'date-fns';
-import { SmallAddIcon } from '@chakra-ui/icons';
-import { useDisclosure } from '@chakra-ui/react';
+import { v4 as uuid } from 'uuid';
 import { CgRemoveR } from 'react-icons/cg';
 import awsExports from '../../aws-exports';
 Amplify.configure(awsExports);
@@ -35,12 +25,13 @@ const initialFormState = { name: '', description: '' };
 //  id, name description
 function Appy() {
   const [todos, setTodos] = useState([]);
-  const [formData, setFormData] = useState(initialFormState);
+  // const [formData, setFormData] = useState(initialFormState);
 
   useEffect(() => {
     checkUser();
     fetchTodos();
   }, []);
+
   async function checkUser() {
     const user = await Auth.currentAuthenticatedUser();
     console.log('user:', user);
@@ -52,42 +43,49 @@ function Appy() {
     setTodos(apiData.data.listTodos.items);
   }
 
-  async function createTodo() {
-    if (!formData.name || !formData.description) return;
-    await API.graphql({
-      query: createTodoMutation,
-      variables: { input: formData },
-    });
-    setTodos([...todos, formData]);
-    setFormData(initialFormState);
-  }
+  // async function createTodo() {
+  //   if (!formData.name || !formData.description) return;
+  //   await API.graphql({
+  //     query: createTodoMutation,
+  //     variables: { input: formData },
+  //   });
+  //   setTodos([...todos, formData]);
+  //   setFormData(initialFormState);
+  // }
 
-  // async function deleteTodo({ id }) {
+  // async function deleteTodo({id}) {
+  //   const todoId = uuid();
+  //   const todoInfo = {
+  //     name,
+  //     description,
+  //     id: todoId
+  //   }
   //   const newTodosArray = todos.filter(todo => todo.id !== id);
   //   await API.graphql({
-  //     query: deleteTodoMutation,
+  //     query: deleteTodo,
   //     variables: { input: { id } },
   //   });
   //   setTodos(newTodosArray);
-
   // }
-  const handleDeleteTodo = async id => {
-    const todo = {
-      id: id,
-    }
-    //Connect Client Amplify GraphQL
-    const result = await API.graphql(
-      graphqlOperation(mutations.deleteTodo, { input: todo })
-    );
-    //Filters todos array and returns array that does not correspond to item.id
-    const filteredTodos = todos.filter(
-      item => item.id !== result.data.deleteTodo.id
-    );
-    //Updates state
-    setTodos(filteredTodos);
-  };
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const handleDeleteTodo = async id => {
+  //   const todo = {
+  //     id: id,
+  //   }
+  //   const result = await API.graphql(
+  //     graphqlOperation(mutations.deleteTodo, { input: todo })
+  //   );
+  //   const filteredTodos = todos.filter(
+  //     item => item.id !== result.data.deleteTodo.id
+  //   );
+  //   //Updates state
+  //   setTodos(filteredTodos);
+  // };
+
+  // async function removeTodo(id) {
+  //   await API.graphql(graphqlOperation(deleteTodo, { input: { id } }));
+  //   setTodos(todos.filter(todo => todo.id !== id));
+  // }
 
   return (
     <>
@@ -136,8 +134,15 @@ function Appy() {
                 >
                   <Text color={'gray.400'}>{todo.description}</Text>
                 </Box>
-
                 <Button
+                  as={IconButton}
+                  bg={'transparent'}
+                  color={'gray.400'}
+                  icon={<CgRemoveR />}
+                  onClick={deleteTodo}
+                />
+
+                {/* <Button
                   bg={'transparent'}
                   color={'gray.400'}
                   as={IconButton}
@@ -145,7 +150,7 @@ function Appy() {
                   onClick={() => handleDeleteTodo(handleDeleteTodo)}
                 >
                   Delete
-                </Button>
+                </Button>  */}
               </HStack>
             </Center>
           </div>
