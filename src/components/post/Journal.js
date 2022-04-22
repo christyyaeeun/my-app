@@ -69,21 +69,21 @@ function Journal() {
   }
 
   //Function for removing a post
-  async function removePost(postId) {
-    try {
-      /* query the API, ask for 100 items */
-      //API.graphql(graphqlOperation(deletePostEditor, { input: { id } }))
-      const postInfo = { id: postId };
-      await API.graphql({
-        query: deletePost,
-        variables: { input: postInfo },
-        authMode: 'AMAZON_COGNITO_USER_POOLS',
-      }); // updated
-      //updatePosts([...posts, { ...postInfo, image: formState.file, owner: username }]); // updated
-    } catch (err) {
-      console.log('error: ', err);
-    }
-  }
+  // async function removePost(postId) {
+  //   try {
+  //     /* query the API, ask for 100 items */
+  //     //API.graphql(graphqlOperation(deletePostEditor, { input: { id } }))
+  //     const postInfo = { id: postId };
+  //     await API.graphql({
+  //       query: deletePost,
+  //       variables: { input: postInfo },
+  //       authMode: 'AMAZON_COGNITO_USER_POOLS',
+  //     }); // updated
+  //     //updatePosts([...posts, { ...postInfo, image: formState.file, owner: username }]); // updated
+  //   } catch (err) {
+  //     console.log('error: ', err);
+  //   }
+  // }
 
   // //Function for removing a post
   // async function removePost(postId) {
@@ -130,7 +130,7 @@ function Journal() {
               
               <div id="card" key={post.id || post.name}>
                 <Center>
-                            <Btn onClick={()=>{removePost(post.id)}}/>
+                            {/* <Btn onClick={()=>{removePost(post.id)}}/> */}
 
                   <Container id="img-card" p={'0'}>
                     <Container id="img-wrap" bg={'white'}>
