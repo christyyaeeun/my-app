@@ -9,10 +9,10 @@ function Notes() {
 	const [notes, setNotes] = useState([
 		{
 			id: nanoid(),
-			title: 'post title',
-			text: 'description',
-			date: '04/11/2022',
-		},]
+			title: '',
+			text: '',
+			date: '',
+		}]
 	);
 
 	const [searchText, setSearchText] = useState('');
@@ -63,7 +63,7 @@ function Notes() {
 	}
 
 	return (
-		<Container>
+		<Container h={'100vw'}>
 			<Box p='3' m='3'>
 				<Search handleSearchNote={setSearchText} />
 			</Box>

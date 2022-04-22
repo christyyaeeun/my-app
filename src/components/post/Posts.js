@@ -11,7 +11,7 @@ const Container = styled("div")`
   width: 100%;
 `;
 
-const PostsComponent = () => {
+const Posts= () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -65,4 +65,4 @@ const PostsComponent = () => {
   );
 };
 
-export default PostsComponent;
+export default Posts;

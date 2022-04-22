@@ -23,7 +23,7 @@ root.render(
         <Route path="/*" element={<App />} />
       </Routes>
     </BrowserRouter>
-    ,
+    
   </StrictMode>
   );
   // serviceWorker.unregister();

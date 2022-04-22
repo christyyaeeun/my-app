@@ -1,7 +1,9 @@
 import '@fontsource/inter/500.css';
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
+import Btn from './Btn';
 import Amplify, { API, Storage, Auth } from 'aws-amplify';
 import { listPosts } from '../../graphql/queries';
+import { deletePost } from '../../graphql/mutations';
 import CreatePost from './CreatePost';
 // import { onCreatePost } from '../../graphql/subscriptions';
 // import Btn from './Btn';
@@ -19,7 +21,7 @@ import {
   Stack,
   HStack,
   Divider,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/react';
 import awsconfig from '../../aws-exports.js';
 Amplify.configure(awsconfig);
@@ -66,16 +68,45 @@ function Journal() {
     updatePosts(postsArray);
   }
 
+  //Function for removing a post
+  async function removePost(postId) {
+    try {
+      /* query the API, ask for 100 items */
+      //API.graphql(graphqlOperation(deletePostEditor, { input: { id } }))
+      const postInfo = { id: postId };
+      await API.graphql({
+        query: deletePost,
+        variables: { input: postInfo },
+        authMode: 'AMAZON_COGNITO_USER_POOLS',
+      }); // updated
+      //updatePosts([...posts, { ...postInfo, image: formState.file, owner: username }]); // updated
+    } catch (err) {
+      console.log('error: ', err);
+    }
+  }
+
+  // //Function for removing a post
+  // async function removePost(postId) {
+  //   try {
+  //     /* query the API, ask for 100 items */
+  //     //API.graphql(graphqlOperation(deletePostEditor, { input: { id } }))
+  //     const postInfo = { id: postId };
+  //     await API.graphql({
+  //       query: deletePost,
+  //       variables: { input: postInfo },
+  //       authMode: 'AMAZON_COGNITO_USER_POOLS',
+  //     }); // updated
+  //     //updatePosts([...posts, { ...postInfo, image: formState.file, owner: username }]); // updated
+  //   } catch (err) {
+  //     console.log('error: ', err);
+  //   }
+  // }
+
   // function subscribe() {
   //   API.graphql({
   //     query: onCreatePost,
   //   }).subscribe(() => fetchPosts());
   // }
-
-  useEffect(() => {
-    fetchPosts();
-    //  eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
@@ -86,7 +117,8 @@ function Journal() {
         <Container p={'5'} maxW={'450px'}>
           {/* {posts.reverse().map(post => ( */}
 
-           {posts.map(post => (
+          {posts.map(post => (
+
             <Container
               id="card-wrap"
               borderWidth="1px"
@@ -95,8 +127,11 @@ function Journal() {
               rounded={'lg'}
               p={'2'}
             >
+              
               <div id="card" key={post.id || post.name}>
                 <Center>
+                            <Btn onClick={()=>{removePost(post.id)}}/>
+
                   <Container id="img-card" p={'0'}>
                     <Container id="img-wrap" bg={'white'}>
                       <Box
@@ -146,7 +181,9 @@ function Journal() {
                                 {/* {format(new Date(post.createdAt), 'MM/dd/yyyy')} */}
                               </small>
                             </Text>
+                            
                           </Box>
+
                         </Box>
                       </Stack>
                     </Container>

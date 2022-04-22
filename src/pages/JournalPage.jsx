@@ -11,7 +11,6 @@ function JournalPage() {
                     <Text fontSize='2xl'>
                         Journal
                     </Text>
-               
                     <CalendarEvents />
                 </Container>
             </Container>
