@@ -1,4 +1,6 @@
+
 import React, { useState, useEffect } from "react";
+import styled from "@emotion/styled";
 import { useParams } from "react-router-dom";
 import { API, Storage } from "aws-amplify";
 import { getPost } from "../../graphql/queries";
@@ -40,7 +42,7 @@ export default function Post() {
       <div className="post-wrapper">
         <h1 className="title">{post.name}</h1>
         <p>{post.description}</p>
-        <img alt="post" src={post.image} />
+        <img alt="post" src={post.image} className={imageStyle} />
         <p>@{post.username}</p>
         <small>{format(new Date(post.createdAt), "MM/dd/yyyy")}</small>
       </div>
@@ -48,3 +50,13 @@ export default function Post() {
   );
 }
 
+// const titleStyle = css`
+//   margin-bottom: 7px;
+// `;
+
+const imageStyle = styled`
+  max-width: 500px;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+`;

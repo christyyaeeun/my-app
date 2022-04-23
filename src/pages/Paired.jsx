@@ -5,6 +5,7 @@ import {
   Box,
   Center,
   Image,
+  IconButton,
   Flex,
   Text,
   Stack,
@@ -13,13 +14,18 @@ import {
   Spacer,
   Container,
   HStack,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderMark,
   VStack,
 } from '@chakra-ui/react';
 import { Auth, Storage } from 'aws-amplify';
+import { RiVipCrownLine } from 'react-icons/ri'
 import { AmplifyS3Image } from '@aws-amplify/ui-react';
 import User from '../components/User';
-import Card from '../components/post/Card';
-
+import { Link } from 'react-router-dom';
 
 function Paired({ avatar }) {
   const [ name, setName ] = useState('');
@@ -65,19 +71,26 @@ function Paired({ avatar }) {
         setImage();
         // <AmplifyS3Image level='private' imgKey={ 'profile.png' } id="profilePic" />
 
-        // for the sake of the demo, force a reload to see the uploaded picture
       })
       .catch(err => console.log(err));
   }
 
+  const [ sliderValue, setSliderValue ] = useState(50)
+
   return (
-    <Container h={ '100vw' }>
-      <Card />
+    <Container h={ '100%' }>
+      <Box mt='1em'>
+        <IconButton as={ Link } to="/goals"
+          size={ 'lg' }
+          boxShadow={ 'xl' }
+          bg={ useColorModeValue('gray.5z0', 'gray.600') }
+          variant='ghost' icon={ <RiVipCrownLine /> } />
+      </Box>
       <Center py={ 6 }>
         <Box
           maxW={ '350px' }
           w={ 'full' }
-          bg={ useColorModeValue('white', 'gray.800') }
+          bg={ useColorModeValue('#f5f5f5', 'gray.800') }
           boxShadow={ '2xl' }
           rounded={ 'md' }
           overflow={ 'hidden' }
@@ -102,7 +115,7 @@ function Paired({ avatar }) {
                 as={ Button }
                 size={ 'xl' }
                 src={ avatar }
-                bg={'gray.300'}
+                bg={ 'gray.300' }
                 alt={ 'Author' }
                 css={ {
                   border: '2px solid white',
@@ -117,7 +130,7 @@ function Paired({ avatar }) {
                 as={ Button }
                 size={ 'xl' }
                 src={ '' }
-                bg={'gray.300'}
+                bg={ 'gray.300' }
                 alt={ 'Author' }
                 css={ {
                   border: '2px solid white',
@@ -130,7 +143,8 @@ function Paired({ avatar }) {
           <Flex p={ 6 }>
             <Flex justify={ 'center' } mt={ -12 } align={ 'start' }>
               <Box ml={ '2em' }>
-                <Text fontWeight={ 600 } color={ '#56799c' }>
+                <Text fontWeight={ 600 } color={ useColorModeValue('#56799c', 'white') }
+                >
                   { name }
                 </Text>
               </Box>
@@ -138,45 +152,44 @@ function Paired({ avatar }) {
             <Spacer />
             <Flex justify={ 'center' } mt={ -12 }>
               <Box mr={ '1.6em' }>
-                <Text fontWeight={ 600 } color={ '#56799c' }>
+                <Text fontWeight={ 600 } color={ useColorModeValue('#56799c', 'white') }
+                >
                   partner
                 </Text>
               </Box>
             </Flex>
           </Flex>
-          <Container w={ '100%' } bg={ 'gray.100' }>
+          <Container w={ '100%' } bg={ useColorModeValue('#f5f5f5', 'gray.600') }
+          >
             <Box >
               <Stack spacing={ 0 } align={ 'center' } mt={ '-2.5em' } pb={ 7 }>
-                <Text color={ 'gray.500' } py={ '2' }> Paired Since </Text>
+                <Text color={ useColorModeValue('gray.500', 'white') } py={ '2' }> Together for </Text>
                 <Container maxW={ 'sm' }>
                   <Stack direction={ 'row' } spacing={ '4' } justify={ 'center' }>
 
-                    <Box width={ '50px' } p={'1'} borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
-                    <VStack>
-                    <Text fontSize={ '.9rem' } fontWeight={'600'} color={ 'gray.500' } mb={'-0.5em'} pt={'.3em'}>
+                    <Box width={ '50px' } p={ '1' } borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
+                      <VStack>
+                        <Text fontSize={ '.9rem' } fontWeight={ '600' } color={ 'gray.500' } mb={ '-0.5em' } pt={ '.3em' }>
                           1
                         </Text>
-                        <Text fontSize={ '.5rem' }  m={'0'} color={ 'gray.500' }>year</Text>
+                        <Text fontSize={ '.5rem' } m={ '0' } color={ 'gray.500' }>year</Text>
                       </VStack>                    </Box>
-                    <Box width={ '50px' } p={'1'} borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
-                    <VStack>
-                    <Text fontSize={ '.9rem' } fontWeight={'600'} color={ 'gray.500' } mb={'-0.5em'} pt={'.3em'}>
+                    <Box width={ '50px' } p={ '1' } borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
+                      <VStack>
+                        <Text fontSize={ '.9rem' } fontWeight={ '600' } color={ 'gray.500' } mb={ '-0.5em' } pt={ '.3em' }>
                           5
                         </Text>
-                        <Text fontSize={ '.5rem' }  m={'0'} color={ 'gray.500' }>months</Text>
+                        <Text fontSize={ '.5rem' } m={ '0' } color={ 'gray.500' }>months</Text>
                       </VStack>
                     </Box>
-                    <Box width={ '50px' } p={'1'} borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
+                    <Box width={ '50px' } p={ '1' } borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
                       <VStack>
-                      <Text fontSize={ '.9rem' } fontWeight={'600'} color={ 'gray.500' } mb={'-0.5em'} pt={'.3em'}>
+                        <Text fontSize={ '.9rem' } fontWeight={ '600' } color={ 'gray.500' } mb={ '-0.5em' } pt={ '.3em' }>
                           10
                         </Text>
-                        <Text fontSize={ '.5rem' }  m={'0'} color={ 'gray.500' }>days</Text>
+                        <Text fontSize={ '.5rem' } m={ '0' } color={ 'gray.500' }>days</Text>
                       </VStack>
                     </Box>
-
-
-
                   </Stack>
 
                 </Container>
@@ -196,7 +209,51 @@ function Paired({ avatar }) {
           }
         />
       </Box> */}
+      <Container maxH={ '4xl' } >
+        <Box m={ '3' } p={ '9' } bg={ useColorModeValue('ivory', 'gray.400') } h={ '300px' } display={ 'flex' } justifyContent={ 'center' } alignItems={ 'center' } fontSize='sm' boxShadow={ '2xl' } borderRadius={ 'xl' }>
+
+
+          <Slider aria-label='slider-ex-6' onChange={ (val) => setSliderValue(val) } color={ 'gray.500' }>
+            <SliderMark value={ 0 } mt='1' ml='-2.5' fontSize='xs' color={ useColorModeValue('gray.500', 'white') }>
+              0%
+            </SliderMark>
+            <SliderMark value={ 25 } mt='1' ml='-2.5' fontSize='xs' color={ useColorModeValue('gray.500', 'white') }>
+              25%
+            </SliderMark>
+            <SliderMark value={ 50 } mt='1' ml='-2.5' fontSize='xs' color={ useColorModeValue('gray.500', 'white') }>
+              50%
+            </SliderMark>
+            <SliderMark value={ 75 } mt='1' ml='-2.5' fontSize='xs' color={ useColorModeValue('gray.500', 'white') }>
+              75%
+            </SliderMark>
+            <SliderMark value={ 100 } mt='1' ml='-2.5' fontSize='xs' color={ useColorModeValue('gray.500', 'white') }>
+              100%
+            </SliderMark>
+            <SliderMark
+              borderRadius={ 'lg' }
+              value={ sliderValue }
+              textAlign='center'
+              bg='#7da1ff'
+              color='white'
+              mt='-10'
+              ml='-5'
+              w='12'
+            >
+              { sliderValue }%
+            </SliderMark>
+            <SliderTrack bg={ useColorModeValue('#b1b0b8', 'white') }
+            >
+              <SliderFilledTrack bg={ '#7da1ff' } />
+            </SliderTrack>
+            <SliderThumb />
+          </Slider>
+
+
+        </Box>
+      </Container>
     </Container>
+
+
   );
 }
 

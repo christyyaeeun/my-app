@@ -15,6 +15,7 @@ import {
   Input,
   Image,
   Spinner,
+  useColorModeValue,
   Icon,
   Button,
   Flex,
@@ -28,7 +29,6 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
-
 
 const initialState = {
   name: '',
@@ -44,15 +44,11 @@ const Overlay = () => (
     backdropFilter="blur(10px) hue-rotate(90deg)"
   />
 );
-export default function CreatePost({
-  updatePosts,
-  posts,
-}) {
+export default function CreatePost({ updatePosts, posts }) {
   /* 1. Create local state with useState hook */
   const [formState, updateFormState] = useState(initialState);
   const [overlay, setOverlay] = React.useState(<Overlay />);
   const [isOpen, setIsOpen] = useState(false);
-
 
   /* 2. onChangeText handler updates the form state when a user types into a form field */
   function onChangeText(e) {
@@ -127,7 +123,7 @@ export default function CreatePost({
         <Button
           as={IconButton}
           icon={<SmallAddIcon />}
-          bg="gray.100"
+          bg={useColorModeValue('gray.100', 'gray.600')}
           color="gray.400"
           onClick={() => {
             setOverlay(<Overlay />);
@@ -144,10 +140,10 @@ export default function CreatePost({
           {overlay}
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader color={'gray.500'}>Create Post</ModalHeader>
+            <ModalHeader color={useColorModeValue('gray.500', 'white')}>Create Post</ModalHeader>
             <ModalCloseButton color={'gray.500'} />
             <ModalBody>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} >
                 <Box px="2" borderRadius="lg">
                   <Container p={'0'}>
                     <Flex mb="1">
@@ -162,6 +158,7 @@ export default function CreatePost({
                           placeholder="name"
                           name="name"
                           size={'sm'}
+                          color={useColorModeValue('gray.400', 'white')}
                           minW={'250px'}
                           className="post-name"
                           onChange={onChangeText}
@@ -173,6 +170,7 @@ export default function CreatePost({
                           id="input-style"
                           placeholder="Description"
                           name="description"
+                          color={useColorModeValue('gray.400', 'white')}
                           size={'sm'}
                           className="post-description"
                           minH={'100px'}
@@ -208,7 +206,6 @@ export default function CreatePost({
                       )}
                     </Stack>
                   </Container>
-        
                 </Box>
               </form>
             </ModalBody>
@@ -234,7 +231,6 @@ export default function CreatePost({
                   />
                 </Box>
               )}
-        
             </ModalFooter>
           </ModalContent>
         </Modal>

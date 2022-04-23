@@ -71,6 +71,7 @@ export default function TodoForm({
     }
   }
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
   }
@@ -95,6 +96,7 @@ export default function TodoForm({
             color="gray.400"
             onClick={onOpen}
           />
+          <Button onClick={deleteTodo} />
           <MenuList shadow="xl" borderRadius="lg">
             <Box px="2" borderRadius="lg">
               <Container p={'0'}>
@@ -120,7 +122,7 @@ export default function TodoForm({
                       name="name"
                       size={'sm'}
                       minW={'250px'}
-                      className="post-name"
+                      className="todo-name"
                       onChange={onChangeText}
                     />
                   </Box>
@@ -131,7 +133,7 @@ export default function TodoForm({
                       placeholder="Description"
                       name="description"
                       size={'sm'}
-                      className="post-description"
+                      className="todo-description"
                       minH={'100px'}
                       onChange={onChangeText}
                     />

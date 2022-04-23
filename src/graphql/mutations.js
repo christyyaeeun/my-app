@@ -1,6 +1,63 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    createUser(input: $input, condition: $condition) {
+      id
+      username
+      avatar
+      status
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    updateUser(input: $input, condition: $condition) {
+      id
+      username
+      avatar
+      status
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    deleteUser(input: $input, condition: $condition) {
+      id
+      username
+      avatar
+      status
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
 export const createPost = /* GraphQL */ `
   mutation CreatePost(
     $input: CreatePostInput!
@@ -14,6 +71,9 @@ export const createPost = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -30,6 +90,9 @@ export const updatePost = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -46,102 +109,9 @@ export const deletePost = /* GraphQL */ `
       owner
       createdAt
       updatedAt
-    }
-  }
-`;
-export const createFeed = /* GraphQL */ `
-  mutation CreateFeed(
-    $input: CreateFeedInput!
-    $condition: ModelFeedConditionInput
-  ) {
-    createFeed(input: $input, condition: $condition) {
-      id
-      description
-      postedAt
-      owner {
-        id
-        username
-        avatar
-        createdAt
-        updatedAt
-      }
-      entry {
-        id
-        name
-        description
-        image
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      feedOwnerId
-      feedEntryId
-    }
-  }
-`;
-export const updateFeed = /* GraphQL */ `
-  mutation UpdateFeed(
-    $input: UpdateFeedInput!
-    $condition: ModelFeedConditionInput
-  ) {
-    updateFeed(input: $input, condition: $condition) {
-      id
-      description
-      postedAt
-      owner {
-        id
-        username
-        avatar
-        createdAt
-        updatedAt
-      }
-      entry {
-        id
-        name
-        description
-        image
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      feedOwnerId
-      feedEntryId
-    }
-  }
-`;
-export const deleteFeed = /* GraphQL */ `
-  mutation DeleteFeed(
-    $input: DeleteFeedInput!
-    $condition: ModelFeedConditionInput
-  ) {
-    deleteFeed(input: $input, condition: $condition) {
-      id
-      description
-      postedAt
-      owner {
-        id
-        username
-        avatar
-        createdAt
-        updatedAt
-      }
-      entry {
-        id
-        name
-        description
-        image
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      feedOwnerId
-      feedEntryId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -152,10 +122,15 @@ export const createNote = /* GraphQL */ `
   ) {
     createNote(input: $input, condition: $condition) {
       id
-      title
+      name
       description
+      image
+      type
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -167,10 +142,15 @@ export const updateNote = /* GraphQL */ `
   ) {
     updateNote(input: $input, condition: $condition) {
       id
-      title
+      name
       description
+      image
+      type
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -182,10 +162,15 @@ export const deleteNote = /* GraphQL */ `
   ) {
     deleteNote(input: $input, condition: $condition) {
       id
-      title
+      name
       description
+      image
+      type
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -202,6 +187,9 @@ export const createEntry = /* GraphQL */ `
       image
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -218,6 +206,9 @@ export const updateEntry = /* GraphQL */ `
       image
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -234,6 +225,9 @@ export const deleteEntry = /* GraphQL */ `
       image
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -247,8 +241,12 @@ export const createTodo = /* GraphQL */ `
       id
       name
       description
+      status
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -262,8 +260,12 @@ export const updateTodo = /* GraphQL */ `
       id
       name
       description
+      status
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -277,51 +279,13 @@ export const deleteTodo = /* GraphQL */ `
       id
       name
       description
+      status
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
-    }
-  }
-`;
-export const createUser = /* GraphQL */ `
-  mutation CreateUser(
-    $input: CreateUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    createUser(input: $input, condition: $condition) {
-      id
-      username
-      avatar
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateUser = /* GraphQL */ `
-  mutation UpdateUser(
-    $input: UpdateUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    updateUser(input: $input, condition: $condition) {
-      id
-      username
-      avatar
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteUser = /* GraphQL */ `
-  mutation DeleteUser(
-    $input: DeleteUserInput!
-    $condition: ModelUserConditionInput
-  ) {
-    deleteUser(input: $input, condition: $condition) {
-      id
-      username
-      avatar
-      createdAt
-      updatedAt
     }
   }
 `;

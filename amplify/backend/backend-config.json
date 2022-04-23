@@ -37,22 +37,9 @@
               "userPoolId": "autholt47d45bf9ee"
             }
           },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AWS_IAM"
-            }
-          ]
+          "additionalAuthenticationProviders": []
         }
-      },
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "olt47d45bf9ee",
-          "attributes": [
-            "UserPoolId"
-          ]
-        }
-      ]
+      }
     }
   },
   "storage": {

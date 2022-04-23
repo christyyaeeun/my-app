@@ -1,6 +1,54 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser($owner: String) {
+    onCreateUser(owner: $owner) {
+      id
+      username
+      avatar
+      status
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser($owner: String) {
+    onUpdateUser(owner: $owner) {
+      id
+      username
+      avatar
+      status
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser($owner: String) {
+    onDeleteUser(owner: $owner) {
+      id
+      username
+      avatar
+      status
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      owner
+    }
+  }
+`;
 export const onCreatePost = /* GraphQL */ `
   subscription OnCreatePost($owner: String) {
     onCreatePost(owner: $owner) {
@@ -11,6 +59,9 @@ export const onCreatePost = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -24,6 +75,9 @@ export const onUpdatePost = /* GraphQL */ `
       owner
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -37,93 +91,9 @@ export const onDeletePost = /* GraphQL */ `
       owner
       createdAt
       updatedAt
-    }
-  }
-`;
-export const onCreateFeed = /* GraphQL */ `
-  subscription OnCreateFeed($owner: String) {
-    onCreateFeed(owner: $owner) {
-      id
-      description
-      postedAt
-      owner {
-        id
-        username
-        avatar
-        createdAt
-        updatedAt
-      }
-      entry {
-        id
-        name
-        description
-        image
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      feedOwnerId
-      feedEntryId
-    }
-  }
-`;
-export const onUpdateFeed = /* GraphQL */ `
-  subscription OnUpdateFeed($owner: String) {
-    onUpdateFeed(owner: $owner) {
-      id
-      description
-      postedAt
-      owner {
-        id
-        username
-        avatar
-        createdAt
-        updatedAt
-      }
-      entry {
-        id
-        name
-        description
-        image
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      feedOwnerId
-      feedEntryId
-    }
-  }
-`;
-export const onDeleteFeed = /* GraphQL */ `
-  subscription OnDeleteFeed($owner: String) {
-    onDeleteFeed(owner: $owner) {
-      id
-      description
-      postedAt
-      owner {
-        id
-        username
-        avatar
-        createdAt
-        updatedAt
-      }
-      entry {
-        id
-        name
-        description
-        image
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-      feedOwnerId
-      feedEntryId
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -131,10 +101,15 @@ export const onCreateNote = /* GraphQL */ `
   subscription OnCreateNote($owner: String) {
     onCreateNote(owner: $owner) {
       id
-      title
+      name
       description
+      image
+      type
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -143,10 +118,15 @@ export const onUpdateNote = /* GraphQL */ `
   subscription OnUpdateNote($owner: String) {
     onUpdateNote(owner: $owner) {
       id
-      title
+      name
       description
+      image
+      type
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -155,10 +135,15 @@ export const onDeleteNote = /* GraphQL */ `
   subscription OnDeleteNote($owner: String) {
     onDeleteNote(owner: $owner) {
       id
-      title
+      name
       description
+      image
+      type
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -172,6 +157,9 @@ export const onCreateEntry = /* GraphQL */ `
       image
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -185,6 +173,9 @@ export const onUpdateEntry = /* GraphQL */ `
       image
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -198,6 +189,9 @@ export const onDeleteEntry = /* GraphQL */ `
       image
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -208,8 +202,12 @@ export const onCreateTodo = /* GraphQL */ `
       id
       name
       description
+      status
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -220,8 +218,12 @@ export const onUpdateTodo = /* GraphQL */ `
       id
       name
       description
+      status
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
     }
   }
@@ -232,42 +234,13 @@ export const onDeleteTodo = /* GraphQL */ `
       id
       name
       description
+      status
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
       owner
-    }
-  }
-`;
-export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
-      id
-      username
-      avatar
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
-      id
-      username
-      avatar
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
-      id
-      username
-      avatar
-      createdAt
-      updatedAt
     }
   }
 `;

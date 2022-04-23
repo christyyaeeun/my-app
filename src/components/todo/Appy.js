@@ -7,7 +7,7 @@ import { createTodo as createTodoMutation } from '../../graphql/mutations';
 import {
   Button,
   IconButton,
-  Box,
+  Box, 
   Center,
   Text,
   Stack,
@@ -20,12 +20,15 @@ import { CgRemoveR } from 'react-icons/cg';
 import awsExports from '../../aws-exports';
 Amplify.configure(awsExports);
 
-const initialFormState = { name: '', description: '' };
+const initialState = { name: '', description: '' };
 
 //  id, name description
-function Appy() {
-  const [todos, setTodos] = useState([]);
-  // const [formData, setFormData] = useState(initialFormState);
+export default function Appy({
+  updateTodos,
+  todos,
+}) {
+  const [userTodo, setTodos] = useState([]);
+  const [formState, updateFormState] = useState(initialState);
 
   useEffect(() => {
     checkUser();
@@ -87,11 +90,46 @@ function Appy() {
   //   setTodos(todos.filter(todo => todo.id !== id));
   // }
 
+  async function removeTodo() {
+    try {
+      const { name, description } = formState;
+      if (!name || !description) return;
+      updateFormState(currentState => ({ ...currentState, saving: true }));
+
+      /* query the API, ask for 100 items */
+      //API.graphql(graphqlOperation(deleteTodoEditor, { input: { id } }))
+      const todoId = uuid();
+      const todoInfo = {
+        name,
+        description,
+        id: todoId,
+      };
+      await API.graphql({
+        query: deleteTodo,
+        variables: { input: todoInfo },
+        authMode: 'AMAZON_COGNITO_USER_POOLS',
+      }); // updated
+      const { username } = await Auth.currentAuthenticatedUser(); // new
+      updateTodos([
+        ...todos,
+        { ...todoInfo, owner: username },
+      ]); // updated
+      //updateTodos([...todos, { ...todoInfo, image: formState.file, owner: username }]); // updated
+    } catch (err) {
+      console.log('error: ', err);
+    }
+  }
+
+
+
+
   return (
     <>
-      {todos.map(todo => (
+
+      {userTodo.map(todo => (
         <div id="card-wrap">
           <div id="card" key={todo.id || todo.name}>
+            
             <Center>
               <HStack
                 maxW={'400px'}
@@ -134,23 +172,7 @@ function Appy() {
                 >
                   <Text color={'gray.400'}>{todo.description}</Text>
                 </Box>
-                <Button
-                  as={IconButton}
-                  bg={'transparent'}
-                  color={'gray.400'}
-                  icon={<CgRemoveR />}
-                  onClick={deleteTodo}
-                />
-
-                {/* <Button
-                  bg={'transparent'}
-                  color={'gray.400'}
-                  as={IconButton}
-                  icon={<CgRemoveR />}
-                  onClick={() => handleDeleteTodo(handleDeleteTodo)}
-                >
-                  Delete
-                </Button>  */}
+      
               </HStack>
             </Center>
           </div>
@@ -160,4 +182,3 @@ function Appy() {
   );
 }
 
-export default Appy;

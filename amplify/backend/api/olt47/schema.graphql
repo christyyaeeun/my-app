@@ -13,13 +13,7 @@ type Post @model @auth(rules: [{allow: owner}]) {
   owner: String
 }
 
-type Feed @model @auth(rules: [{allow: owner}]) {
-  id: ID!
-  description: String
-  postedAt: AWSDateTime
-  owner: User @hasOne
-  entry: Entry @hasOne
-}
+
 
 type Note @model @auth(rules: [{allow: owner}]) {
   id: ID!
@@ -35,10 +29,12 @@ type Entry @model @auth(rules: [{allow: owner}]) {
   name: String
   description: String
   image: String
+  createdAt: String
 }
 
 type Todo @model @auth(rules: [{allow: owner}]) {
   id: ID!
   name: String
   description: String
+  status: Boolean
 }
