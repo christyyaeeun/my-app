@@ -15,9 +15,9 @@ import CreatePost from './components/post/CreatePost';
 import Post from './components/post/Post';
 import PostList from './components/post/PostList';
 import Notes from './components/notes/Notes';
-import Journal from './components/post/Journal';
+import Journal from './components/notes/Journal';
+import Entry from './components/journal/Entry';
 import Appy from './components/todo/Appy';
-import NoteApp from './components/notes/NoteApp';
 import Paired from './pages/Paired';
 import { ChakraProvider, theme, CSSReset } from '@chakra-ui/react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
@@ -33,7 +33,7 @@ function App({ user, signOut }) {
         <Route path="/" element={<Layout />}>
           <Route path="/goals" element={<Goals />} />
           <Route path="/paired" element={<Paired />} />
-          <Route path="/noteapp" element={<NoteApp />} />
+          <Route path="/entry" element={<Entry />} />
 
           <Route path="/journal" element={<Journal />} />
           <Route path="/journalpage" element={<JournalPage />} />

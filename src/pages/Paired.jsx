@@ -79,13 +79,13 @@ function Paired({ avatar }) {
 
   return (
     <Container h={ '100%' }>
-      <Box mt='1em'>
+      {/* <Box mt='1em'>
         <IconButton as={ Link } to="/goals"
           size={ 'lg' }
           boxShadow={ 'xl' }
           bg={ useColorModeValue('gray.5z0', 'gray.600') }
           variant='ghost' icon={ <RiVipCrownLine /> } />
-      </Box>
+      </Box> */}
       <Center py={ 6 }>
         <Box
           maxW={ '350px' }
@@ -210,7 +210,7 @@ function Paired({ avatar }) {
         />
       </Box> */}
       <Container maxH={ '4xl' } >
-        <Box m={ '3' } p={ '9' } bg={ useColorModeValue('ivory', 'gray.400') } h={ '300px' } display={ 'flex' } justifyContent={ 'center' } alignItems={ 'center' } fontSize='sm' boxShadow={ '2xl' } borderRadius={ 'xl' }>
+        {/* <Box m={ '3' } p={ '9' } bg={ useColorModeValue('ivory', 'gray.400') } h={ '300px' } display={ 'flex' } justifyContent={ 'center' } alignItems={ 'center' } fontSize='sm' boxShadow={ '2xl' } borderRadius={ 'xl' }>
 
 
           <Slider aria-label='slider-ex-6' onChange={ (val) => setSliderValue(val) } color={ 'gray.500' }>
@@ -249,7 +249,7 @@ function Paired({ avatar }) {
           </Slider>
 
 
-        </Box>
+        </Box> */}
       </Container>
     </Container>
 

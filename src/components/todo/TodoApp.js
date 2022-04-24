@@ -4,6 +4,8 @@ import { DataStore, Predicates } from '@aws-amplify/datastore';
 import { Todo } from '../../models';
 import format from 'date-fns/format';
 import awsconfig from '../../aws-exports';
+import { SmallAddIcon } from '@chakra-ui/icons';
+
 import {
   Input,
   Button,
@@ -16,6 +18,7 @@ import {
   Spacer,
   FormLabel,
   HStack,
+  IconButton,
   Text,
   Stack,
   Center,
@@ -127,13 +130,15 @@ function TodoApp() {
 
               <div className="Input-group-append">
                 <Button
-                  type="Button"
+                  as={IconButton}
+                  icon={<SmallAddIcon />}
+                  bg={useColorModeValue('gray.100', 'gray.600')}
+                  color="gray.400"
                   onClick={e => {
                     handleSubmit(e);
                   }}
-                >
-                  Add Todo
-                </Button>
+                ></Button>
+
                 <Button
                   type="Button"
                   onClick={e => {

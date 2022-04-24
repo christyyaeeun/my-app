@@ -1,13 +1,14 @@
 import '@fontsource/inter/500.css';
 import React, { useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
-import { Container, Box, VStack, StackDivider, Spacer, Text, Flex, Center, IconButton, useColorModeValue } from '@chakra-ui/react'
+import { Container, Box, VStack, StackDivider, Spacer, Icon, Image, Text, Flex, Center, IconButton, useColorModeValue } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
 import { BsSticky } from 'react-icons/bs'
 import DateCalendar from '../components/calendar/DateCalendar'
 import Appy from '../components/todo/Appy';
 import TodoApp from '../components/todo/TodoApp';
 import Navigator from '../components/Navigator'
+import Goals from './Activity/Goals';
 
 const Home = () => {
   const [ name, setName ] = useState('');
@@ -37,8 +38,13 @@ const Home = () => {
               </Text>
             </Center>
             <Spacer />
-            <Box mt='1em'>
-              <IconButton as={ Link } to="/noteapp" bg={ useColorModeValue('white', 'gray.600') } variant='ghost' icon={ <BsSticky /> } />
+            <Box h={ '3em' }>
+              <Link to="/goals">
+
+                <Image src={ 'https://firebasestorage.googleapis.com/v0/b/christypark-portfolio.appspot.com/o/icn.svg?alt=media&token=40c29607-6a7f-4001-bb02-9c9435839e41' } />
+              </Link>
+              <IconButton as={ Link } to="/goals" bg={ useColorModeValue('transparent', 'transparent') } variant='ghost' />
+
             </Box>
           </Flex>
         </Container>
@@ -55,8 +61,10 @@ const Home = () => {
           <Container>
             <Appy />
           </Container>
+
         </Container>
-        <TodoApp />
+        {/* <Goals /> */ }
+        {/* <TodoApp /> */ }
 
       </Container>
     </section>

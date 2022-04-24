@@ -72,7 +72,7 @@ function Goals() {
 
 
         <Container maxW='2xl' minH='100vh'>
-          <Box border={ '1px' } borderColor={ 'gray.400' } borderRadius={ 'sm' } color={ 'gray.500' }>
+          <Box border={ '1px' } borderColor={ 'gray.200' } boxShadow={ 'xl' } borderRadius={ 'sm' } color={ 'gray.500' }>
             <Box fontSize={ 'sm' }>
               <Tabs onChange={ (index) => setTabIndex(index) } bg={ bg } size={ 'sm' } height={ '260px' }>
                 <TabList justifyContent={ 'center' }>

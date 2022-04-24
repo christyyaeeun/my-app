@@ -22,7 +22,7 @@ import { BiImageAdd } from 'react-icons/bi';
 import format from 'date-fns/format';
 const initialFormState = { name: '', description: '', image: {} };
 
-function NoteApp(user) {
+function Journal(user) {
   const [notes, setNotes] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
 
@@ -196,4 +196,4 @@ function NoteApp(user) {
   );
 }
 
-export default NoteApp;
+export default Journal;

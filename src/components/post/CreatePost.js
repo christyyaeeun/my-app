@@ -140,16 +140,19 @@ export default function CreatePost({ updatePosts, posts }) {
           {overlay}
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader color={useColorModeValue('gray.500', 'white')}>Create Post</ModalHeader>
+            <ModalHeader color={useColorModeValue('gray.500', 'white')}>
+              Create Post
+            </ModalHeader>
             <ModalCloseButton color={'gray.500'} />
             <ModalBody>
-              <form onSubmit={handleSubmit} >
+              <form onSubmit={handleSubmit}>
                 <Box px="2" borderRadius="lg">
                   <Container p={'0'}>
                     <Flex mb="1">
                       <Spacer />
                     </Flex>
                   </Container>
+
                   <Container centerContent pt="3">
                     <Stack spacing={3}>
                       <Box>
