@@ -148,7 +148,6 @@ export const getNote = /* GraphQL */ `
       name
       description
       image
-      type
       createdAt
       updatedAt
       _version
@@ -170,7 +169,6 @@ export const listNotes = /* GraphQL */ `
         name
         description
         image
-        type
         createdAt
         updatedAt
         _version
@@ -201,7 +199,6 @@ export const syncNotes = /* GraphQL */ `
         name
         description
         image
-        type
         createdAt
         updatedAt
         _version
@@ -342,41 +339,6 @@ export const syncTodos = /* GraphQL */ `
         name
         description
         status
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        owner
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const notesByDate = /* GraphQL */ `
-  query NotesByDate(
-    $type: String!
-    $createdAt: ModelStringKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelNoteFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    notesByDate(
-      type: $type
-      createdAt: $createdAt
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        name
-        description
-        image
-        type
         createdAt
         updatedAt
         _version

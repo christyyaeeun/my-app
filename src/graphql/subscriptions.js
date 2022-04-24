@@ -104,7 +104,6 @@ export const onCreateNote = /* GraphQL */ `
       name
       description
       image
-      type
       createdAt
       updatedAt
       _version
@@ -121,7 +120,6 @@ export const onUpdateNote = /* GraphQL */ `
       name
       description
       image
-      type
       createdAt
       updatedAt
       _version
@@ -138,7 +136,6 @@ export const onDeleteNote = /* GraphQL */ `
       name
       description
       image
-      type
       createdAt
       updatedAt
       _version

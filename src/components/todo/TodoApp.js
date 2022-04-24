@@ -20,20 +20,6 @@ import {
   Stack,
   Center,
 } from '@chakra-ui/react';
-/*
-  id: ID!
-  todo: String
-  title: String
-  owner: String
-  
-
-    id: ID!
-  name: String
-  description: String
-  image: String
-  type: String! @index(name: "todosByDate", queryField: "todosByDate", sortKeyFields: ["createdAt"])
-  createdAt: String!
-   */
 Amplify.configure(awsconfig);
 
 async function listTodos(setTodos) {
@@ -127,7 +113,6 @@ function TodoApp() {
 
   return (
     <>
-    
       <div className="container">
         <Container>
           {displayAdd ? (
@@ -207,11 +192,8 @@ function TodoApp() {
                       w={'100px'}
                       h={'50px'}
                       bg={useColorModeValue('#e3f0ff', 'gray.800')}
-                    >
-                      
-                    </Box>
-               
-              
+                    ></Box>
+
                     <Box
                       id="todo-description"
                       bg={useColorModeValue('white', 'gray.900')}
@@ -219,10 +201,12 @@ function TodoApp() {
                       m={'0'}
                       width={'250px'}
                     >
-                      <Text color={'gray.500'}> <span key={item.i} onClick={() => handleSelect(item)}>
+                      <Text color={'gray.500'}>
+                        {' '}
+                        <span key={item.i} onClick={() => handleSelect(item)}>
                           {item.todo}
-                        </span></Text>
-                       
+                        </span>
+                      </Text>
                     </Box>
 
                     <Flex>

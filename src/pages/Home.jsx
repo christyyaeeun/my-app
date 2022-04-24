@@ -7,6 +7,7 @@ import { BsSticky } from 'react-icons/bs'
 import DateCalendar from '../components/calendar/DateCalendar'
 import Appy from '../components/todo/Appy';
 import TodoApp from '../components/todo/TodoApp';
+import Navigator from '../components/Navigator'
 
 const Home = () => {
   const [ name, setName ] = useState('');
@@ -26,6 +27,7 @@ const Home = () => {
 
   return (
     <section>
+      <Navigator />
       <Container className="home" p='4' minH='100vh' maxW='7xl' >
         <Container maxW={ 'md' }>
           <Flex>
@@ -36,7 +38,7 @@ const Home = () => {
             </Center>
             <Spacer />
             <Box mt='1em'>
-              <IconButton as={ Link } to="/notes" bg={ useColorModeValue('white', 'gray.600') } variant='ghost' icon={ <BsSticky /> } />
+              <IconButton as={ Link } to="/noteapp" bg={ useColorModeValue('white', 'gray.600') } variant='ghost' icon={ <BsSticky /> } />
             </Box>
           </Flex>
         </Container>

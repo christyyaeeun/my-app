@@ -159,14 +159,21 @@ export const schema = {
                 }
             ]
         },
-        "Feed": {
-            "name": "Feed",
+        "Note": {
+            "name": "Note",
             "fields": {
                 "id": {
                     "name": "id",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "description": {
@@ -176,48 +183,19 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "postedAt": {
-                    "name": "postedAt",
+                "image": {
+                    "name": "image",
                     "isArray": false,
-                    "type": "AWSDateTime",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
-                },
-                "owner": {
-                    "name": "owner",
-                    "isArray": false,
-                    "type": {
-                        "model": "User"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
-                        "targetName": "feedOwnerId"
-                    }
-                },
-                "entry": {
-                    "name": "entry",
-                    "isArray": false,
-                    "type": {
-                        "model": "Entry"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
-                        "targetName": "feedEntryId"
-                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
-                    "type": "AWSDateTime",
+                    "type": "String",
                     "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
+                    "attributes": []
                 },
                 "updatedAt": {
                     "name": "updatedAt",
@@ -226,24 +204,10 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
-                },
-                "feedOwnerId": {
-                    "name": "feedOwnerId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "feedEntryId": {
-                    "name": "feedEntryId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "Feeds",
+            "pluralName": "Notes",
             "attributes": [
                 {
                     "type": "model",
@@ -304,10 +268,9 @@ export const schema = {
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
-                    "type": "AWSDateTime",
+                    "type": "String",
                     "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
+                    "attributes": []
                 },
                 "updatedAt": {
                     "name": "updatedAt",
@@ -324,99 +287,6 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "provider": "userPools",
-                                "ownerField": "owner",
-                                "allow": "owner",
-                                "identityClaim": "cognito:username",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "Note": {
-            "name": "Note",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "image": {
-                    "name": "image",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "type": {
-                    "name": "type",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "Notes",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "notesByDate",
-                        "queryField": "notesByDate",
-                        "fields": [
-                            "type",
-                            "createdAt"
-                        ]
-                    }
                 },
                 {
                     "type": "auth",
@@ -460,6 +330,13 @@ export const schema = {
                     "name": "description",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "status": {
+                    "name": "status",
+                    "isArray": false,
+                    "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -511,5 +388,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "d174243c10a82aa20410f4da3137ef90"
+    "version": "87562827625334df7ecb62ec7b26f1b2"
 };

@@ -26,7 +26,7 @@ import awsconfig from '../../aws-exports.js';
 Amplify.configure(awsconfig);
 API.configure(awsconfig);
 
-function Journal({ user }) {
+function Journal({ post }) {
   const [posts, updatePosts] = useState([]);
   const [userPosts, updateUserPosts] = useState([]);
 
@@ -156,7 +156,7 @@ function Journal({ user }) {
         <Container p={'5'} maxW={'450px'}>
           {/* {posts.reverse().map(post => ( */}
 
-          {posts.map(post => (
+          {posts.map((post, i) => (
             <Container
               id="card-wrap"
               borderWidth="1px"

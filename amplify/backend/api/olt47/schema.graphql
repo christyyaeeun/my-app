@@ -1,11 +1,11 @@
-type User @model @auth(rules: [{allow: owner}]) {
+type User @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   username: String
   avatar: String
   status: String
 }
 
-type Post @model @auth(rules: [{allow: owner}]) {
+type Post @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   name: String
   description: String
@@ -13,18 +13,7 @@ type Post @model @auth(rules: [{allow: owner}]) {
   owner: String
 }
 
-
-
-type Note @model @auth(rules: [{allow: owner}]) {
-  id: ID!
-  name: String
-  description: String
-  image: String
-  type: String! @index(name: "notesByDate", queryField: "notesByDate", sortKeyFields: ["createdAt"])
-  createdAt: String!
-}
-
-type Entry @model @auth(rules: [{allow: owner}]) {
+type Note @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   name: String
   description: String
@@ -32,9 +21,39 @@ type Entry @model @auth(rules: [{allow: owner}]) {
   createdAt: String
 }
 
-type Todo @model @auth(rules: [{allow: owner}]) {
+type Entry @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  name: String
+  description: String
+  image: String
+  createdAt: String
+}
+
+type Todo @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   name: String
   description: String
   status: Boolean
+}
+
+type Message
+  @model
+  @key(
+    fields: ["eventId", "createdAt"]
+    name: "ByEventId"
+    queryField: "messagesByEventId"
+  )
+  @auth(rules: [{ allow: owner }, { allow: private, operations: [read] }]) {
+  id: ID!
+  owner: ID
+  content: String!
+  event: Event @connection(fields: ["eventId"])
+  eventId: ID
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Subscription {
+  onMutateMessage(eventId: ID): Message
+    @aws_subscribe(mutations: ["createMessage", "updateMessage"])
 }
