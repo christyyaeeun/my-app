@@ -23,6 +23,7 @@ import {
 } from '@chakra-ui/react';
 import { Auth, Storage } from 'aws-amplify';
 import { RiVipCrownLine } from 'react-icons/ri'
+import Goals from './Activity/Goals';
 import { AmplifyS3Image } from '@aws-amplify/ui-react';
 import User from '../components/User';
 import { Link } from 'react-router-dom';
@@ -191,15 +192,22 @@ function Paired({ avatar }) {
                       </VStack>
                     </Box>
                   </Stack>
-
+                  <Box>
+                  </Box>
                 </Container>
               </Stack>
+
+
             </Box>
           </Container>
         </Box>
 
       </Center>
+      <Container maxW={ 'lg' }>
+        <Goals />
 
+
+      </Container>
       {/* <Box>
         <Image
           maxW={'150px'}

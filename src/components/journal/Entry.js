@@ -92,6 +92,15 @@ function Entry(user) {
     fetchNotes();
   }
 
+  const Image = ({ src, alt, fallback }) => {
+    const [error, setError] = useState();
+
+    const onError = () => {
+      setError(true);
+    };
+    return error ? fallback : <img src={src} alt={alt} onError={onError} />;
+  };
+
   async function deleteNote({ id }) {
     const newNotesArray = notes.filter(note => note.id !== id);
     setNotes(newNotesArray);
@@ -180,6 +189,7 @@ function Entry(user) {
                         <input
                           id="file-input"
                           type="file"
+                          onError={e => (e.target.style.display = 'none')}
                           onChange={onChange}
                         />
                       </Box>

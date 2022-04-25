@@ -4,7 +4,7 @@ import { DataStore, Predicates } from '@aws-amplify/datastore';
 import { Todo } from '../../models';
 import format from 'date-fns/format';
 import awsconfig from '../../aws-exports';
-import { SmallAddIcon } from '@chakra-ui/icons';
+import { Search2Icon, SmallAddIcon } from '@chakra-ui/icons';
 
 import {
   Input,
@@ -37,6 +37,7 @@ function TodoApp() {
   const [displayAdd, setDisplayAdd] = useState(true);
   const [displayUpdate, setDisplayUpdate] = useState(false);
   const [displaySearch, setDisplaySearch] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   async function handleSubmit(evt) {
     evt.preventDefault();
@@ -114,61 +115,82 @@ function TodoApp() {
     return () => subscription.unsubscribe();
   }, []);
 
+  const handlePress = () => {
+    setIsVisible(isVisible => !isVisible);
+  };
+
   return (
     <>
-      <div className="container">
-        <Container>
-          {displayAdd ? (
-            <form>
-              <Input
-                type="text"
-                placeholder="New Todo"
-                aria-label="Todo"
-                value={value}
-                onChange={e => setValue(e.target.value)}
-              />
+      <Container m={'2'} display={'flex'} justifyContent={'flex-start'}>
+        <Button
+          as={IconButton}
+          icon={<SmallAddIcon />}
+          color={'white'}
+          bg={'#d8bfd87a'}
+          boxShadow={'md'}
+          onClick={handlePress}
+        ></Button>
 
-              <div className="Input-group-append">
-                <Button
-                  as={IconButton}
-                  icon={<SmallAddIcon />}
-                  bg={useColorModeValue('gray.100', 'gray.600')}
-                  color="gray.400"
-                  onClick={e => {
-                    handleSubmit(e);
-                  }}
-                ></Button>
+        {isVisible && (
+          <Container>
+            {displayAdd ? (
+              <form>
+                <Flex maxW={'330px'} alignItems={'center'}>
+                  <Input
+                    size={'sm'}
+                    type="text"
+                    placeholder="New Todo"
+                    aria-label="Todo"
+                    value={value}
+                    onChange={e => setValue(e.target.value)}
+                  />
 
+                  <Button
+                    fontSize={'xs'}
+                    // bg={useColorModeValue('gray.100', 'gray.600')}
+                    color="gray.400"
+                    variant={'outline'}
+                    bg={'transparent'}
+                    ml={'1em'}
+                    h={'2.8em'}
+                    w={'5em'}
+                    onClick={e => {
+                      handleSubmit(e);
+                    }}
+                  >
+                    save
+                  </Button>
+                </Flex>
+              </form>
+            ) : null}
+            {displayUpdate ? (
+              <form
+                onSubmit={e => {
+                  handleUpdate(e);
+                }}
+              >
+                <Input
+                  type="text"
+                  placeholder="Update Todo"
+                  aria-label="Todo"
+                  aria-describedby="basic-addon2"
+                  value={value}
+                  onChange={e => setValue(e.target.value)}
+                />
                 <Button
-                  type="Button"
-                  onClick={e => {
-                    handleSearch(e);
-                  }}
+                  fontSize={'xs'}
+                  background={'transparent'}
+                  variant={'outline'}
+                  color={useColorModeValue('blue.100', 'gray.500')}
+                  type="submit"
                 >
-                  Search
+                  Update Todo
                 </Button>
-              </div>
-            </form>
-          ) : null}
-          {displayUpdate ? (
-            <form
-              onSubmit={e => {
-                handleUpdate(e);
-              }}
-            >
-              <Input
-                type="text"
-                placeholder="Update Todo"
-                aria-label="Todo"
-                aria-describedby="basic-addon2"
-                value={value}
-                onChange={e => setValue(e.target.value)}
-              />
-              <Button type="submit">Update Todo</Button>
-            </form>
-          ) : null}
-        </Container>
-      </div>
+              </form>
+            ) : null}
+          </Container>
+        )}
+      </Container>
 
       <div className="container">
         <Box>
@@ -207,7 +229,6 @@ function TodoApp() {
                       width={'250px'}
                     >
                       <Text color={'gray.500'}>
-                        {' '}
                         <span key={item.i} onClick={() => handleSelect(item)}>
                           {item.todo}
                         </span>
@@ -235,7 +256,7 @@ function TodoApp() {
               </div>
             );
           })}
-          {displaySearch ? (
+          {/* {displaySearch ? (
             <Button
               className="Button btn-warning float-right text-white font-weight-bold"
               onClick={() => {
@@ -245,10 +266,11 @@ function TodoApp() {
             >
               <span aria-hidden="true">Clear Search</span>
             </Button>
-          ) : null}
+          ) : null} */}
         </Box>
       </div>
     </>
   );
 }
+
 export default TodoApp;

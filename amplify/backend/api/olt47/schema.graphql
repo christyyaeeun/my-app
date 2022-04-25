@@ -35,3 +35,8 @@ type Todo @model @auth(rules: [{ allow: owner }]) {
   description: String
   status: Boolean
 }
+
+type Tracker @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  total: Int
+}

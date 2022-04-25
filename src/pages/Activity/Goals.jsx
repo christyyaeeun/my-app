@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import {
   Heading,
   Box,
@@ -10,6 +10,11 @@ import {
   Stack,
   Grid,
   StackDivider,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
   GridItem,
   Spacer,
   Tooltip,
@@ -37,7 +42,23 @@ import './style.css'
 // import { Storage } from 'aws-amplify'
 
 function Goals() {
-
+  const userPoints = {
+    points: ''
+  }
+  const [ formVal, dispatch ] = useReducer(
+    (currentTotal, newTotal) => ({ ...currentTotal, ...newTotal }),
+    userPoints,
+  )
+  const { points } = formVal
+  const onValChange = (event) => {
+    const { points, value } = event.target
+    dispatch({ [ points ]: value })
+    console.log(formVal)
+  }
+  const onSubmit = (e) => {
+    e.preventDefault()
+    console.log(formVal)
+  }
   const colors = useColorModeValue(
     // [ '#e6e6fa', '#E6EDEC', '#fbeff5', '#aac8f475', '#E9EBEF', '#ffe8bc8a' ],
     [ 'white', 'white', 'white', 'white', 'white', 'white' ],
@@ -71,7 +92,7 @@ function Goals() {
 
 
 
-        <Container maxW='2xl' minH='100vh'>
+        <Container p={ '0' } maxW='3xl' minH='100vh'>
           <Box border={ '1px' } borderColor={ 'gray.200' } boxShadow={ 'xl' } borderRadius={ 'sm' } color={ 'gray.500' }>
             <Box fontSize={ 'sm' }>
               <Tabs onChange={ (index) => setTabIndex(index) } bg={ bg } size={ 'sm' } height={ '260px' }>
@@ -126,6 +147,21 @@ function Goals() {
 
                         Send your partner a text
                       </Text> <Spacer />
+                      <NumberInput w={ '4em' } size='sm' defaultValue={ 0 } min={ 0 }>
+                        <NumberInputField focusBorderColor='transparent' />
+                        <NumberInputStepper>
+                          <NumberIncrementStepper
+                            bg='green.200'
+                            _active={ { bg: 'green.300' } }
+                            children='+'
+                          />
+                          <NumberDecrementStepper
+                            bg='transparent'
+                            _active={ { bg: 'pink.300' } }
+                            children='-'
+                          />
+                        </NumberInputStepper>
+                      </NumberInput>
                     </Flex>
 
 

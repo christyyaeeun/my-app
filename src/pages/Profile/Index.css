@@ -1,0 +1,43 @@
+.profilecontent {
+    width: 25%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.profilecontent img {
+    width: 170px;
+    height: 170px;
+    border-radius: 100px;
+}
+.profilecontent p {
+    font-size: 25px;
+}
+.profilecontent button {
+    width: 136.6px;
+    height: 43.7px;
+    background: #434343;
+    box-shadow: 0px 3.24701px 3.24701px #e5e5e5;
+    border-radius: 3.24701px;
+    border: none;
+    color: white;
+    font-size: 17.7px;
+    cursor: pointer;
+}
+.profilecontent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.profilecontentcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+@media only screen and (max-width: 600px) {
+    .profilecontent{
+        width: 88%;
+    }
+  }

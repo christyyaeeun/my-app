@@ -1,7 +1,7 @@
 import '@fontsource/inter/500.css';
 import React, { useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
-import { Container, Box, VStack, StackDivider, Spacer, Icon, Image, Text, Flex, Center, IconButton, useColorModeValue } from '@chakra-ui/react'
+import { Container, Box, Button, VStack, StackDivider, Spacer, Icon, Image, Text, Flex, Center, IconButton, useColorModeValue } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
 import { BsSticky } from 'react-icons/bs'
 import DateCalendar from '../components/calendar/DateCalendar'
@@ -9,9 +9,12 @@ import Appy from '../components/todo/Appy';
 import TodoApp from '../components/todo/TodoApp';
 import Navigator from '../components/Navigator'
 import Goals from './Activity/Goals';
+import Journal from '../components/notes/Journal'
+import { SmallAddIcon } from '@chakra-ui/icons';
 
 const Home = () => {
   const [ name, setName ] = useState('');
+  const [ isVisible, setIsVisible ] = useState(false);
 
 
   useEffect(() => {
@@ -24,17 +27,34 @@ const Home = () => {
     console.log("user attributes: ", user.attributes);
     setName(user.username)
   }
-
+  const handlePress = () => {
+    setIsVisible((isVisible) => !isVisible);
+  };
 
   return (
     <section>
       <Navigator />
+
+
       <Container className="home" p='4' minH='100vh' maxW='7xl' >
         <Container maxW={ 'md' }>
+          {/* <StickyNote
+            alignment="center"
+            note={ `Things to note...` }
+            preview={ false }
+            shadow={ true }
+            // Using default values:
+            color="blue"
+            onClick={ undefined }
+            onMouseEnter={ undefined }
+            onMouseLeave={ undefined }
+            smallFont={ true }
+            useScriptFont={ false }
+          /> */}
           <Flex>
             <Center>
               <Text id="greeting" color={ useColorModeValue('gray.600', 'white') } fontSize='xl'>
-                Welcome back, { name }
+                Welcome back, { name } !
               </Text>
             </Center>
             <Spacer />
@@ -58,17 +78,50 @@ const Home = () => {
               </Box>
             </Box>
           </VStack>
-          <Container>
-            <Appy />
-          </Container>
+
+          <Appy />
+          <TodoApp />
+
+          {/* <TodoApp /> */ }
 
         </Container>
         {/* <Goals /> */ }
-        {/* <TodoApp /> */ }
+
+
 
       </Container>
-    </section>
+    </section >
   )
+
+  // function Item() {
+  //   const [ isOpen, setIsOpen ] = useState(false);
+
+  //   const toggleOpen = () => setIsOpen(!isOpen);
+
+  //   return (
+  //     <motion.li layout onClick={ toggleOpen } initial={ { borderRadius: 10 } }>
+  //       <motion.div className="avatar" layout />
+  //       <AnimatePresence>{ isOpen && <Content /> }</AnimatePresence>
+  //     </motion.li>
+  //   );
+  // }
+
+  // function Content() {
+  //   return (
+  //     <motion.div
+  //       layout
+  //       initial={ { opacity: 0 } }
+  //       animate={ { opacity: 1 } }
+  //       exit={ { opacity: 0 } }
+  //     >
+  //       <div className="row" />
+  //       <div className="row" />
+  //       <div className="row" />
+  //     </motion.div>
+  //   );
+  // }
+
 }
+// const items = [ 0, 1, 2 ];
 
 export default Home

@@ -100,7 +100,7 @@ export default function Nav({ children }) {
                 <br />
                 <MenuDivider />
                 <MenuItem as="a" href="profile">
-                  Profile
+                  Edit Profile
                 </MenuItem>
                 <MenuItem>Account Settings</MenuItem>
                 <MenuItem>
