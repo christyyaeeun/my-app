@@ -23,7 +23,7 @@ import {
 } from '@chakra-ui/react';
 import { Auth, Storage } from 'aws-amplify';
 import { RiVipCrownLine } from 'react-icons/ri'
-import Goals from './Activity/Goals';
+import Goals from './Goals';
 import { AmplifyS3Image } from '@aws-amplify/ui-react';
 import User from '../components/User';
 import { Link } from 'react-router-dom';
@@ -79,24 +79,25 @@ function Paired({ avatar }) {
   const [ sliderValue, setSliderValue ] = useState(50)
 
   return (
-    <Container h={ '100%' }>
-      {/* <Box mt='1em'>
+    <>
+      <Container h={ '100%' }>
+        {/* <Box mt='1em'>
         <IconButton as={ Link } to="/goals"
           size={ 'lg' }
           boxShadow={ 'xl' }
           bg={ useColorModeValue('gray.5z0', 'gray.600') }
           variant='ghost' icon={ <RiVipCrownLine /> } />
       </Box> */}
-      <Center py={ 6 }>
-        <Box
-          maxW={ '350px' }
-          w={ 'full' }
-          bg={ useColorModeValue('#f5f5f5', 'gray.800') }
-          boxShadow={ '2xl' }
-          rounded={ 'md' }
-          overflow={ 'hidden' }
-        >
-          {/* <Image
+        <Center py={ 6 }>
+          <Box
+            maxW={ '350px' }
+            w={ 'full' }
+            bg={ useColorModeValue('#f5f5f5', 'gray.800') }
+            boxShadow={ '2xl' }
+            rounded={ 'md' }
+            overflow={ 'hidden' }
+          >
+            {/* <Image
             h={'130px'}
             w={'full'}
             filter='auto'
@@ -106,109 +107,109 @@ function Paired({ avatar }) {
             }
             objectFit={'cover'}
           /> */}
-          <Box h={ '100px' }
-            w={ 'full' } bg={ '' }>
+            <Box h={ '100px' }
+              w={ 'full' } bg={ '' }>
 
+            </Box>
+            <Flex p={ 6 } mt={ '-2em' } justify={ 'space-evenly' }>
+              <Flex mt={ -12 }>
+                <Avatar
+                  as={ Button }
+                  size={ 'xl' }
+                  src={ avatar }
+                  bg={ 'gray.300' }
+                  alt={ 'Author' }
+                  css={ {
+                    border: '2px solid white',
+                  } }
+                />
+              </Flex>
+              <Box maxW={ '50px' } mt={ '-1.5em' } >
+                <Image w={ 'sm' } src={ 'https://firebasestorage.googleapis.com/v0/b/olt-amplify.appspot.com/o/colorlogo%20.svg?alt=media&token=0e607de1-d81d-4175-8d2d-0e38539a0bc3' } />
+              </Box>
+              <Flex justify={ 'center' } mt={ -12 }>
+                <Avatar
+                  as={ Button }
+                  size={ 'xl' }
+                  src={ '' }
+                  bg={ 'gray.300' }
+                  alt={ 'Author' }
+                  css={ {
+                    border: '2px solid white',
+                  } }
+                />
+              </Flex>
+            </Flex>
+
+
+            <Flex p={ 6 }>
+              <Flex justify={ 'center' } mt={ -12 } align={ 'start' }>
+                <Box ml={ '2em' }>
+                  <Text fontWeight={ 600 } color={ useColorModeValue('#56799c', 'white') }
+                  >
+                    { name }
+                  </Text>
+                </Box>
+              </Flex>
+              <Spacer />
+              <Flex justify={ 'center' } mt={ -12 }>
+                <Box mr={ '1.6em' }>
+                  <Text fontWeight={ 600 } color={ useColorModeValue('#56799c', 'white') }
+                  >
+                    partner
+                  </Text>
+                </Box>
+              </Flex>
+            </Flex>
+            <Container w={ '100%' } bg={ useColorModeValue('#f5f5f5', 'gray.600') }
+            >
+              <Box >
+                <Stack spacing={ 0 } align={ 'center' } mt={ '-2.5em' } pb={ 7 }>
+                  <Text color={ useColorModeValue('gray.500', 'white') } py={ '2' }> Together for </Text>
+                  <Container maxW={ 'sm' }>
+                    <Stack direction={ 'row' } spacing={ '4' } justify={ 'center' }>
+
+                      <Box width={ '50px' } p={ '1' } borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
+                        <VStack>
+                          <Text fontSize={ '.9rem' } fontWeight={ '600' } color={ 'gray.500' } mb={ '-0.5em' } pt={ '.3em' }>
+                            1
+                          </Text>
+                          <Text fontSize={ '.5rem' } m={ '0' } color={ 'gray.500' }>year</Text>
+                        </VStack>                    </Box>
+                      <Box width={ '50px' } p={ '1' } borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
+                        <VStack>
+                          <Text fontSize={ '.9rem' } fontWeight={ '600' } color={ 'gray.500' } mb={ '-0.5em' } pt={ '.3em' }>
+                            5
+                          </Text>
+                          <Text fontSize={ '.5rem' } m={ '0' } color={ 'gray.500' }>months</Text>
+                        </VStack>
+                      </Box>
+                      <Box width={ '50px' } p={ '1' } borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
+                        <VStack>
+                          <Text fontSize={ '.9rem' } fontWeight={ '600' } color={ 'gray.500' } mb={ '-0.5em' } pt={ '.3em' }>
+                            10
+                          </Text>
+                          <Text fontSize={ '.5rem' } m={ '0' } color={ 'gray.500' }>days</Text>
+                        </VStack>
+                      </Box>
+                    </Stack>
+                    <Box>
+                    </Box>
+                  </Container>
+                </Stack>
+
+
+              </Box>
+            </Container>
           </Box>
-          <Flex p={ 6 } mt={ '-2em' } justify={ 'space-evenly' }>
-            <Flex mt={ -12 }>
-              <Avatar
-                as={ Button }
-                size={ 'xl' }
-                src={ avatar }
-                bg={ 'gray.300' }
-                alt={ 'Author' }
-                css={ {
-                  border: '2px solid white',
-                } }
-              />
-            </Flex>
-            <Box maxW={ '50px' } mt={ '-1.5em' } >
-              <Image w={ 'sm' } src={ 'https://firebasestorage.googleapis.com/v0/b/olt-amplify.appspot.com/o/colorlogo%20.svg?alt=media&token=0e607de1-d81d-4175-8d2d-0e38539a0bc3' } />
-            </Box>
-            <Flex justify={ 'center' } mt={ -12 }>
-              <Avatar
-                as={ Button }
-                size={ 'xl' }
-                src={ '' }
-                bg={ 'gray.300' }
-                alt={ 'Author' }
-                css={ {
-                  border: '2px solid white',
-                } }
-              />
-            </Flex>
-          </Flex>
+
+        </Center>
+        <Container maxW={ 'lg' }>
+          <Goals />
 
 
-          <Flex p={ 6 }>
-            <Flex justify={ 'center' } mt={ -12 } align={ 'start' }>
-              <Box ml={ '2em' }>
-                <Text fontWeight={ 600 } color={ useColorModeValue('#56799c', 'white') }
-                >
-                  { name }
-                </Text>
-              </Box>
-            </Flex>
-            <Spacer />
-            <Flex justify={ 'center' } mt={ -12 }>
-              <Box mr={ '1.6em' }>
-                <Text fontWeight={ 600 } color={ useColorModeValue('#56799c', 'white') }
-                >
-                  partner
-                </Text>
-              </Box>
-            </Flex>
-          </Flex>
-          <Container w={ '100%' } bg={ useColorModeValue('#f5f5f5', 'gray.600') }
-          >
-            <Box >
-              <Stack spacing={ 0 } align={ 'center' } mt={ '-2.5em' } pb={ 7 }>
-                <Text color={ useColorModeValue('gray.500', 'white') } py={ '2' }> Together for </Text>
-                <Container maxW={ 'sm' }>
-                  <Stack direction={ 'row' } spacing={ '4' } justify={ 'center' }>
-
-                    <Box width={ '50px' } p={ '1' } borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
-                      <VStack>
-                        <Text fontSize={ '.9rem' } fontWeight={ '600' } color={ 'gray.500' } mb={ '-0.5em' } pt={ '.3em' }>
-                          1
-                        </Text>
-                        <Text fontSize={ '.5rem' } m={ '0' } color={ 'gray.500' }>year</Text>
-                      </VStack>                    </Box>
-                    <Box width={ '50px' } p={ '1' } borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
-                      <VStack>
-                        <Text fontSize={ '.9rem' } fontWeight={ '600' } color={ 'gray.500' } mb={ '-0.5em' } pt={ '.3em' }>
-                          5
-                        </Text>
-                        <Text fontSize={ '.5rem' } m={ '0' } color={ 'gray.500' }>months</Text>
-                      </VStack>
-                    </Box>
-                    <Box width={ '50px' } p={ '1' } borderRadius={ 'sm' } bg={ 'white' } boxShadow={ 'lg' }>
-                      <VStack>
-                        <Text fontSize={ '.9rem' } fontWeight={ '600' } color={ 'gray.500' } mb={ '-0.5em' } pt={ '.3em' }>
-                          10
-                        </Text>
-                        <Text fontSize={ '.5rem' } m={ '0' } color={ 'gray.500' }>days</Text>
-                      </VStack>
-                    </Box>
-                  </Stack>
-                  <Box>
-                  </Box>
-                </Container>
-              </Stack>
-
-
-            </Box>
-          </Container>
-        </Box>
-
-      </Center>
-      <Container maxW={ 'lg' }>
-        <Goals />
-
-
-      </Container>
-      {/* <Box>
+        </Container>
+        {/* <Box>
         <Image
           maxW={'150px'}
           w={'full'}
@@ -217,8 +218,8 @@ function Paired({ avatar }) {
           }
         />
       </Box> */}
-      <Container maxH={ '4xl' } >
-        {/* <Box m={ '3' } p={ '9' } bg={ useColorModeValue('ivory', 'gray.400') } h={ '300px' } display={ 'flex' } justifyContent={ 'center' } alignItems={ 'center' } fontSize='sm' boxShadow={ '2xl' } borderRadius={ 'xl' }>
+        <Container maxH={ '4xl' } >
+          {/* <Box m={ '3' } p={ '9' } bg={ useColorModeValue('ivory', 'gray.400') } h={ '300px' } display={ 'flex' } justifyContent={ 'center' } alignItems={ 'center' } fontSize='sm' boxShadow={ '2xl' } borderRadius={ 'xl' }>
 
 
           <Slider aria-label='slider-ex-6' onChange={ (val) => setSliderValue(val) } color={ 'gray.500' }>
@@ -258,10 +259,10 @@ function Paired({ avatar }) {
 
 
         </Box> */}
+        </Container>
       </Container>
-    </Container>
 
-
+    </>
   );
 }
 

@@ -1,17 +1,12 @@
-import './Index.css';
 import React from 'react';
-import ProfileDialog from '../../components/ProfileDialog/Index';
-
-function Profile() {
+import userData from './user-profile.json';
+import UserProfile from './UserProfile';
+import UserProfileEdit from './UserProfileEdit';
+export default function Profile() {
   return (
-    <div className="profilecon">
-      <div className="profilecontentcon">
-        <div className="profilecontent">
-          <p></p>
-          <ProfileDialog />
-        </div>
-      </div>
+    <div>
+      {/* <UserProfile data={userData} /> */}
+      <UserProfileEdit initialData={userData} />
     </div>
   );
 }
-export default Profile;

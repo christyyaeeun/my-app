@@ -1,0 +1,11 @@
+{
+  "_id": "crusty",
+  "name": "Christy Park",
+  "location": "USA",
+  "skills": ["design", "reactjs", "java", "bootstrap"],
+  "socialProfiles": {
+    "Github": "https://github.com/christyyaeeun",
+    "Website": "https://christy-park.com",
+    "pic": "https://firebasestorage.googleapis.com/v0/b/christypark-portfolio.appspot.com/o/profile.JPG?alt=media&token=0c8aa902-c915-4793-8193-5985a9847aa2"
+  }
+}

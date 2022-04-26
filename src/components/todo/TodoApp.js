@@ -126,7 +126,7 @@ function TodoApp() {
           as={IconButton}
           icon={<SmallAddIcon />}
           color={'white'}
-          bg={'#d8bfd87a'}
+          bg={'#cadbee'}
           boxShadow={'md'}
           onClick={handlePress}
         ></Button>
