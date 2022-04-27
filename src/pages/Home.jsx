@@ -1,7 +1,7 @@
 import '@fontsource/inter/500.css';
 import React, { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
-import TestimonialCard from './TestimonialCard'
+// import TestimonialCard from './TestimonialCard'
 import {
   Container,
   Box,
@@ -99,7 +99,7 @@ const Home = () => {
 
           </Container>
         </Container>
-        <TestimonialCard />
+        {/* <TestimonialCard /> */ }
         {/* <Goals /> */ }
       </Container>
     </section>
