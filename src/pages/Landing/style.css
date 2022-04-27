@@ -1,0 +1,92 @@
+/* #main {
+  height: 100vh;
+  background: url('https://firebasestorage.googleapis.com/v0/b/olt-amplify.appspot.com/o/olt%20landing.png?alt=media&token=3e37156f-adb0-4b1f-b2b2-11594389ff47')
+    fixed no-repeat;
+  background-size: cover;
+  margin: 0 auto !important;
+}
+
+#container:before {
+  width: 400px;
+  height: 450px;
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  bottom: 0;
+  right: 0;
+  background: inherit;
+  box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
+  filter: blur(10px);
+}
+
+
+@media (min-width: 540px) {
+  #main {
+    background: url('https://firebasestorage.googleapis.com/v0/b/olt-react.appspot.com/o/olt%20photos%2Fdragonbreathe.jpeg?alt=media&token=c41c18eb-3eeb-4968-952d-d5fea78a5a2b')
+      no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  #landing-wrap {
+    height: 100vh;
+    background: url('https://firebasestorage.googleapis.com/v0/b/olt-react.appspot.com/o/olt%20photos%2Fdragonbreathe.jpeg?alt=media&token=c41c18eb-3eeb-4968-952d-d5fea78a5a2b')
+      fixed no-repeat;
+    background-size: cover;
+    margin: 0;
+  }
+}
+
+ */
+
+#main {
+  height: 100vh;
+  background: url('https://firebasestorage.googleapis.com/v0/b/olt-amplify.appspot.com/o/olt%20landing.png?alt=media&token=3e37156f-adb0-4b1f-b2b2-11594389ff47')
+    fixed repeat;
+  background-size: cover;
+}
+
+/* #container {
+  width: 350px;
+  height: 500px;
+  background: inherit;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  margin-left: -175px;
+  margin-top: -250px;
+  border-radius: 8px;
+}
+
+#container:before {
+  width: 400px;
+  height: 550px;
+  content: '';
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  bottom: 0;
+  right: 0;
+  background: inherit;
+  box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
+  filter: blur(10px);
+} */
+
+@media (min-width: 540px) {
+  #main {
+    background: url('https://firebasestorage.googleapis.com/v0/b/olt-amplify.appspot.com/o/landingmobile.png?alt=media&token=8fa7dd6a-188f-4e8d-ae6b-84f9589abe27')
+      no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  #landing-wrap {
+    height: 100vh;
+    /* background: url('https://firebasestorage.googleapis.com/v0/b/olt-react.appspot.com/o/olt%20photos%2Fdragonbreathe.jpeg?alt=media&token=c41c18eb-3eeb-4968-952d-d5fea78a5a2b') */
+    /* fixed no-repeat; */
+    background-size: cover;
+    margin: 0;
+  }
+}

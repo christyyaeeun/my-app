@@ -1,14 +1,14 @@
 {
-  "dev": {
+  "local": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-olt47-dev-114814-authRole",
-      "UnauthRoleArn": "arn:aws:iam::075411383252:role/amplify-olt47-dev-114814-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::075411383252:role/amplify-olt47-dev-114814-authRole",
+      "AuthRoleName": "amplify-olt47-local-232525-authRole",
+      "UnauthRoleArn": "arn:aws:iam::075411383252:role/amplify-olt47-local-232525-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::075411383252:role/amplify-olt47-local-232525-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-olt47-dev-114814-deployment",
-      "UnauthRoleName": "amplify-olt47-dev-114814-unauthRole",
-      "StackName": "amplify-olt47-dev-114814",
-      "StackId": "arn:aws:cloudformation:us-east-1:075411383252:stack/amplify-olt47-dev-114814/b08584d0-b75b-11ec-90ec-127d66956561",
+      "DeploymentBucketName": "amplify-olt47-local-232525-deployment",
+      "UnauthRoleName": "amplify-olt47-local-232525-unauthRole",
+      "StackName": "amplify-olt47-local-232525",
+      "StackId": "arn:aws:cloudformation:us-east-1:075411383252:stack/amplify-olt47-local-232525/a809b9e0-c35c-11ec-a752-12a584d77f45",
       "AmplifyAppId": "d5n74itk7dmqf"
     },
     "categories": {

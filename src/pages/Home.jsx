@@ -1,6 +1,7 @@
 import '@fontsource/inter/500.css';
 import React, { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
+import TestimonialCard from './TestimonialCard'
 import {
   Container,
   Box,
@@ -22,8 +23,9 @@ import TodoApp from '../components/todo/TodoApp';
 import Navigator from '../components/Navigator';
 import Goals from './Goals';
 
+
 const Home = () => {
-  const [name, setName] = useState('');
+  const [ name, setName ] = useState('');
 
   useEffect(() => {
     checkUser();
@@ -40,20 +42,20 @@ const Home = () => {
     <section>
       <Navigator />
       <Container className="home" p="4" minH="100vh" maxW="7xl">
-        <Container maxW={'md'}>
-          <Text align={'center'}>HOME</Text>
+        <Container maxW={ 'md' }>
+          <Text align={ 'center' }>HOME</Text>
           <Flex>
             <Center>
               <Text
                 id="greeting"
-                color={useColorModeValue('gray.600', 'white')}
+                color={ useColorModeValue('gray.600', 'white') }
                 fontSize="xl"
               >
-                Welcome back, {name}
+                Welcome back, { name }
               </Text>
             </Center>
             <Spacer />
-            <Box h={'3em'}>
+            <Box h={ '3em' }>
               <Link to="/goals">
                 <Image
                   src={
@@ -62,9 +64,9 @@ const Home = () => {
                 />
               </Link>
               <IconButton
-                as={Link}
+                as={ Link }
                 to="/goals"
-                bg={useColorModeValue('transparent', 'transparent')}
+                bg={ useColorModeValue('transparent', 'transparent') }
                 variant="ghost"
               />
             </Box>
@@ -72,8 +74,8 @@ const Home = () => {
         </Container>
         <Container>
           <VStack
-            divider={<StackDivider borderColor="gray.200" />}
-            spacing={4}
+            divider={ <StackDivider borderColor="gray.200" /> }
+            spacing={ 4 }
             align="stretch"
             width="100%"
             mt="4"
@@ -85,17 +87,20 @@ const Home = () => {
                 borderRadius="lg"
                 maxW="350px"
                 boxShadow="2xl"
-                color={useColorModeValue('blue.500', 'white')}
-                bg={useColorModeValue('white', '#4D5E7C')}
+                color={ useColorModeValue('blue.500', 'white') }
+                bg={ useColorModeValue('white', '#4D5E7C') }
               >
                 <DateCalendar />
               </Box>
             </Box>
           </VStack>
-          <Container></Container>
+          <Container>
+            <TodoApp />
+
+          </Container>
         </Container>
-        {/* <Goals /> */}
-        <TodoApp />
+        <TestimonialCard />
+        {/* <Goals /> */ }
       </Container>
     </section>
   );

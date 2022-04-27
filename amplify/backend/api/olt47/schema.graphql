@@ -3,14 +3,26 @@ type User @model @auth(rules: [{ allow: owner }]) {
   username: String
   avatar: String
   status: String
+  posts: [Post] @hasMany(indexName: "byUser", fields: ["id"])
 }
 
-type Post @model @auth(rules: [{ allow: owner }]) {
+type Post
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      {
+        allow: groups
+        groups: ["Pair"]
+        operations: [read, create, update, delete]
+      }
+    ]
+  ) {
   id: ID!
   name: String
   description: String
   image: String
-  owner: String
+  userID: ID! @index(name: "byUser")
 }
 
 type Note @model @auth(rules: [{ allow: owner }]) {
@@ -34,4 +46,10 @@ type Todo @model @auth(rules: [{ allow: owner }]) {
   name: String
   description: String
   status: Boolean
+}
+
+type PointTotal @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  total: Int
+  user: User @hasOne
 }
