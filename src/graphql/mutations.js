@@ -11,6 +11,23 @@ export const createUser = /* GraphQL */ `
       username
       avatar
       status
+      posts {
+        items {
+          id
+          name
+          description
+          image
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -30,6 +47,23 @@ export const updateUser = /* GraphQL */ `
       username
       avatar
       status
+      posts {
+        items {
+          id
+          name
+          description
+          image
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -49,6 +83,23 @@ export const deleteUser = /* GraphQL */ `
       username
       avatar
       status
+      posts {
+        items {
+          id
+          name
+          description
+          image
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -68,12 +119,13 @@ export const createPost = /* GraphQL */ `
       name
       description
       image
-      owner
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -87,12 +139,13 @@ export const updatePost = /* GraphQL */ `
       name
       description
       image
-      owner
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -106,12 +159,13 @@ export const deletePost = /* GraphQL */ `
       name
       description
       image
-      owner
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -236,6 +290,7 @@ export const createTodo = /* GraphQL */ `
   ) {
     createTodo(input: $input, condition: $condition) {
       id
+      uid
       name
       description
       status
@@ -255,6 +310,7 @@ export const updateTodo = /* GraphQL */ `
   ) {
     updateTodo(input: $input, condition: $condition) {
       id
+      uid
       name
       description
       status
@@ -274,6 +330,7 @@ export const deleteTodo = /* GraphQL */ `
   ) {
     deleteTodo(input: $input, condition: $condition) {
       id
+      uid
       name
       description
       status
@@ -282,6 +339,108 @@ export const deleteTodo = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
+    }
+  }
+`;
+export const createPointTotal = /* GraphQL */ `
+  mutation CreatePointTotal(
+    $input: CreatePointTotalInput!
+    $condition: ModelPointTotalConditionInput
+  ) {
+    createPointTotal(input: $input, condition: $condition) {
+      id
+      total
+      user {
+        id
+        username
+        avatar
+        status
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      pointTotalUserId
+      owner
+    }
+  }
+`;
+export const updatePointTotal = /* GraphQL */ `
+  mutation UpdatePointTotal(
+    $input: UpdatePointTotalInput!
+    $condition: ModelPointTotalConditionInput
+  ) {
+    updatePointTotal(input: $input, condition: $condition) {
+      id
+      total
+      user {
+        id
+        username
+        avatar
+        status
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      pointTotalUserId
+      owner
+    }
+  }
+`;
+export const deletePointTotal = /* GraphQL */ `
+  mutation DeletePointTotal(
+    $input: DeletePointTotalInput!
+    $condition: ModelPointTotalConditionInput
+  ) {
+    deletePointTotal(input: $input, condition: $condition) {
+      id
+      total
+      user {
+        id
+        username
+        avatar
+        status
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      pointTotalUserId
       owner
     }
   }

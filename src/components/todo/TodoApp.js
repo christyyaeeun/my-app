@@ -31,29 +31,30 @@ async function listTodos(setTodos) {
 }
 
 function TodoApp() {
-  const [todos, setTodos] = useState([]);
-  const [value, setValue] = useState('');
-  const [id, setId] = useState('');
-  const [displayAdd, setDisplayAdd] = useState(true);
-  const [displayUpdate, setDisplayUpdate] = useState(false);
-  const [displaySearch, setDisplaySearch] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [ todos, setTodos ] = useState([]);
+  const [ value, setValue ] = useState('');
+  const [ id, setId ] = useState('');
+  const [ displayAdd, setDisplayAdd ] = useState(true);
+  const [ displayUpdate, setDisplayUpdate ] = useState(false);
+  const [ displaySearch, setDisplaySearch ] = useState(false);
+  const [ isVisible, setIsVisible ] = useState(false);
 
-  async function handleSubmit(evt) {
-    evt.preventDefault();
-    evt.stopPropagation();
+  async function handleSubmit(e) {
+    e.preventDefault();
+    e.stopPropagation();
     await DataStore.save(
       new Todo({
         todo: value,
+
       })
     );
     listTodos(setTodos);
     setValue('');
   }
 
-  async function handleSearch(evt) {
-    evt.preventDefault();
-    evt.stopPropagation();
+  async function handleSearch(e) {
+    e.preventDefault();
+    e.stopPropagation();
     setDisplaySearch(true);
     const search = await DataStore.query(Todo, c => c.todo('contains', value));
     setTodos(search);
@@ -72,9 +73,9 @@ function TodoApp() {
     setDisplayAdd(false);
   }
 
-  async function handleUpdate(evt) {
-    evt.preventDefault();
-    evt.stopPropagation();
+  async function handleUpdate(e) {
+    e.preventDefault();
+    e.stopPropagation();
     const original = await DataStore.query(Todo, id);
     await DataStore.save(
       Todo.copyOf(original, updated => {
@@ -121,90 +122,90 @@ function TodoApp() {
 
   return (
     <>
-      <Container m={'2'} display={'flex'} justifyContent={'flex-start'}>
+      <Container m={ '2' } display={ 'flex' } justifyContent={ 'flex-start' }>
         <Button
-          as={IconButton}
-          icon={<SmallAddIcon />}
-          color={'white'}
-          bg={'#cadbee'}
-          boxShadow={'md'}
-          onClick={handlePress}
+          as={ IconButton }
+          icon={ <SmallAddIcon /> }
+          color={ 'white' }
+          bg={ '#cadbee' }
+          boxShadow={ 'md' }
+          onClick={ handlePress }
         ></Button>
 
-        {isVisible && (
+        { isVisible && (
           <Container>
-            {displayAdd ? (
+            { displayAdd ? (
               <form>
-                <Flex maxW={'330px'} alignItems={'center'}>
+                <Flex maxW={ '330px' } alignItems={ 'center' }>
                   <Input
-                    size={'sm'}
+                    size={ 'sm' }
                     type="text"
                     placeholder="New Todo"
                     aria-label="Todo"
-                    value={value}
-                    onChange={e => setValue(e.target.value)}
+                    value={ value }
+                    onChange={ e => setValue(e.target.value) }
                   />
 
                   <Button
-                    fontSize={'xs'}
+                    fontSize={ 'xs' }
                     // bg={useColorModeValue('gray.100', 'gray.600')}
                     color="gray.400"
-                    variant={'outline'}
-                    bg={'transparent'}
-                    ml={'1em'}
-                    h={'2.8em'}
-                    w={'5em'}
-                    onClick={e => {
+                    variant={ 'outline' }
+                    bg={ 'transparent' }
+                    ml={ '1em' }
+                    h={ '2.8em' }
+                    w={ '5em' }
+                    onClick={ e => {
                       handleSubmit(e);
-                    }}
+                    } }
                   >
                     save
                   </Button>
                 </Flex>
               </form>
-            ) : null}
-            {displayUpdate ? (
+            ) : null }
+            { displayUpdate ? (
               <form
-                onSubmit={e => {
+                onSubmit={ e => {
                   handleUpdate(e);
-                }}
+                } }
               >
                 <Input
                   type="text"
                   placeholder="Update Todo"
                   aria-label="Todo"
                   aria-describedby="basic-addon2"
-                  value={value}
-                  onChange={e => setValue(e.target.value)}
+                  value={ value }
+                  onChange={ e => setValue(e.target.value) }
                 />
                 <Button
-                  fontSize={'xs'}
-                  background={'transparent'}
-                  variant={'outline'}
-                  color={useColorModeValue('blue.100', 'gray.500')}
+                  fontSize={ 'xs' }
+                  background={ 'transparent' }
+                  variant={ 'outline' }
+                  color={ useColorModeValue('blue.100', 'gray.500') }
                   type="submit"
                 >
                   Update Todo
                 </Button>
               </form>
-            ) : null}
+            ) : null }
           </Container>
-        )}
+        ) }
       </Container>
 
       <div className="container">
         <Box>
-          {todos.map((item, i) => {
+          { todos.map((item, i) => {
             return (
               <div role="alert">
                 <Center>
                   <HStack
-                    maxW={'350px'}
-                    bg={'white'}
-                    h={'50px'}
-                    boxShadow={'2xl'}
-                    rounded={'md'}
-                    mt={'4'}
+                    maxW={ '350px' }
+                    bg={ 'white' }
+                    h={ '50px' }
+                    boxShadow={ '2xl' }
+                    rounded={ 'md' }
+                    mt={ '4' }
                   >
                     {/* <Box
                       height={'200px'}
@@ -216,46 +217,47 @@ function TodoApp() {
                     > */}
                     <Box
                       id="todo-name"
-                      w={'100px'}
-                      h={'50px'}
-                      bg={useColorModeValue('#e3f0ff', 'gray.800')}
+                      w={ '100px' }
+                      h={ '50px' }
+                      bg={ useColorModeValue('#e3f0ff', 'gray.800') }
                     ></Box>
 
                     <Box
                       id="todo-description"
-                      bg={useColorModeValue('white', 'gray.900')}
-                      h={'50px'}
-                      m={'0'}
-                      width={'250px'}
+                      bg={ useColorModeValue('white', 'gray.900') }
+                      h={ '50px' }
+                      m={ '0' }
+                      width={ '250px' }
                     >
-                      <Text color={'gray.500'}>
-                        <span key={item.i} onClick={() => handleSelect(item)}>
-                          {item.todo}
+                      <Text color={ 'gray.500' }>
+                        <span key={ item.i } onClick={ () => handleSelect(item) }>
+                          { item.todo }
                         </span>
                       </Text>
+                      <Text>{ item.createdAt }</Text>
                     </Box>
 
                     <Flex>
                       <Spacer />
                       <Button
-                        key={item.i}
+                        key={ item.i }
                         type="Button"
-                        bg={'transparent'}
-                        color={'gray.400'}
-                        onClick={() => {
+                        bg={ 'transparent' }
+                        color={ 'gray.400' }
+                        onClick={ () => {
                           handleDelete(item.id);
                           listTodos(setTodos);
-                        }}
+                        } }
                       >
                         <span aria-hidden="true">&times;</span>
                       </Button>
                     </Flex>
-                    {/* </Box> */}
+                    {/* </Box> */ }
                   </HStack>
                 </Center>
               </div>
             );
-          })}
+          }) }
           {/* {displaySearch ? (
             <Button
               className="Button btn-warning float-right text-white font-weight-bold"

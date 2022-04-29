@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { API, Storage } from 'aws-amplify';
-import { listNotes } from '../../graphql/queries';
+import { listEntries } from '../../graphql/queries';
 import {
-  createNote as createNoteMutation,
-  deleteNote as deleteNoteMutation,
+    createEntry as createEntryMutation,
+    deleteEntry as deleteEntryMutation,
 } from '../../graphql/mutations';
 
 import {
-  Input,
-  Image,
-  Button,
-  Text,
-  Box,
-  Icon,
-  Container,
-  useColorModeValue,
-  Divider,
-  Stack,
-  Spacer,
-  IconButton,
-  HStack,
-  Flex,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Textarea,
+    Input,
+    Image,
+    Button,
+    Text,
+    Box,
+    Icon,
+    Container,
+    useColorModeValue,
+    Divider,
+    Stack,
+    Spacer,
+    IconButton,
+    HStack,
+    Flex,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    Textarea,
 } from '@chakra-ui/react';
 import { BiImageAdd } from 'react-icons/bi';
 import { CloseIcon, SmallAddIcon } from '@chakra-ui/icons';
@@ -38,286 +38,295 @@ import format from 'date-fns/format';
 
 const initialFormState = { name: '', description: '', image: {} };
 const Overlay = () => (
-  <ModalOverlay
-    bg="blackAlpha.300"
-    backdropFilter="blur(10px) hue-rotate(90deg)"
-  />
+    <ModalOverlay
+        bg="blackAlpha.300"
+        backdropFilter="blur(10px) hue-rotate(90deg)"
+    />
 );
 
 function Entry(user) {
-  const [notes, setNotes] = useState([]);
-  const [formData, setFormData] = useState(initialFormState);
-  const [overlay, setOverlay] = React.useState(<Overlay />);
-  const [isOpen, setIsOpen] = useState(false);
+    const [ entries, setEntries ] = useState([]);
+    const [ formData, setFormData ] = useState(initialFormState);
+    const [ overlay, setOverlay ] = React.useState(<Overlay />);
+    const [ isOpen, setIsOpen ] = useState(false);
 
-  useEffect(() => {
-    fetchNotes();
-  }, []);
+    useEffect(() => {
+        fetchEntries();
+    }, []);
 
-  async function fetchNotes() {
-    const apiData = await API.graphql({ query: listNotes });
-    const notesFromAPI = apiData.data.listNotes.items;
-    await Promise.all(
-      notesFromAPI.map(async note => {
-        if (note.image) {
-          const image = await Storage.get(note.image);
-          note.image = image;
-        }
-        return note;
-      })
-    );
-    setNotes(apiData.data.listNotes.items);
-    console.log('notes', notes);
-  }
-
-  async function createNote() {
-    if (!formData.name || !formData.description) return;
-    await API.graphql({
-      query: createNoteMutation,
-      variables: { input: formData },
-    });
-    if (formData.image) {
-      const image = await Storage.get(formData.image);
-      formData.image = image;
+    async function fetchEntries() {
+        const apiData = await API.graphql({ query: listEntries });
+        const entriesFromAPI = apiData.data.listEntries.items;
+        await Promise.all(
+            entriesFromAPI.map(async entry => {
+                if (entry.image) {
+                    const image = await Storage.get(entry.image);
+                    entry.image = image;
+                }
+                return entry;
+            })
+        );
+        setEntries(apiData.data.listEntries.items);
+        console.log('entries', entries);
     }
-    setNotes([...notes, formData]);
-    setFormData(initialFormState);
-  }
 
-  async function onChange(e) {
-    if (!e.target.files[0]) return;
-    const file = e.target.files[0];
-    setFormData({ ...formData, image: file.name });
-    await Storage.put(file.name, file);
-    fetchNotes();
-  }
+    async function createEntry() {
+        if (!formData.name || !formData.description) return;
+        await API.graphql({
+            query: createEntryMutation,
+            variables: { input: formData },
+        });
+        if (formData.image) {
+            const image = await Storage.get(formData.image);
+            formData.image = image;
+        }
+        setEntries([ ...entries, formData ]);
+        setFormData(initialFormState);
+        setIsOpen(false);
+    }
 
-  const Image = ({ src, alt, fallback }) => {
-    const [error, setError] = useState();
+    async function onChange(e) {
+        if (!e.target.files[ 0 ]) return;
+        const file = e.target.files[ 0 ];
+        setFormData({ ...formData, image: file.name });
+        await Storage.put(file.name, file);
+        fetchEntries();
+        e.preventDefault();
+    }
 
-    const onError = () => {
-      setError(true);
+    const Image = ({ src, alt, fallback }) => {
+        const [ error, setError ] = useState();
+
+        const onError = () => {
+            setError(true);
+        };
+        return error ? fallback : <img src={ src } alt={ alt } onError={ onError } />;
     };
-    return error ? fallback : <img src={src} alt={alt} onError={onError} />;
-  };
 
-  async function deleteNote({ id }) {
-    const newNotesArray = notes.filter(note => note.id !== id);
-    setNotes(newNotesArray);
-    await API.graphql({
-      query: deleteNoteMutation,
-      variables: { input: { id } },
-    });
-    console.log('new notes', newNotesArray);
-  }
+    async function deleteEntry({ id }) {
+        const newEntriesArray = entries.filter(entry => entry.id !== id);
+        setEntries(newEntriesArray);
+        await API.graphql({
+            query: deleteEntryMutation,
+            variables: { input: { id } },
+        });
+        console.log('new entries', newEntriesArray);
+    }
 
-  function onClose() {
-    setIsOpen(false);
-  }
+    function onClose() {
+        setIsOpen(false);
+    }
 
-  return (
-    <div className="Notes">
-      <Container maxW={'sm'} px={'5'}>
-        <Flex mb="1em" justifyContent={'flex-end'}>
-          <Button
-            mt={'-2.4em'}
-            as={IconButton}
-            icon={<SmallAddIcon />}
-            bg={useColorModeValue('gray.100', 'gray.600')}
-            color="gray.400"
-            onClick={() => {
-              setOverlay(<Overlay />);
-              setIsOpen(true);
-            }}
-          ></Button>
-          <Modal
-            isCentered
-            onClose={onClose}
-            isOpen={isOpen}
-            motionPreset="slideInBottom"
-          >
-            {overlay}
-            <ModalOverlay />
-
-            <ModalContent maxW={'400px'}>
-              <ModalHeader
-                pb={'0'}
-                color={useColorModeValue('#a5bbdb', 'white')}
-              >
-                Create Post
-              </ModalHeader>
-              <ModalCloseButton color={'gray.500'} />
-              <ModalBody>
-                <Box px="2" borderRadius="lg">
-                  <Container centerContent pt="3">
-                    <Stack spacing={3} minW={'300px'}>
-                      <Box>
-                        <Input
-                          size={'sm'}
-                          color={useColorModeValue('gray.400', 'white')}
-                          onChange={e =>
-                            setFormData({ ...formData, name: e.target.value })
-                          }
-                          placeholder="Title"
-                          value={formData.name}
-                        />
-                      </Box>
-
-                      <Textarea
-                        size={'sm'}
-                        minH={'150px'}
-                        onChange={e =>
-                          setFormData({
-                            ...formData,
-                            description: e.target.value,
-                          })
-                        }
-                        placeholder="Note description"
-                        value={formData.description}
-                      />
-
-                      <Box className="image-upload" w="100%">
-                        <label for="file-input">
-                          <Icon
-                            className="img"
-                            color="#8dbae8"
-                            w={6}
-                            h={6}
-                            as={BiImageAdd}
-                          />
-                        </label>
-                        <input
-                          id="file-input"
-                          type="file"
-                          onError={e => (e.target.style.display = 'none')}
-                          onChange={onChange}
-                        />
-                      </Box>
-                    </Stack>
-                  </Container>
-                </Box>
-                <Container>
-                  <Flex pb={'4'} justifyContent={'flex-end'}>
+    return (
+        <div className="Entries">
+            <Container maxW={ 'sm' } px={ '5' }>
+                <Flex mb="1em" justifyContent={ 'flex-end' }>
                     <Button
-                      variant={'outline'}
-                      bg={'transparent'}
-                      size={'md'}
-                      shadow={'base'}
-                      w={'80px'}
-                      h={'8'}
-                      color={'#a5bbdb'}
-                      onClick={createNote}
+                        mt={ '-2.4em' }
+                        p={ '0' }
+                        as={ IconButton }
+                        icon={ <SmallAddIcon /> }
+                        bg={ useColorModeValue('gray.100', 'gray.600') }
+                        color="gray.400"
+                        onClick={ () => {
+                            setOverlay(<Overlay />);
+                            setIsOpen(true);
+                        } }
+                    ></Button>
+                    <Modal
+                        isCentered
+                        onClose={ onClose }
+                        isOpen={ isOpen }
+                        motionPreset="slideInBottom"
                     >
-                      Save
-                    </Button>
-                  </Flex>
-                </Container>
-              </ModalBody>
-            </ModalContent>
-          </Modal>
-        </Flex>
-      </Container>
+                        { overlay }
+                        <ModalOverlay />
 
-      <div style={{ marginBottom: 30 }}>
-        {notes.map(note => (
-          <div key={note.id || note.name}>
-            <Container p={'5'} maxW={'450px'}>
-              <Container id="img-card" p={'0'}>
-                <Container
-                  id="card-wrap"
-                  borderWidth="1px"
-                  bg={useColorModeValue('white', 'gray.600')}
-                  boxShadow={'2xl'}
-                  rounded={'lg'}
-                  p={'2'}
-                >
-                  <Container
-                    p={'0'}
-                    id="img-wrap"
-                    bg={useColorModeValue('white', 'gray.600')}
-                  >
-                    <Box
-                      id="img-container"
-                      maxW={'sm'}
-                      overflow={'hidden'}
-                      maxH={{ base: '350px', lg: '350px' }}
-                    >
-                      <Flex mb="1" h={'0'}>
-                        <Spacer />
-                        <IconButton
-                          bg={'transparent'}
-                          w="8"
-                          color="gray.500"
-                          icon={<IoIosClose />}
-                          onClick={() => deleteNote(note)}
-                        />
-                      </Flex>
-                      <Image
-                        borderRadius={'sm'}
-                        id="note-img"
-                        src={note.image}
-                        objectFit="cover"
-                        m={'auto'}
-                      />
-                    </Box>
-                  </Container>
-                  <Divider color={'gray.400'} />
-                  <Container bg={useColorModeValue('white', 'gray.600')}>
-                    <Stack>
-                      {/* <Button onClick={() => deleteNote(note)}>
-                        Delete note
-                      </Button> */}
-                      <Box bg={''}>
-                        <HStack spacing="10px" alignItems={'baseline'}>
-                          <Box pt={'2'}>
-                            <Text
-                              color={useColorModeValue('#8cabcd', 'white')}
-                              fontWeight={600}
+                        <ModalContent maxW={ '400px' }>
+                            <ModalHeader
+                                pb={ '0' }
+                                color={ useColorModeValue('#a5bbdb', 'white') }
                             >
-                              @{note.owner} |
-                            </Text>
-                          </Box>
-                          <Box>
-                            <Text
-                              color={useColorModeValue('gray.600', 'white')}
-                              fontSize={'1rem'}
-                            >
-                              {note.name}
-                            </Text>
-                          </Box>
-                        </HStack>
-                        <Box my={'2'}>
-                          <Text
-                            color={useColorModeValue('gray.500', 'white')}
-                            fontSize={'.9rem'}
-                            paddingLeft={'.1em'}
-                          >
-                            {note.description}
-                          </Text>
-                          {/* <Text color={'gray.500'}>
-                            <small>
-                              {format(new Date(note.createdAt), 'MM/dd/yyyy')}
-                            </small>
-                          </Text> */}
-                        </Box>
-                      </Box>
-                    </Stack>
-                  </Container>
-                </Container>
-              </Container>
+                                Create Entry
+                            </ModalHeader>
+                            <ModalCloseButton color={ 'gray.500' } />
+                            <ModalBody>
+                                <Box px="2" borderRadius="lg">
+                                    <Container centerContent pt="3">
+                                        <Stack spacing={ 3 } minW={ '300px' }>
+                                            <Box>
+                                                <Input
+                                                    size={ 'sm' }
+                                                    color={ useColorModeValue('gray.500', 'white') }
+                                                    onChange={ e =>
+                                                        setFormData({ ...formData, name: e.target.value })
+                                                    }
+                                                    placeholder="Title"
+                                                    value={ formData.name }
+                                                />
+                                            </Box>
+
+                                            <Textarea
+                                                size={ 'sm' }
+                                                minH={ '150px' }
+                                                color={ 'gray.500' }
+                                                onChange={ e =>
+                                                    setFormData({
+                                                        ...formData,
+                                                        description: e.target.value,
+                                                    })
+                                                }
+                                                placeholder="Entry description"
+                                                value={ formData.description }
+                                            />
+
+                                            <Box className="image-upload" w="100%">
+                                                <label for="file-input">
+                                                    <Icon
+                                                        className="img"
+                                                        color="#8dbae8"
+                                                        w={ 6 }
+                                                        h={ 6 }
+                                                        as={ BiImageAdd }
+                                                    />
+                                                </label>
+                                                <input
+                                                    id="file-input"
+                                                    type="file"
+                                                    onError={ e => (e.target.style.display = 'none') }
+                                                    onChange={ onChange }
+                                                />
+                                            </Box>
+                                        </Stack>
+                                    </Container>
+                                </Box>
+                                <Container>
+                                    <Flex pb={ '4' } justifyContent={ 'flex-end' }>
+                                        <Button
+                                            variant={ 'outline' }
+                                            bg={ 'transparent' }
+                                            size={ 'md' }
+                                            shadow={ 'base' }
+                                            w={ '80px' }
+                                            h={ '8' }
+                                            color={ '#a5bbdb' }
+                                            onClick={ createEntry }
+                                        >
+                                            Save
+                                        </Button>
+                                    </Flex>
+                                </Container>
+                            </ModalBody>
+                        </ModalContent>
+                    </Modal>
+                </Flex>
             </Container>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+
+            <div style={ { marginBottom: 30 } }>
+                { entries.map(entry => (
+                    <div key={ entry.id || entry.name }>
+                        <Container p={ '5' } maxW={ '400px' }>
+                            <Container id="img-card" p={ '0' }>
+                                <Container
+                                    id="card-wrap"
+                                    borderWidth="1px"
+                                    bg={ useColorModeValue('white', 'gray.600') }
+                                    boxShadow={ '2xl' }
+                                    rounded={ 'lg' }
+                                    p={ '2' }
+                                >
+                                    <Container
+                                        p={ '0' }
+                                        id="img-wrap"
+                                        bg={ useColorModeValue('white', 'gray.600') }
+                                    >
+                                        <Box
+                                            id="img-container"
+                                            maxW={ 'sm' }
+                                            overflow={ 'hidden' }
+                                            maxH={ { base: '350px', lg: '350px' } }
+                                        >
+                                            <Flex mb="1" h={ '0' }>
+                                                <Spacer />
+                                                <IconButton
+                                                    bg={ 'transparent' }
+                                                    w="8"
+                                                    color="gray.500"
+                                                    icon={ <IoIosClose /> }
+                                                    onClick={ () => deleteEntry(entry) }
+                                                />
+                                            </Flex>
+                                            <Image
+                                                borderRadius={ 'sm' }
+                                                id="entry-img"
+                                                src={ entry.image }
+                                                objectFit="cover"
+                                                m={ 'auto' }
+                                            />
+
+
+
+                                        </Box>
+                                    </Container>
+                                    <Divider color={ 'gray.400' } />
+                                    <Container bg={ useColorModeValue('white', 'gray.600') }>
+                                        <Stack>
+                                            {/* <Button onClick={() => deleteEntry(entry)}>
+                        Delete entry
+                      </Button> */}
+                                            <Box bg={ '' }>
+                                                <HStack spacing="10px" alignItems={ 'baseline' }>
+                                                    <Box pt={ '2' }>
+                                                        <Text
+                                                            color={ useColorModeValue('#8cabcd', 'white') }
+                                                            fontWeight={ 600 }
+                                                        >
+                                                            @{ entry.owner } |
+                                                        </Text>
+                                                    </Box>
+                                                    <Box>
+                                                        <Text
+                                                            color={ useColorModeValue('gray.600', 'white') }
+                                                            fontSize={ '1rem' }
+                                                        >
+                                                            { entry.name }
+                                                        </Text>
+                                                    </Box>
+                                                </HStack>
+                                                <Box my={ '2' }>
+                                                    <Text
+                                                        color={ useColorModeValue('gray.500', 'white') }
+                                                        fontSize={ '.9rem' }
+                                                        paddingLeft={ '.1em' }
+                                                    >
+                                                        { entry.description }
+                                                    </Text>
+
+                                                    <Text color={ 'gray.500' }>
+                                                        <small>
+                                                            { entry.createdAt }
+                                                            {/* { format(new Date(entry.createdAt), 'MM/dd/yyyy') } */ }
+                                                        </small>
+                                                    </Text>
+                                                </Box>
+                                            </Box>
+                                        </Stack>
+                                    </Container>
+                                </Container>
+                            </Container>
+                        </Container>
+                    </div>
+                )) }
+            </div>
+        </div>
+    );
 }
 
 export default Entry;
 
 {
-  /* <h2>{note.name}</h2>
-            <p>{note.description}</p>
-            <Button onClick={() => deleteNote(note)}>Delete note</Button>
-            {note.image && <img src={note.image} />} */
+    /* <h2>{entry.name}</h2>
+              <p>{entry.description}</p>
+              <Button onClick={() => deleteEntry(entry)}>Delete entry</Button>
+              {entry.image && <img src={entry.image} />} */
 }

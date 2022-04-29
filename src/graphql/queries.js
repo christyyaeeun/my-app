@@ -8,6 +8,23 @@ export const getUser = /* GraphQL */ `
       username
       avatar
       status
+      posts {
+        items {
+          id
+          name
+          description
+          image
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -29,6 +46,10 @@ export const listUsers = /* GraphQL */ `
         username
         avatar
         status
+        posts {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -59,6 +80,10 @@ export const syncUsers = /* GraphQL */ `
         username
         avatar
         status
+        posts {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -78,12 +103,13 @@ export const getPost = /* GraphQL */ `
       name
       description
       image
-      owner
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -99,12 +125,13 @@ export const listPosts = /* GraphQL */ `
         name
         description
         image
-        owner
+        userID
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
@@ -129,12 +156,13 @@ export const syncPosts = /* GraphQL */ `
         name
         description
         image
-        owner
+        userID
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        owner
       }
       nextToken
       startedAt
@@ -285,6 +313,7 @@ export const getTodo = /* GraphQL */ `
   query GetTodo($id: ID!) {
     getTodo(id: $id) {
       id
+      uid
       name
       description
       status
@@ -306,6 +335,7 @@ export const listTodos = /* GraphQL */ `
     listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        uid
         name
         description
         status
@@ -336,6 +366,7 @@ export const syncTodos = /* GraphQL */ `
     ) {
       items {
         id
+        uid
         name
         description
         status
@@ -344,6 +375,113 @@ export const syncTodos = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        owner
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getPointTotal = /* GraphQL */ `
+  query GetPointTotal($id: ID!) {
+    getPointTotal(id: $id) {
+      id
+      total
+      user {
+        id
+        username
+        avatar
+        status
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      pointTotalUserId
+      owner
+    }
+  }
+`;
+export const listPointTotals = /* GraphQL */ `
+  query ListPointTotals(
+    $filter: ModelPointTotalFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPointTotals(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        total
+        user {
+          id
+          username
+          avatar
+          status
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        pointTotalUserId
+        owner
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncPointTotals = /* GraphQL */ `
+  query SyncPointTotals(
+    $filter: ModelPointTotalFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncPointTotals(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        total
+        user {
+          id
+          username
+          avatar
+          status
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        pointTotalUserId
         owner
       }
       nextToken

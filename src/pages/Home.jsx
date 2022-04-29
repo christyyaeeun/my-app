@@ -2,6 +2,7 @@ import '@fontsource/inter/500.css';
 import React, { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
 // import TestimonialCard from './TestimonialCard'
+import oltMotion from '../components/Activities/oltMotion';
 import {
   Container,
   Box,
@@ -43,7 +44,6 @@ const Home = () => {
       <Navigator />
       <Container className="home" p="4" minH="100vh" maxW="7xl">
         <Container maxW={ 'md' }>
-          <Text align={ 'center' }>HOME</Text>
           <Flex>
             <Center>
               <Text
@@ -96,7 +96,7 @@ const Home = () => {
           </VStack>
           <Container>
             <TodoApp />
-
+            <oltMotion />
           </Container>
         </Container>
         {/* <TestimonialCard /> */ }

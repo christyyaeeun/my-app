@@ -24,11 +24,16 @@ type TodoMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type PointTotalMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 export declare class User {
   readonly id: string;
   readonly username?: string | null;
   readonly avatar?: string | null;
   readonly status?: string | null;
+  readonly posts?: (Post | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<User, UserMetaData>);
@@ -40,7 +45,7 @@ export declare class Post {
   readonly name?: string | null;
   readonly description?: string | null;
   readonly image?: string | null;
-  readonly owner?: string | null;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Post, PostMetaData>);
@@ -71,6 +76,7 @@ export declare class Entry {
 
 export declare class Todo {
   readonly id: string;
+  readonly uid: string;
   readonly name?: string | null;
   readonly description?: string | null;
   readonly status?: boolean | null;
@@ -78,4 +84,15 @@ export declare class Todo {
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Todo, TodoMetaData>);
   static copyOf(source: Todo, mutator: (draft: MutableModel<Todo, TodoMetaData>) => MutableModel<Todo, TodoMetaData> | void): Todo;
+}
+
+export declare class PointTotal {
+  readonly id: string;
+  readonly total?: number | null;
+  readonly user?: User | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly pointTotalUserId?: string | null;
+  constructor(init: ModelInit<PointTotal, PointTotalMetaData>);
+  static copyOf(source: PointTotal, mutator: (draft: MutableModel<PointTotal, PointTotalMetaData>) => MutableModel<PointTotal, PointTotalMetaData> | void): PointTotal;
 }

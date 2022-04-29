@@ -1,5 +1,5 @@
 div.grid > * {
-  padding: 0;
+  padding: 0.2em;
   border-radius: 5px;
   flex-basis: 20px;
 }

@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <main className="App">
       <Navigator />
-      <Container mt={'3'}>
+      <Container mt={ '3' } w={ '450px' }>
         <BackButton />
       </Container>
       <Outlet />

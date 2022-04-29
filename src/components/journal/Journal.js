@@ -23,8 +23,8 @@ import format from 'date-fns/format';
 const initialFormState = { name: '', description: '', image: {} };
 
 function Journal(user) {
-  const [notes, setNotes] = useState([]);
-  const [formData, setFormData] = useState(initialFormState);
+  const [ notes, setNotes ] = useState([]);
+  const [ formData, setFormData ] = useState(initialFormState);
 
   useEffect(() => {
     fetchNotes();
@@ -56,7 +56,7 @@ function Journal(user) {
       const image = await Storage.get(formData.image);
       formData.image = image;
     }
-    setNotes([...notes, formData]);
+    setNotes([ ...notes, formData ]);
     setFormData(initialFormState);
   }
 
@@ -66,8 +66,8 @@ function Journal(user) {
   //   }
 
   async function onChange(e) {
-    if (!e.target.files[0]) return;
-    const file = e.target.files[0];
+    if (!e.target.files[ 0 ]) return;
+    const file = e.target.files[ 0 ];
     setFormData({ ...formData, image: file.name });
     await Storage.put(file.name, file);
     fetchNotes();
@@ -83,101 +83,103 @@ function Journal(user) {
     console.log('new notes', newNotesArray);
   }
 
+
+
+
   return (
     <div className="Notes">
       <Input
-        onChange={e => setFormData({ ...formData, name: e.target.value })}
+        onChange={ e => setFormData({ ...formData, name: e.target.value }) }
         placeholder="Note name"
-        value={formData.name}
+        value={ formData.name }
       />
       <Input
-        onChange={e =>
+        onChange={ e =>
           setFormData({ ...formData, description: e.target.value })
         }
         placeholder="Note description"
-        value={formData.description}
+        value={ formData.description }
       />
-      {/* <Input type="file" onChange={onChange} /> */}
+      {/* <Input type="file" onChange={onChange} /> */ }
 
       <Box className="image-upload" w="100%">
         <label for="file-input">
-          <Icon className="img" color="#8dbae8" w={6} h={6} as={BiImageAdd} />
+          <Icon className="img" color="#8dbae8" w={ 6 } h={ 6 } as={ BiImageAdd } />
         </label>
-        <input id="file-input" type="file" onChange={onChange} />
+        <input id="file-input" type="file" onChange={ onChange } />
       </Box>
 
-      <Button onClick={createNote}>Create Note</Button>
-      <div style={{ marginBottom: 30 }}>
-        {notes.map(note => (
-          <div key={note.id || note.name}>
-            <Container p={'5'} maxW={'450px'}>
-              <Container id="img-card" p={'0'}>
+      <Button onClick={ createNote }>Create Note</Button>
+      <div style={ { marginBottom: 30 } }>
+        { notes.map(note => (
+          <div key={ note.id || note.name }>
+            <Container p={ '5' } maxW={ '450px' }>
+              <Container id="img-card" p={ '0' }>
                 <Container
                   id="card-wrap"
                   borderWidth="1px"
-                  bg={useColorModeValue('white', 'gray.600')}
-                  boxShadow={'2xl'}
-                  rounded={'lg'}
-                  p={'2'}
+                  bg={ useColorModeValue('white', 'gray.600') }
+                  boxShadow={ '2xl' }
+                  rounded={ 'lg' }
+                  p={ '2' }
                 >
                   <Container
                     id="img-wrap"
-                    bg={useColorModeValue('white', 'gray.600')}
+                    bg={ useColorModeValue('white', 'gray.600') }
                   >
                     <Box
                       id="img-container"
-                      maxW={'sm'}
-                      overflow={'hidden'}
-                      maxH={{ base: '350px', lg: '350px' }}
+                      maxW={ 'sm' }
+                      overflow={ 'hidden' }
+                      maxH={ { base: '350px', lg: '350px' } }
                     >
                       <Image
-                        borderRadius={'lg'}
+                        borderRadius={ 'lg' }
                         id="note-img"
-                        src={note.image}
+                        src={ note.image }
                         objectFit="cover"
-                        m={'auto'}
+                        m={ 'auto' }
                       />
                     </Box>
                   </Container>
-                  <Divider color={'gray.400'} />
+                  <Divider color={ 'gray.400' } />
                   <Container
-                    padding={'2'}
-                    bg={useColorModeValue('white', 'gray.600')}
+                    padding={ '2' }
+                    bg={ useColorModeValue('white', 'gray.600') }
                   >
                     <Stack>
-                      <Box bg={''}>
+                      <Box bg={ '' }>
                         <HStack spacing="10px">
                           <Box>
                             <Text
-                              color={useColorModeValue('#8cabcd', 'white')}
-                              fontWeight={600}
+                              color={ useColorModeValue('#8cabcd', 'white') }
+                              fontWeight={ 600 }
                             >
-                              @{note.owner} |
+                              @{ note.owner } |
                             </Text>
                           </Box>
                           <Box>
                             <Text
-                              color={useColorModeValue('gray.600', 'white')}
-                              fontSize={'1rem'}
+                              color={ useColorModeValue('gray.600', 'white') }
+                              fontSize={ '1rem' }
                             >
-                              {note.name}
+                              { note.name }
                             </Text>
                           </Box>
                         </HStack>
-                        <Box my={'1'}>
+                        <Box my={ '1' }>
                           <Text
-                            color={useColorModeValue('gray.500', 'white')}
-                            fontSize={'.9rem'}
-                            paddingLeft={'.1em'}
+                            color={ useColorModeValue('gray.500', 'white') }
+                            fontSize={ '.9rem' }
+                            paddingLeft={ '.1em' }
                           >
-                            {note.description}
+                            { note.description }
                           </Text>
-                          <Text color={'gray.500'}>
+                          <Text color={ 'gray.500' }>
                             <small>
-                              {format(new Date(note.createdAt), 'MM/dd/yyyy')}
+                              { format(new Date(note.createdAt), 'MM/dd/yyyy') }
                             </small>
                           </Text>
-                          <Image src={'user.avatar'} />
                         </Box>
                       </Box>
                     </Stack>
@@ -190,7 +192,7 @@ function Journal(user) {
             <Button onClick={() => deleteNote(note)}>Delete note</Button>
             {note.image && <img src={note.image} />} */}
           </div>
-        ))}
+        )) }
       </div>
     </div>
   );

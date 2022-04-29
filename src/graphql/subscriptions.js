@@ -8,6 +8,23 @@ export const onCreateUser = /* GraphQL */ `
       username
       avatar
       status
+      posts {
+        items {
+          id
+          name
+          description
+          image
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -24,6 +41,23 @@ export const onUpdateUser = /* GraphQL */ `
       username
       avatar
       status
+      posts {
+        items {
+          id
+          name
+          description
+          image
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -40,6 +74,23 @@ export const onDeleteUser = /* GraphQL */ `
       username
       avatar
       status
+      posts {
+        items {
+          id
+          name
+          description
+          image
+          userID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          owner
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -56,12 +107,13 @@ export const onCreatePost = /* GraphQL */ `
       name
       description
       image
-      owner
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -72,12 +124,13 @@ export const onUpdatePost = /* GraphQL */ `
       name
       description
       image
-      owner
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -88,12 +141,13 @@ export const onDeletePost = /* GraphQL */ `
       name
       description
       image
-      owner
+      userID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      owner
     }
   }
 `;
@@ -197,6 +251,7 @@ export const onCreateTodo = /* GraphQL */ `
   subscription OnCreateTodo($owner: String) {
     onCreateTodo(owner: $owner) {
       id
+      uid
       name
       description
       status
@@ -213,6 +268,7 @@ export const onUpdateTodo = /* GraphQL */ `
   subscription OnUpdateTodo($owner: String) {
     onUpdateTodo(owner: $owner) {
       id
+      uid
       name
       description
       status
@@ -229,6 +285,7 @@ export const onDeleteTodo = /* GraphQL */ `
   subscription OnDeleteTodo($owner: String) {
     onDeleteTodo(owner: $owner) {
       id
+      uid
       name
       description
       status
@@ -237,6 +294,99 @@ export const onDeleteTodo = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
+      owner
+    }
+  }
+`;
+export const onCreatePointTotal = /* GraphQL */ `
+  subscription OnCreatePointTotal($owner: String) {
+    onCreatePointTotal(owner: $owner) {
+      id
+      total
+      user {
+        id
+        username
+        avatar
+        status
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      pointTotalUserId
+      owner
+    }
+  }
+`;
+export const onUpdatePointTotal = /* GraphQL */ `
+  subscription OnUpdatePointTotal($owner: String) {
+    onUpdatePointTotal(owner: $owner) {
+      id
+      total
+      user {
+        id
+        username
+        avatar
+        status
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      pointTotalUserId
+      owner
+    }
+  }
+`;
+export const onDeletePointTotal = /* GraphQL */ `
+  subscription OnDeletePointTotal($owner: String) {
+    onDeletePointTotal(owner: $owner) {
+      id
+      total
+      user {
+        id
+        username
+        avatar
+        status
+        posts {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      pointTotalUserId
       owner
     }
   }

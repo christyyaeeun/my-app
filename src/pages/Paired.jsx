@@ -80,7 +80,7 @@ function Paired({ avatar }) {
 
   return (
     <>
-      <Container h={ '100%' }>
+      <Container h={ '100%' } mb={ '8' }>
         {/* <Box mt='1em'>
         <IconButton as={ Link } to="/goals"
           size={ 'lg' }
@@ -93,8 +93,8 @@ function Paired({ avatar }) {
             maxW={ '350px' }
             w={ 'full' }
             bg={ useColorModeValue('#f5f5f5', 'gray.800') }
-            boxShadow={ '2xl' }
-            rounded={ 'md' }
+            boxShadow={ 'xl' }
+            rounded={ 'lg' }
             overflow={ 'hidden' }
           >
             {/* <Image

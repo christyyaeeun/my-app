@@ -46,32 +46,32 @@ const Overlay = () => (
 );
 export default function CreatePost({ updatePosts, posts }) {
   /* 1. Create local state with useState hook */
-  const [formState, updateFormState] = useState(initialState);
-  const [overlay, setOverlay] = React.useState(<Overlay />);
-  const [isOpen, setIsOpen] = useState(false);
+  const [ formState, updateFormState ] = useState(initialState);
+  const [ overlay, setOverlay ] = React.useState(<Overlay />);
+  const [ isOpen, setIsOpen ] = useState(false);
 
   /* 2. onChangeText handler updates the form state when a user types into a form field */
   function onChangeText(e) {
     e.persist();
     updateFormState(currentState => ({
       ...currentState,
-      [e.target.name]: e.target.value,
+      [ e.target.name ]: e.target.value,
     }));
   }
 
   /* 3. onChangeFile handler will be fired when a user uploads a file  */
   function onChangeFile(e) {
     e.persist();
-    if (!e.target.files[0]) return;
-    const fileExtPosition = e.target.files[0].name.search(/.png|.jpg|.gif/i);
-    const firstHalf = e.target.files[0].name.slice(0, fileExtPosition);
-    const secondHalf = e.target.files[0].name.slice(fileExtPosition);
+    if (!e.target.files[ 0 ]) return;
+    const fileExtPosition = e.target.files[ 0 ].name.search(/.png|.jpg|.gif/i);
+    const firstHalf = e.target.files[ 0 ].name.slice(0, fileExtPosition);
+    const secondHalf = e.target.files[ 0 ].name.slice(fileExtPosition);
     const fileName = firstHalf + '_' + uuid() + secondHalf;
     console.log(fileName);
-    const image = { fileInfo: e.target.files[0], name: fileName };
+    const image = { fileInfo: e.target.files[ 0 ], name: fileName };
     updateFormState(currentState => ({
       ...currentState,
-      file: URL.createObjectURL(e.target.files[0]),
+      file: URL.createObjectURL(e.target.files[ 0 ]),
       image,
     }));
   }
@@ -121,50 +121,51 @@ export default function CreatePost({ updatePosts, posts }) {
     <Container>
       <Flex mb="2em">
         <Button
-          as={IconButton}
-          icon={<SmallAddIcon />}
-          bg={useColorModeValue('gray.100', 'gray.600')}
+          as={ IconButton }
+          icon={ <SmallAddIcon /> }
+          bg={ useColorModeValue('gray.100', 'gray.600') }
           color="gray.400"
-          onClick={() => {
+          p={ '0' }
+          onClick={ () => {
             setOverlay(<Overlay />);
             setIsOpen(true);
-          }}
+          } }
         ></Button>
 
         <Modal
           isCentered
-          onClose={onClose}
-          isOpen={isOpen}
+          onClose={ onClose }
+          isOpen={ isOpen }
           motionPreset="slideInBottom"
         >
-          {overlay}
+          { overlay }
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader color={useColorModeValue('gray.500', 'white')}>
+            <ModalHeader color={ useColorModeValue('gray.500', 'white') }>
               Create Post
             </ModalHeader>
-            <ModalCloseButton color={'gray.500'} />
+            <ModalCloseButton color={ 'gray.500' } />
             <ModalBody>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={ handleSubmit }>
                 <Box px="2" borderRadius="lg">
-                  <Container p={'0'}>
+                  <Container p={ '0' }>
                     <Flex mb="1">
                       <Spacer />
                     </Flex>
                   </Container>
 
                   <Container centerContent pt="3">
-                    <Stack spacing={3}>
+                    <Stack spacing={ 3 }>
                       <Box>
                         <Input
                           id="input-style"
                           placeholder="name"
                           name="name"
-                          size={'sm'}
-                          color={useColorModeValue('gray.400', 'white')}
-                          minW={'250px'}
+                          size={ 'sm' }
+                          color={ useColorModeValue('gray.400', 'white') }
+                          minW={ '250px' }
                           className="post-name"
-                          onChange={onChangeText}
+                          onChange={ onChangeText }
                         />
                       </Box>
 
@@ -173,11 +174,11 @@ export default function CreatePost({ updatePosts, posts }) {
                           id="input-style"
                           placeholder="Description"
                           name="description"
-                          color={useColorModeValue('gray.400', 'white')}
-                          size={'sm'}
+                          color={ useColorModeValue('gray.400', 'white') }
+                          size={ 'sm' }
                           className="post-description"
-                          minH={'100px'}
-                          onChange={onChangeText}
+                          minH={ '100px' }
+                          onChange={ onChangeText }
                         />
                       </Box>
 
@@ -186,27 +187,27 @@ export default function CreatePost({ updatePosts, posts }) {
                           <Icon
                             className="img"
                             color="#8dbae8"
-                            w={6}
-                            h={6}
-                            as={BiImageAdd}
+                            w={ 6 }
+                            h={ 6 }
+                            as={ BiImageAdd }
                           />
                         </label>
                         <input
                           id="file-input"
                           type="file"
-                          onChange={onChangeFile}
+                          onChange={ onChangeFile }
                         />
                       </Box>
 
-                      {formState.file && (
+                      { formState.file && (
                         <Image
-                          borderRadius={'lg'}
+                          borderRadius={ 'lg' }
                           boxSize="200px"
                           objectFit="cover"
-                          src={formState.file}
+                          src={ formState.file }
                           alt="Preview"
                         />
-                      )}
+                      ) }
                     </Stack>
                   </Container>
                 </Box>
@@ -217,12 +218,12 @@ export default function CreatePost({ updatePosts, posts }) {
                 colorScheme="blue"
                 title="save"
                 id="save"
-                mr={3}
-                onClick={save}
+                mr={ 3 }
+                onClick={ save }
               >
                 Save
               </Btn>
-              {formState.saving && (
+              { formState.saving && (
                 <Box id="spinner">
                   <Spinner
                     id="loading"
@@ -233,7 +234,7 @@ export default function CreatePost({ updatePosts, posts }) {
                     size="xl"
                   />
                 </Box>
-              )}
+              ) }
             </ModalFooter>
           </ModalContent>
         </Modal>

@@ -4,12 +4,13 @@ import { schema } from './schema';
 
 
 
-const { User, Post, Note, Entry, Todo } = initSchema(schema);
+const { User, Post, Note, Entry, Todo, PointTotal } = initSchema(schema);
 
 export {
   User,
   Post,
   Note,
   Entry,
-  Todo
+  Todo,
+  PointTotal
 };
