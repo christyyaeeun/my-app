@@ -71,7 +71,7 @@ function Entry(user) {
     }
 
     async function createEntry() {
-        if (!formData.name || !formData.description) return;
+        if (!formData.description) return;
         await API.graphql({
             query: createEntryMutation,
             variables: { input: formData },
@@ -303,10 +303,9 @@ function Entry(user) {
                                                     </Text>
 
                                                     <Text color={ 'gray.500' }>
-                                                        <small>
-                                                            { entry.createdAt }
-                                                            {/* { format(new Date(entry.createdAt), 'MM/dd/yyyy') } */ }
-                                                        </small>
+                                                        <small>{ format(new Date(entry.createdAt), "MM/dd/yyyy") }</small>
+
+                                                     
                                                     </Text>
                                                 </Box>
                                             </Box>

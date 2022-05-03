@@ -62,9 +62,13 @@ function Goals() {
     [ 'white', 'white', 'white', 'white', 'white', 'white' ],
     [ '#764d74', '#4d4d76', '#2e3648', '#e6e6fa', 'teal.900', 'blue.900' ],
   )
+
+
   const footerBg = useColorModeValue(
     [ '#e6e6fa', '#c8e2dfba', '#ebdde491' ]
   )
+
+  // #c8e2df #fbeff5 #aac8f475     '#f1e093','#f5d7a5
 
   const [ tabIndex, setTabIndex ] = React.useState(0)
   const bg = colors[ tabIndex ]
@@ -154,7 +158,7 @@ function Goals() {
 
                       Send your partner a text
                     </Text> <Spacer />
-                    <NumberInput w={ '4em' } size='sm' defaultValue={ 0 } min={ 0 }>
+                    {/* <NumberInput w={ '4em' } size='sm' defaultValue={ 0 } min={ 0 }>
                       <NumberInputField focusBorderColor='transparent' />
                       <NumberInputStepper>
                         <NumberIncrementStepper
@@ -168,7 +172,7 @@ function Goals() {
                           children='-'
                         />
                       </NumberInputStepper>
-                    </NumberInput>
+                    </NumberInput> */}
                   </Flex>
 
 

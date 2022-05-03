@@ -25,7 +25,6 @@ import { Auth, Storage } from 'aws-amplify';
 import { RiVipCrownLine } from 'react-icons/ri'
 import Goals from './Goals';
 import { AmplifyS3Image } from '@aws-amplify/ui-react';
-import User from '../components/User';
 import { Link } from 'react-router-dom';
 
 function Paired({ avatar }) {

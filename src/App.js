@@ -5,8 +5,6 @@ import Landing from './pages/Landing';
 import Missing from './pages/Missing';
 import Home from './pages/Home';
 import Paired from './pages/Paired';
-import Grid from './components/journal/Grid';
-import Test from './pages/Test';
 import Layout from './components/Layout';
 import { Explore } from './pages';
 import { LoveLanguage } from './components/cards/LoveLanguage';
@@ -17,6 +15,8 @@ import CreatePost from './components/post/CreatePost';
 import Post from './components/post/Post';
 import PostList from './components/post/PostList';
 // import Notes from './components/notes/Notes';
+import UserPage from './pages/UserPage';
+
 import Journal from './components/journal/Journal';
 import Entry from './components/journal/Entry';
 import Note from './components/notes/Note';
@@ -36,13 +36,11 @@ function App({ user, signOut }) {
         <Route path="/home" element={ <Home /> } />
         <Route path="/" element={ <Layout /> }>
           <Route path="/paired" element={ <Paired /> } />
-          <Route path="/grid" element={ <Grid /> } />
+          <Route path="/userpage" element={ <UserPage /> } />
           <Route path="/goals" element={ <Goals /> } />
-          {/* <Route path="/entry" element={ <Entry /> } /> */ }
           <Route path="/journal" element={ <Journal /> } />
           <Route path="/entry" element={ <Entry /> } />
           <Route path="/post" element={ <Post /> } />
-
           <Route path="/createpost" element={ <CreatePost /> } />
           <Route path="/note" element={ <Note /> } />
           <Route path="/explore" element={ <Explore /> } />
@@ -53,7 +51,6 @@ function App({ user, signOut }) {
         </Route>
         <Route path="/landing" element={ <Landing /> } />
         <Route path="*" element={ <Missing /> } />
-        <Route path="/test" element={ <Test /> } />
       </Routes>
     </ChakraProvider>
   );

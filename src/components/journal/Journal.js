@@ -8,7 +8,16 @@ import {
 import {
   Input,
   Image,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
   Button,
+  PopoverAnchor,
   Text,
   Box,
   Icon,
@@ -17,9 +26,11 @@ import {
   Divider,
   Stack,
   HStack,
+  Textarea,
 } from '@chakra-ui/react';
 import { BiImageAdd } from 'react-icons/bi';
 import format from 'date-fns/format';
+// import PopoverCard from '../Activities/PopoverCard';
 const initialFormState = { name: '', description: '', image: {} };
 
 function Journal(user) {
@@ -47,7 +58,7 @@ function Journal(user) {
   }
 
   async function createNote() {
-    if (!formData.name || !formData.description) return;
+    if (!formData.description) return;
     await API.graphql({
       query: createNoteMutation,
       variables: { input: formData },
@@ -83,11 +94,19 @@ function Journal(user) {
     console.log('new notes', newNotesArray);
   }
 
+  const Image = ({ src, alt, fallback }) => {
+    const [ error, setError ] = useState();
 
+    const onError = () => {
+      setError(true);
+    };
+    return error ? fallback : <img src={ src } alt={ alt } onError={ onError } />;
+  };
 
 
   return (
     <div className="Notes">
+      {/* <PopoverCard />
       <Input
         onChange={ e => setFormData({ ...formData, name: e.target.value }) }
         placeholder="Note name"
@@ -100,16 +119,66 @@ function Journal(user) {
         placeholder="Note description"
         value={ formData.description }
       />
-      {/* <Input type="file" onChange={onChange} /> */ }
 
       <Box className="image-upload" w="100%">
         <label for="file-input">
           <Icon className="img" color="#8dbae8" w={ 6 } h={ 6 } as={ BiImageAdd } />
         </label>
         <input id="file-input" type="file" onChange={ onChange } />
+      </Box> */}
+      <Box display={ 'none' }>
+        <input
+          id="file-input"
+          type="file"
+          onError={ e => (e.target.style.display = 'none') }
+          onChange={ onChange }
+        />
+
       </Box>
 
-      <Button onClick={ createNote }>Create Note</Button>
+
+      <Container p={ '2' } maxW={ '50px' } centerContent>
+        <Popover isLazy >
+          <PopoverTrigger>
+            <Button position={ 'relative' } bg={ '#cadaee' } left={ '-30%' } boxShadow={ 'lg' } color={ 'white' } onClick={ createNote }>prompt</Button>
+          </PopoverTrigger>
+          <PopoverContent px={ '2' }>
+            <PopoverHeader color={ 'gray.500' }> What are you grateful for about your partner? </PopoverHeader>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverBody>
+              {/* < Input
+                mb={ '2' }
+                fontSize={ 'sm' }
+                onChange={ e => setFormData({ ...formData, name: e.target.value }) }
+                placeholder="Title"
+                value={ formData.name }
+              /> */}
+              <Textarea
+                fontSize={ 'sm' }
+                mb={ '3' }
+                minH={ '175px' }
+                onChange={ e =>
+                  setFormData({ ...formData, description: e.target.value })
+                }
+                placeholder="Description"
+                value={ formData.description }
+              />
+              {/* <Input type="file" onChange={onChange} /> */ }
+
+              {/* <Box className="image-upload" w="100%">
+                <label for="file-input">
+                  <Icon className="img" color="#8dbae8" w={ 6 } h={ 6 } as={ BiImageAdd } />
+                </label>
+                <input id="file-input" type="file" onChange={ onChange } />
+              </Box> */}
+              <Button boxShadow={ 'lg' } bg={ '#cadaee' } color={ 'white' } onClick={ createNote }>save</Button>
+
+            </PopoverBody>
+          </PopoverContent>
+        </Popover >
+      </Container>
+
       <div style={ { marginBottom: 30 } }>
         { notes.map(note => (
           <div key={ note.id || note.name }>
@@ -140,6 +209,8 @@ function Journal(user) {
                         objectFit="cover"
                         m={ 'auto' }
                       />
+
+
                     </Box>
                   </Container>
                   <Divider color={ 'gray.400' } />

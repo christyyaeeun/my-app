@@ -25,7 +25,7 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { AmplifyS3Image } from '@aws-amplify/ui-react';
 import { Storage } from 'aws-amplify';
 
-const Links = ['Home', 'Timeline', 'Entry', 'Explore', 'Paired'];
+const Links = ['Home', 'Timeline', 'Entry', 'Explore'];
 const NavLink = ({ children, href }: { children: ReactNode; href: string }) => (
   <Link
     px={2}
@@ -99,8 +99,8 @@ export default function Nav({ children }) {
                 <Center></Center>
                 <br />
                 <MenuDivider />
-                <MenuItem as="a" href="profile">
-                  Edit Profile
+                <MenuItem as="a" href="userpage">
+                  Profile
                 </MenuItem>
                 <MenuItem>Account Settings</MenuItem>
                 <MenuItem>

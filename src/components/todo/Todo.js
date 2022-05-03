@@ -36,7 +36,7 @@ async function listTodos(setTodos) {
     setTodos(todos);
 }
 
-function TodoApp() {
+function Todo() {
     const [ todos, setTodos ] = useState([]);
     const [ name, setName ] = useState('');
     const [ id, setId ] = useState('');
@@ -278,4 +278,4 @@ function TodoApp() {
     );
 }
 
-export default TodoApp;
+export default Todo;

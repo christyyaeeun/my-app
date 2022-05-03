@@ -11,7 +11,6 @@ import {
   Stack,
   Heading,
 } from '@chakra-ui/react';
-import { BackButton } from './BackButton';
 
 export const LoveLanguage = () => {
   return (
@@ -21,83 +20,83 @@ export const LoveLanguage = () => {
       </Text>
 
       <Stack
-        direction={{ base: 'column', md: 'row' }}
+        direction={ { base: 'column', md: 'row' } }
         textAlign="center"
         justify="center"
-        spacing={{ base: 4, lg: 10 }}
-        py={'10'}
+        spacing={ { base: 4, lg: 10 } }
+        py={ '10' }
       >
         <Wrap spacing="50px" justify="center" maxW="7xl">
           <WrapItem>
-            <Center py={6}>
+            <Center py={ 6 }>
               <Stack
                 borderWidth="1px"
                 borderRadius="lg"
-                w={'330px'}
-                height={'20rem'}
-                direction={'row'}
-                bg={useColorModeValue('white', 'gray.900')}
-                boxShadow={'2xl'}
-                padding={4}
+                w={ '330px' }
+                height={ '20rem' }
+                direction={ 'row' }
+                bg={ useColorModeValue('white', 'gray.900') }
+                boxShadow={ '2xl' }
+                padding={ 4 }
               >
-                <Flex flex={0.6} bg="gray.200"></Flex>
+                <Flex flex={ 0.6 } bg="gray.200"></Flex>
                 <Stack
-                  flex={1}
+                  flex={ 1 }
                   flexDirection="column"
                   justifyContent="center"
                   alignItems="center"
-                  p={1}
-                  pt={2}
+                  p={ 1 }
+                  pt={ 2 }
                 >
                   <Heading
-                    fontSize={'1xl'}
-                    fontFamily={'body'}
-                    color={'gray.500'}
+                    fontSize={ '1xl' }
+                    fontFamily={ 'body' }
+                    color={ 'gray.500' }
                   >
                     Quality Time
                   </Heading>
                   <Text
-                    fontWeight={600}
-                    color={'gray.500'}
+                    fontWeight={ 600 }
+                    color={ 'gray.500' }
                     size="sm"
-                    mb={4}
+                    mb={ 4 }
                   ></Text>
                   <Text
-                    textAlign={'center'}
-                    color={useColorModeValue('gray.700', 'gray.400')}
-                    px={3}
+                    textAlign={ 'center' }
+                    color={ useColorModeValue('gray.700', 'gray.400') }
+                    px={ 3 }
                   ></Text>
                   <Stack
-                    align={'center'}
-                    justify={'center'}
-                    direction={'row'}
-                    mt={6}
+                    align={ 'center' }
+                    justify={ 'center' }
+                    direction={ 'row' }
+                    mt={ 6 }
                   >
                     <Badge
-                      px={2}
-                      py={1}
-                      bg={useColorModeValue('gray.50', 'gray.800')}
-                      fontWeight={'400'}
+                      px={ 2 }
+                      py={ 1 }
+                      bg={ useColorModeValue('gray.50', 'gray.800') }
+                      fontWeight={ '400' }
                     >
                       #Growth
                     </Badge>
                     <Badge
-                      px={2}
-                      py={1}
-                      bg={useColorModeValue('gray.50', 'gray.800')}
-                      fontWeight={'400'}
+                      px={ 2 }
+                      py={ 1 }
+                      bg={ useColorModeValue('gray.50', 'gray.800') }
+                      fontWeight={ '400' }
                     >
                       #love
                     </Badge>
                   </Stack>
 
                   <Stack
-                    width={'100%'}
-                    mt={'2rem'}
-                    direction={'row'}
-                    padding={2}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
+                    width={ '100%' }
+                    mt={ '2rem' }
+                    direction={ 'row' }
+                    padding={ 2 }
+                    justifyContent={ 'space-between' }
+                    alignItems={ 'center' }
                   ></Stack>
                 </Stack>
               </Stack>
@@ -105,75 +104,75 @@ export const LoveLanguage = () => {
           </WrapItem>
 
           <WrapItem>
-            <Center py={6}>
+            <Center py={ 6 }>
               <Stack
                 borderWidth="1px"
                 borderRadius="lg"
-                w={'330px'}
-                height={'20rem'}
-                direction={'row'}
-                bg={useColorModeValue('white', 'gray.900')}
-                boxShadow={'2xl'}
-                padding={4}
+                w={ '330px' }
+                height={ '20rem' }
+                direction={ 'row' }
+                bg={ useColorModeValue('white', 'gray.900') }
+                boxShadow={ '2xl' }
+                padding={ 4 }
               >
-                <Flex flex={0.6} bg="gray.200"></Flex>
+                <Flex flex={ 0.6 } bg="gray.200"></Flex>
                 <Stack
-                  flex={1}
+                  flex={ 1 }
                   flexDirection="column"
                   justifyContent="center"
                   alignItems="center"
-                  p={1}
-                  pt={2}
+                  p={ 1 }
+                  pt={ 2 }
                 >
                   <Heading
-                    fontSize={'1xl'}
-                    fontFamily={'body'}
-                    color={'gray.500'}
+                    fontSize={ '1xl' }
+                    fontFamily={ 'body' }
+                    color={ 'gray.500' }
                   >
                     Words of Affirmation
                   </Heading>
                   <Text
-                    fontWeight={600}
-                    color={'gray.500'}
+                    fontWeight={ 600 }
+                    color={ 'gray.500' }
                     size="sm"
-                    mb={4}
+                    mb={ 4 }
                   ></Text>
                   <Text
-                    textAlign={'center'}
-                    color={useColorModeValue('gray.700', 'gray.400')}
-                    px={3}
+                    textAlign={ 'center' }
+                    color={ useColorModeValue('gray.700', 'gray.400') }
+                    px={ 3 }
                   ></Text>
                   <Stack
-                    align={'center'}
-                    justify={'center'}
-                    direction={'row'}
-                    mt={6}
+                    align={ 'center' }
+                    justify={ 'center' }
+                    direction={ 'row' }
+                    mt={ 6 }
                   >
                     <Badge
-                      px={2}
-                      py={1}
-                      bg={useColorModeValue('gray.50', 'gray.800')}
-                      fontWeight={'400'}
+                      px={ 2 }
+                      py={ 1 }
+                      bg={ useColorModeValue('gray.50', 'gray.800') }
+                      fontWeight={ '400' }
                     >
                       #Growth
                     </Badge>
                     <Badge
-                      px={2}
-                      py={1}
-                      bg={useColorModeValue('gray.50', 'gray.800')}
-                      fontWeight={'400'}
+                      px={ 2 }
+                      py={ 1 }
+                      bg={ useColorModeValue('gray.50', 'gray.800') }
+                      fontWeight={ '400' }
                     >
                       #love
                     </Badge>
                   </Stack>
 
                   <Stack
-                    width={'100%'}
-                    mt={'2rem'}
-                    direction={'row'}
-                    padding={2}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
+                    width={ '100%' }
+                    mt={ '2rem' }
+                    direction={ 'row' }
+                    padding={ 2 }
+                    justifyContent={ 'space-between' }
+                    alignItems={ 'center' }
                   ></Stack>
                 </Stack>
               </Stack>
@@ -181,75 +180,75 @@ export const LoveLanguage = () => {
           </WrapItem>
 
           <WrapItem>
-            <Center py={6}>
+            <Center py={ 6 }>
               <Stack
                 borderWidth="1px"
                 borderRadius="lg"
-                w={'330px'}
-                height={'20rem'}
-                direction={'row'}
-                bg={useColorModeValue('white', 'gray.900')}
-                boxShadow={'2xl'}
-                padding={4}
+                w={ '330px' }
+                height={ '20rem' }
+                direction={ 'row' }
+                bg={ useColorModeValue('white', 'gray.900') }
+                boxShadow={ '2xl' }
+                padding={ 4 }
               >
-                <Flex flex={0.6} bg="gray.200"></Flex>
+                <Flex flex={ 0.6 } bg="gray.200"></Flex>
                 <Stack
-                  flex={1}
+                  flex={ 1 }
                   flexDirection="column"
                   justifyContent="center"
                   alignItems="center"
-                  p={1}
-                  pt={2}
+                  p={ 1 }
+                  pt={ 2 }
                 >
                   <Heading
-                    fontSize={'1xl'}
-                    fontFamily={'body'}
-                    color={'gray.500'}
+                    fontSize={ '1xl' }
+                    fontFamily={ 'body' }
+                    color={ 'gray.500' }
                   >
                     Physical Touch
                   </Heading>
                   <Text
-                    fontWeight={600}
-                    color={'gray.500'}
+                    fontWeight={ 600 }
+                    color={ 'gray.500' }
                     size="sm"
-                    mb={4}
+                    mb={ 4 }
                   ></Text>
                   <Text
-                    textAlign={'center'}
-                    color={useColorModeValue('gray.700', 'gray.400')}
-                    px={3}
+                    textAlign={ 'center' }
+                    color={ useColorModeValue('gray.700', 'gray.400') }
+                    px={ 3 }
                   ></Text>
                   <Stack
-                    align={'center'}
-                    justify={'center'}
-                    direction={'row'}
-                    mt={6}
+                    align={ 'center' }
+                    justify={ 'center' }
+                    direction={ 'row' }
+                    mt={ 6 }
                   >
                     <Badge
-                      px={2}
-                      py={1}
-                      bg={useColorModeValue('gray.50', 'gray.800')}
-                      fontWeight={'400'}
+                      px={ 2 }
+                      py={ 1 }
+                      bg={ useColorModeValue('gray.50', 'gray.800') }
+                      fontWeight={ '400' }
                     >
                       #Growth
                     </Badge>
                     <Badge
-                      px={2}
-                      py={1}
-                      bg={useColorModeValue('gray.50', 'gray.800')}
-                      fontWeight={'400'}
+                      px={ 2 }
+                      py={ 1 }
+                      bg={ useColorModeValue('gray.50', 'gray.800') }
+                      fontWeight={ '400' }
                     >
                       #love
                     </Badge>
                   </Stack>
 
                   <Stack
-                    width={'100%'}
-                    mt={'2rem'}
-                    direction={'row'}
-                    padding={2}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
+                    width={ '100%' }
+                    mt={ '2rem' }
+                    direction={ 'row' }
+                    padding={ 2 }
+                    justifyContent={ 'space-between' }
+                    alignItems={ 'center' }
                   ></Stack>
                 </Stack>
               </Stack>
@@ -257,75 +256,75 @@ export const LoveLanguage = () => {
           </WrapItem>
 
           <WrapItem>
-            <Center py={6}>
+            <Center py={ 6 }>
               <Stack
                 borderWidth="1px"
                 borderRadius="lg"
-                w={'330px'}
-                height={'20rem'}
-                direction={'row'}
-                bg={useColorModeValue('white', 'gray.900')}
-                boxShadow={'2xl'}
-                padding={4}
+                w={ '330px' }
+                height={ '20rem' }
+                direction={ 'row' }
+                bg={ useColorModeValue('white', 'gray.900') }
+                boxShadow={ '2xl' }
+                padding={ 4 }
               >
-                <Flex flex={0.6} bg="gray.200"></Flex>
+                <Flex flex={ 0.6 } bg="gray.200"></Flex>
                 <Stack
-                  flex={1}
+                  flex={ 1 }
                   flexDirection="column"
                   justifyContent="center"
                   alignItems="center"
-                  p={1}
-                  pt={2}
+                  p={ 1 }
+                  pt={ 2 }
                 >
                   <Heading
-                    fontSize={'1xl'}
-                    fontFamily={'body'}
-                    color={'gray.500'}
+                    fontSize={ '1xl' }
+                    fontFamily={ 'body' }
+                    color={ 'gray.500' }
                   >
                     Acts of Service
                   </Heading>
                   <Text
-                    fontWeight={600}
-                    color={'gray.500'}
+                    fontWeight={ 600 }
+                    color={ 'gray.500' }
                     size="sm"
-                    mb={4}
+                    mb={ 4 }
                   ></Text>
                   <Text
-                    textAlign={'center'}
-                    color={useColorModeValue('gray.700', 'gray.400')}
-                    px={3}
+                    textAlign={ 'center' }
+                    color={ useColorModeValue('gray.700', 'gray.400') }
+                    px={ 3 }
                   ></Text>
                   <Stack
-                    align={'center'}
-                    justify={'center'}
-                    direction={'row'}
-                    mt={6}
+                    align={ 'center' }
+                    justify={ 'center' }
+                    direction={ 'row' }
+                    mt={ 6 }
                   >
                     <Badge
-                      px={2}
-                      py={1}
-                      bg={useColorModeValue('gray.50', 'gray.800')}
-                      fontWeight={'400'}
+                      px={ 2 }
+                      py={ 1 }
+                      bg={ useColorModeValue('gray.50', 'gray.800') }
+                      fontWeight={ '400' }
                     >
                       #Growth
                     </Badge>
                     <Badge
-                      px={2}
-                      py={1}
-                      bg={useColorModeValue('gray.50', 'gray.800')}
-                      fontWeight={'400'}
+                      px={ 2 }
+                      py={ 1 }
+                      bg={ useColorModeValue('gray.50', 'gray.800') }
+                      fontWeight={ '400' }
                     >
                       #love
                     </Badge>
                   </Stack>
 
                   <Stack
-                    width={'100%'}
-                    mt={'2rem'}
-                    direction={'row'}
-                    padding={2}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
+                    width={ '100%' }
+                    mt={ '2rem' }
+                    direction={ 'row' }
+                    padding={ 2 }
+                    justifyContent={ 'space-between' }
+                    alignItems={ 'center' }
                   ></Stack>
                 </Stack>
               </Stack>
@@ -333,75 +332,75 @@ export const LoveLanguage = () => {
           </WrapItem>
 
           <WrapItem>
-            <Center py={6}>
+            <Center py={ 6 }>
               <Stack
                 borderWidth="1px"
                 borderRadius="lg"
-                w={'330px'}
-                height={'20rem'}
-                direction={'row'}
-                bg={useColorModeValue('white', 'gray.900')}
-                boxShadow={'2xl'}
-                padding={4}
+                w={ '330px' }
+                height={ '20rem' }
+                direction={ 'row' }
+                bg={ useColorModeValue('white', 'gray.900') }
+                boxShadow={ '2xl' }
+                padding={ 4 }
               >
-                <Flex flex={0.6} bg="gray.200"></Flex>
+                <Flex flex={ 0.6 } bg="gray.200"></Flex>
                 <Stack
-                  flex={1}
+                  flex={ 1 }
                   flexDirection="column"
                   justifyContent="center"
                   alignItems="center"
-                  p={1}
-                  pt={2}
+                  p={ 1 }
+                  pt={ 2 }
                 >
                   <Heading
-                    fontSize={'1xl'}
-                    fontFamily={'body'}
-                    color={'gray.500'}
+                    fontSize={ '1xl' }
+                    fontFamily={ 'body' }
+                    color={ 'gray.500' }
                   >
                     Recieving Gifts
                   </Heading>
                   <Text
-                    fontWeight={600}
-                    color={'gray.500'}
+                    fontWeight={ 600 }
+                    color={ 'gray.500' }
                     size="sm"
-                    mb={4}
+                    mb={ 4 }
                   ></Text>
                   <Text
-                    textAlign={'center'}
-                    color={useColorModeValue('gray.700', 'gray.400')}
-                    px={3}
+                    textAlign={ 'center' }
+                    color={ useColorModeValue('gray.700', 'gray.400') }
+                    px={ 3 }
                   ></Text>
                   <Stack
-                    align={'center'}
-                    justify={'center'}
-                    direction={'row'}
-                    mt={6}
+                    align={ 'center' }
+                    justify={ 'center' }
+                    direction={ 'row' }
+                    mt={ 6 }
                   >
                     <Badge
-                      px={2}
-                      py={1}
-                      bg={useColorModeValue('gray.50', 'gray.800')}
-                      fontWeight={'400'}
+                      px={ 2 }
+                      py={ 1 }
+                      bg={ useColorModeValue('gray.50', 'gray.800') }
+                      fontWeight={ '400' }
                     >
                       #Growth
                     </Badge>
                     <Badge
-                      px={2}
-                      py={1}
-                      bg={useColorModeValue('gray.50', 'gray.800')}
-                      fontWeight={'400'}
+                      px={ 2 }
+                      py={ 1 }
+                      bg={ useColorModeValue('gray.50', 'gray.800') }
+                      fontWeight={ '400' }
                     >
                       #love
                     </Badge>
                   </Stack>
 
                   <Stack
-                    width={'100%'}
-                    mt={'2rem'}
-                    direction={'row'}
-                    padding={2}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
+                    width={ '100%' }
+                    mt={ '2rem' }
+                    direction={ 'row' }
+                    padding={ 2 }
+                    justifyContent={ 'space-between' }
+                    alignItems={ 'center' }
                   ></Stack>
                 </Stack>
               </Stack>

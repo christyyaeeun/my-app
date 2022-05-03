@@ -1,20 +1,22 @@
 import React from 'react'
 import { Container, Text } from '@chakra-ui/react'
 import CalendarEvents from '../components/calendar/CalendarEvents'
-
-function JournalPage() {
+import ProfileCard from '../components/ProfileCard'
+// import Profile from './Profile'
+function UserPage() {
 
     return (
         <>
             <Container maxW='6xl' minH='100vh'>
-                <Container centerContent maxW='container.sm' minH='300px' p='10' color='gray.500'>
+                <Container centerContent maxW='container.sm' minH='300px' p='5' color='gray.500'>
                     <Text fontSize='2xl'>
-                        Journal
+                        Profile
                     </Text>
-                    <CalendarEvents />
+                    <ProfileCard />
+                    {/* <CalendarEvents /> */ }
                 </Container>
             </Container>
         </>
     )
 }
-export default JournalPage
+export default UserPage

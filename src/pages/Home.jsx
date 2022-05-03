@@ -2,7 +2,6 @@ import '@fontsource/inter/500.css';
 import React, { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
 // import TestimonialCard from './TestimonialCard'
-import oltMotion from '../components/Activities/oltMotion';
 import {
   Container,
   Box,
@@ -17,10 +16,11 @@ import {
   IconButton,
   useColorModeValue,
 } from '@chakra-ui/react';
+import Journal from '../components/journal/Journal';
 import { Link } from 'react-router-dom';
 import { BsSticky } from 'react-icons/bs';
 import DateCalendar from '../components/calendar/DateCalendar';
-import TodoApp from '../components/todo/TodoApp';
+// import TodoApp from '../components/todo/TodoApp';
 import Navigator from '../components/Navigator';
 import Goals from './Goals';
 
@@ -56,7 +56,7 @@ const Home = () => {
             </Center>
             <Spacer />
             <Box h={ '3em' }>
-              <Link to="/goals">
+              <Link to="/paired">
                 <Image
                   src={
                     'https://firebasestorage.googleapis.com/v0/b/christypark-portfolio.appspot.com/o/icn.svg?alt=media&token=40c29607-6a7f-4001-bb02-9c9435839e41'
@@ -94,13 +94,13 @@ const Home = () => {
               </Box>
             </Box>
           </VStack>
-          <Container>
+          {/* <Container>
             <TodoApp />
-            <oltMotion />
-          </Container>
+          </Container> */}
         </Container>
         {/* <TestimonialCard /> */ }
         {/* <Goals /> */ }
+        <Journal />
       </Container>
     </section>
   );
