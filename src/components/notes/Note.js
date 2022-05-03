@@ -120,9 +120,9 @@ function Entry(user) {
   }
 
   return (
-    <div className="Notes">
+    <Box className="Notes" max-width={'500px'} margin={'0 auto'}>
       <Container maxW={ 'sm' } px={ '5' }>
-        <Flex mb="1em" justifyContent={ 'flex-end' }>
+        <Flex mb="1em" justifyContent={ 'flex-start' }>
           <Button
             mt={ '-2.4em' }
             p={ '0' }
@@ -315,15 +315,10 @@ function Entry(user) {
           </div>
         )) }
       </div>
-    </div>
+</Box>
   );
 }
 
 export default Entry;
 
-{
-  /* <h2>{note.name}</h2>
-            <p>{note.description}</p>
-            <Button onClick={() => deleteNote(note)}>Delete note</Button>
-            {note.image && <img src={note.image} />} */
-}
+

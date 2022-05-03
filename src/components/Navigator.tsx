@@ -7,9 +7,11 @@ import {
   Flex,
   Avatar,
   HStack,
+  Image,
   Link,
   IconButton,
   Button,
+  Text,
   Menu,
   MenuButton,
   MenuList,
@@ -63,8 +65,7 @@ export default function Nav({ children }) {
               color={useColorModeValue('gray.400', 'white')}
               fontWeight="600"
               id="nav-header"
-            >
-              olt
+            ><Text color={'gray.500'}>OLT</Text>
             </Box>
             <HStack
               as={'nav'}

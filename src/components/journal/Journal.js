@@ -127,6 +127,7 @@ function Journal(user) {
         <input id="file-input" type="file" onChange={ onChange } />
       </Box> */}
       <Box display={ 'none' }>
+
         <input
           id="file-input"
           type="file"
@@ -137,7 +138,7 @@ function Journal(user) {
       </Box>
 
 
-      <Container p={ '2' } maxW={ '50px' } centerContent>
+      <Container p={ '2' } centerContent>
         <Popover isLazy >
           <PopoverTrigger>
             <Button position={ 'relative' } bg={ '#cadaee' } left={ '-30%' } boxShadow={ 'lg' } color={ 'white' } onClick={ createNote }>prompt</Button>
